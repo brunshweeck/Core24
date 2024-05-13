@@ -1,7 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Boolean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\BooleanArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Byte.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\ByteArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\CharArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\CharSequence.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Comparable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\DoubleArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\FloatArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\IntArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Integer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Long.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\LongArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Number.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Short.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\ShortArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Compiler.cpp">
@@ -10,7 +64,13 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Literals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Nil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\OS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Precondion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Templates.cpp">
@@ -19,9 +79,66 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Types.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Boolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\BooleanArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Byte.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\ByteArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\CharArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\CharSequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Comparable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\DoubleArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\FloatArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\IntArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Integer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Long.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\LongArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Short.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\ShortArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\String.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Compiler.h">
@@ -30,13 +147,22 @@
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Literals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Nil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\OS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Precondition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Templates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\StringUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,131 @@
+= Projet
+
+[#_core24]
+== Core24
+
+[quote]
+Une nouvelle vision du C++
+
+=== Description
+
+Cette library represente une version optimisée du système de fonction standard lié au c++.Dans une vision, de lié toute les classe à une unique base, ainsi avoir une meilleur traçabilité.
+
+=== Requis
+
+* C++ 11 ou plus
+* Un support OpenGL ou DirectX
+
+=== Packages
+
+* link:core/index.adoc[core]
+* link:core/ui/index.adoc[core/ui]
+* link:core/util/index.adoc[core/util]
+* link:core/time/index.adoc[core/time]
+* link:core/text/index.adoc[core/text]
+
+=== Compatibilité des types
+
+.core/misc/Types.h
+|===
+| *Nouveau*   | *ancien (standard au C/C++)*
+| gbool     | bool
+| gbyte     | signed char
+| gshort    | signed short
+| gchar     | char16_t, wchar_t
+| gint      | signed int, signed long
+| gfloat    | float
+| glong     | signed long, signed long long
+| gdouble   | double, long double
+|===
+
+=== Equivalence des types
+
+.core/misc/Types.h
+|===
+| *Class* | *Primitive*   | *ancien (standard au C/C++)*
+| Boolean | gbool     | bool
+| Byte | gbyte     | signed char +
+unsigned char
+| Short | gshort    | signed short +
+unsigned short
+| Character | gchar     | char16_t +
+wchar_t +
+char8_t
+| Integer | gint      | signed int +
+unsigned int
+signed long
+unsigned long
+wchar_t
+char32_t
+| Float | gfloat    | float
+| Long | glong     | signed long +
+unsigned long +
+signed long long +
+unsigned long long +
+signed __int128 +
+unsigned __int128
+| Double | gdouble | double +
+long double +
+__float128
+|===
+
+=== Expression literal (Suffixes)
+[source, c++]
+.String
+--
+ String operator ""_S(...);
+
+// Usage
+auto str = "hello"_S // ok, str est de type String
+auto str2 = "hello" // bad, str2 est de type char[6]
+
+String s = "hello"_S // ok
+String s2 = "hello" // error, impossible de convertir une valeur de type char[6] en String
+
+--
+
+[source, c++]
+.Complex
+--
+ Complex operator ""_i(...);
+ Complex operator ""_I(...);
+ Complex operator ""_j(...);
+ Complex operator ""_J(...);
+
+ Complex operator ""i(...); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""I(...); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""j(...); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""J(...); // deprecated, ambigous with C++ standard complex class
+
+// Usage
+auto z = 23_i; // ok, z est de type Complex
+auto z2 = 23i // bad, ambigous (core::Complex, std::complex, _Complex, _DComplex, etc.)
+
+Complex z3 = 23_i // ok
+Complex z4 = 23i // ok, auto convert.
+--
+
+[source, c++]
+.NIL
+--
+extern NIL null;
+
+// null reference est equivalent a nullptr en C++ et NULL en C
+
+// Usage
+auto a = null; // error
+auto &a = null; // ok
+auto &&a = null; // ok
+
+int *iptr = null; // ok, iptr == nullptr
+
+null == NULL; // vrai
+null == nullptr; // faux
+--
+
+[source, c++]
+.Unsafe (remplace le fichier <stdlib.h> et <cstdlib>)
+--
+extern Unsafe VarHandle;
+--
+

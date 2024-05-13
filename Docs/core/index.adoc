@@ -1,0 +1,8 @@
+= Package
+
+== core
+Ce package contient toutes les structure de base de la librarie Core24
+
+=== Classes
+    * link:Class.adoc[Class] :
+        Outil de description static de type

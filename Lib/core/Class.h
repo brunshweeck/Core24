@@ -6,6 +6,7 @@
 #define Core24_CLASS_H
 
 #include <core/misc/Literals.h>
+#include <core/misc/Nil.h>
 
 namespace core
 {
@@ -16,7 +17,7 @@ namespace core
      * @tparam T The target type
      */
     template <class T>
-    class Class CORE_FINAL
+    class Class final : public virtual Object
     {
         CORE_IMPLICIT Class()
         {
@@ -35,11 +36,12 @@ namespace core
 
         // Volatile version
         CORE_ALIAS(Volatile,) typename misc::TRANSFORM<misc::VOL, T>::T;
-        CORE_ALIAS(ConstVolatile,) typename misc::TRANSFORM<misc::VOL, Constant>::T;
         CORE_ALIAS(NoVolatile,) typename misc::TRANSFORM<misc::VOL | misc::REMOVE, T>::T;
-        CORE_ALIAS(NoConstVolatile,) typename misc::TRANSFORM<misc::VOL | misc::REMOVE, NoConstant>::T;
+        CORE_ALIAS(ConstVolatile,) typename misc::TRANSFORM<misc::CONST | misc::VOL, T>::T;
+        CORE_ALIAS(NoConstVolatile,) typename misc::TRANSFORM<misc::CONST | misc::VOL | misc::REMOVE, T>::T;
 
         CORE_ALIAS(Vol, Volatile);
+        CORE_ALIAS(CVol, Volatile);
         CORE_ALIAS(NVol, NoVolatile);
         CORE_ALIAS(NConstVol, NoConstVolatile);
         CORE_ALIAS(NCVol, NConstVol);
@@ -54,16 +56,17 @@ namespace core
 
         // References version
         CORE_ALIAS(Reference,) typename misc::TRANSFORM<misc::REF, T>::T;
-        CORE_ALIAS(ConstReference,) typename misc::TRANSFORM<misc::REF, Constant>::T;
-        CORE_ALIAS(VolReference,) typename misc::TRANSFORM<misc::REF, Volatile>::T;
-        CORE_ALIAS(ConstVolReference,) typename misc::TRANSFORM<misc::REF, ConstVolatile>::T;
+        CORE_ALIAS(ConstReference,) typename misc::TRANSFORM<misc::CONST | misc::REF, T>::T;
+        CORE_ALIAS(VolReference,) typename misc::TRANSFORM<misc::VOL | misc::REF, T>::T;
+        CORE_ALIAS(ConstVolReference,) typename misc::TRANSFORM<misc::CONST | misc::VOL | misc::REF, T>::T;
 
         CORE_ALIAS(Rvalue,) typename misc::TRANSFORM<misc::RVAL, T>::T;
 
         CORE_ALIAS(NoReference,) typename misc::TRANSFORM<misc::REF | misc::REMOVE, T>::T;
-        CORE_ALIAS(NoConstReference,) typename misc::TRANSFORM<misc::CONST | misc::REMOVE, NoReference>::T;
-        CORE_ALIAS(NoVolReference,) typename misc::TRANSFORM<misc::VOL | misc::REMOVE, NoReference>::T;
-        CORE_ALIAS(NoConstVolReference,) typename misc::TRANSFORM<misc::CONST | misc::REMOVE, NoVolReference>::T;
+        CORE_ALIAS(NoConstReference,) typename misc::TRANSFORM<misc::CONST | misc::REF | misc::REMOVE, T>::T;
+        CORE_ALIAS(NoVolReference,) typename misc::TRANSFORM<misc::VOL | misc::REF | misc::REMOVE, T>::T;
+        CORE_ALIAS(NoConstVolReference,)
+        typename misc::TRANSFORM<misc::CONST | misc::VOL | misc::REF | misc::REMOVE, T>::T;
 
         CORE_ALIAS(Ref, Reference);
         CORE_ALIAS(CRef, ConstReference);
@@ -72,19 +75,19 @@ namespace core
         CORE_ALIAS(NRef, NoReference);
         CORE_ALIAS(NConstRef, NoConstReference);
         CORE_ALIAS(NVolRef, NoVolReference);
-        CORE_ALIAS(NConstVolRef, NoReference);
+        CORE_ALIAS(NConstVolRef, NoConstVolReference);
         CORE_ALIAS(NCRef, NConstRef);
         CORE_ALIAS(NVRef, NVolRef);
         CORE_ALIAS(NCVRef, NConstVolRef);
 
         // Arrays version
         template <glong N>
-        CORE_ALIAS(Array,) typename misc::TRANSFORM<misc::ARR, T, N>::T;
+        CORE_ALIAS(Array,) typename misc::TRANSFORM<misc::ARR, NRef, N>::T;
 
-        CORE_ALIAS(ArrayElement,) typename misc::TRANSFORM<misc::ARR | misc::REMOVE, T>::T;
+        CORE_ALIAS(ArrayElement,) typename misc::TRANSFORM<misc::ARR | misc::REMOVE, NRef>::T;
 
         // Slimmed version
-        CORE_ALIAS(Slim,) typename misc::TRANSFORM<misc::SLIM, T>::T;
+        CORE_ALIAS(Slim,) typename misc::TRANSFORM<misc::SLIM, NCVRef>::T;
 
         // ======================= [ type conditionnal test ] =======================
 
@@ -132,19 +135,19 @@ namespace core
         template <class To>
         static CORE_FAST gbool isSame()
         {
-            return misc::TEST<misc::SAME, T, To>::V != 0;
+            return misc::TEST<misc::SAME, NCVRef, typename Class<To>::NCVRef>::V != 0;
         }
 
         // constants types
         static CORE_FAST gbool isConstant()
         {
-            return misc::TEST<misc::CONST, T>::V != 0;
+            return misc::TEST<misc::CONST, NVRef>::V != 0;
         }
 
         // volatiles types
         static CORE_FAST gbool isVolatile()
         {
-            return misc::TEST<misc::VOL, T>::V != 0;
+            return misc::TEST<misc::VOL, NCRef>::V != 0;
         }
 
         // pointers types
@@ -156,52 +159,52 @@ namespace core
         // references types
         static CORE_FAST gbool isReference()
         {
-            return misc::TEST<misc::REF, T>::V != 0;
+            return misc::TEST<misc::REF, NCVol>::V != 0;
         }
 
         static CORE_FAST gbool isRvalue()
         {
-            return misc::TEST<misc::RVAL, T>::V != 0;
+            return misc::TEST<misc::RVAL, NCVol>::V != 0;
         }
 
         static CORE_FAST gbool isArray()
         {
-            return misc::TEST<misc::ARR, T>::V != 0;
+            return misc::TEST<misc::ARR, NCVRef>::V != 0;
         }
 
         static CORE_FAST gbool isComplete()
         {
-            return misc::TEST<misc::COMPLET, T>::V != 0;
+            return misc::TEST<misc::COMPLET, NRef>::V != 0;
         }
 
         static CORE_FAST gbool isTemplate()
         {
-            return misc::TEST<misc::TEMP, T>::V != 0;
+            return misc::TEST<misc::TEMP, NRef>::V != 0;
         }
 
         static CORE_FAST gbool isFunction()
         {
-            return misc::TEST<misc::FUNC, T>::V != 0;
+            return misc::TEST<misc::FUNC, NCVRef>::V != 0;
         }
 
         static CORE_FAST gbool isMember()
         {
-            return misc::TEST<misc::MEMBER, T>::V != 0;
+            return misc::TEST<misc::MEMBER, NRef>::V != 0;
         }
 
         static CORE_FAST gbool isFunctionMember()
         {
-            return misc::TEST<misc::METH, T>::V != 0;
+            return misc::TEST<misc::METH, NCVRef>::V != 0;
         }
 
         static CORE_FAST gbool isAbstract()
         {
-            return misc::TEST<misc::ABSTRACT, T>::V != 0;
+            return misc::TEST<misc::ABSTRACT, NCVRef>::V != 0;
         }
 
         static CORE_FAST gbool isEnum()
         {
-            return misc::TEST<misc::ENUM, T>::V != 0;
+            return misc::TEST<misc::ENUM, NCVRef>::V != 0;
         }
 
         static CORE_FAST gbool isClass()
@@ -246,7 +249,13 @@ namespace core
 
         static CORE_FAST gbool isInteger()
         {
-            return misc::TEST<misc::INT, NCVRef>::V != 0;
+            // TEST<INT, signed int>::V = 1
+            // TEST<INT, unsigned int>::V = 1
+            // TEST<INT, int>::V = 0
+            return (misc::TEST<misc::INT, NCVRef>::V
+                    | misc::TEST<misc::SAME, NCVRef, int>::V
+                    | misc::TEST<misc::SAME, NCVRef, long>::V
+                    | misc::TEST<misc::SAME, NCVRef, long long>::V) != 0;
         }
 
         static CORE_FAST gbool isFloating()
@@ -281,7 +290,11 @@ namespace core
 
         static CORE_FAST gbool isCharacter()
         {
-            return misc::TEST<misc::CHR, NCVRef>::V != 0;
+            // TEST<CHR, signed char>::V = 1
+            // TEST<CHR, unsigned char>::V = 1
+            // TEST<CHR, char>::V = 0
+            return (misc::TEST<misc::CHR, NCVRef>::V
+                    | misc::TEST<misc::SAME, NCVRef, char>::V) != 0;
         }
 
         static CORE_FAST gbool isString()
@@ -302,12 +315,12 @@ namespace core
 
         static CORE_FAST gbool supportEQ()
         {
-            return misc::TEST<misc::EQ, T>::V != 0;
+            return misc::TEST<misc::EQ, NRef>::V != 0;
         }
 
         static CORE_FAST gbool supportLT()
         {
-            return misc::TEST<misc::LT, T>::V != 0;
+            return misc::TEST<misc::LT, NRef>::V != 0;
         }
 
         static CORE_FAST gbool isConstructible()
@@ -330,13 +343,13 @@ namespace core
         template <class ExtendsClass>
         static CORE_FAST gbool isSuper()
         {
-            return misc::TEST<misc::SUPER, T, ExtendsClass>::V != 0;
+            return misc::TEST<misc::SUPER, NCVRef, ExtendsClass>::V != 0;
         }
 
         template <class SuperClass>
         static CORE_FAST gbool isExtends()
         {
-            return misc::TEST<misc::SUPER, SuperClass, T>::V != 0;
+            return misc::TEST<misc::SUPER, SuperClass, NCVRef>::V != 0;
         }
 
         template <class To>
@@ -383,17 +396,8 @@ namespace core
 
         static CORE_FAST gint MEMORY_SIZE = misc::MEMORY_SIZE<T>::V;
 
-        template <class ...Args>
-        CORE_ALIAS(ReturnType, ) typename misc::TEST<misc::CALL, T, Args...>::T;
-
-        // ======================= [ type instantiation ] =======================
-
         template <class... Args>
-        static CORE_FAST NCVRef newInstance(Args... args)
-        {
-            CORE_FAST_ASSERT(!isVoid() && isConstructible<Args...>());
-            return NCVRef{args...};
-        }
+        CORE_ALIAS(ReturnType,) typename misc::TEST<misc::CALL, T, Args...>::T;
 
         // ======================= [ type compatibility ] =======================
         CORE_ALIAS(Prim,) typename misc::TRANSFORM<misc::PRIM, NCVRef>::T;

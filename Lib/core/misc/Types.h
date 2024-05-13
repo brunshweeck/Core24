@@ -13,6 +13,10 @@ namespace core
     namespace misc
     {
         extern "C" {
+        typedef char               __literal_chr_t;
+        typedef unsigned long long __literal_int64_t;
+        typedef long double        __literal_float64_t;
+
         typedef signed char    __int8_t;
         typedef unsigned char  __uint8_t;
         typedef signed short   __int16_t;
@@ -25,12 +29,13 @@ namespace core
 #else
         typedef signed long long   __int64_t;
         typedef unsigned long long __uint64_t;
-#endif //
-        typedef float    __float32_t;
-        typedef double   __float64_t;
-        typedef char16_t __ucs2_t;
-        typedef char32_t __ucs4_t;
-        typedef bool     __bool_t;
+#endif
+        typedef float               __float32_t;
+        typedef double              __float64_t;
+        typedef char16_t            __ucs2_t;
+        typedef char32_t            __ucs4_t;
+        typedef bool                __bool_t;
+        typedef decltype(sizeof(1)) __memory_size_t;
         }
 
 
@@ -60,9 +65,10 @@ namespace core
 #define $(...) __VA_ARGS__
 
 #ifndef CORE_CAST
-#define CORE_CAST(T, x)  ((T)x)
+#define CORE_CAST(T, x)  ((T)(x))
 #define CORE_FCAST(T, x) T(x)
-#define CORE_XCAST(T, x) (dynamic_cast<T>(x))
+#define CORE_DCAST(T, x) (dynamic_cast<T>(x))
+#define CORE_XCAST(T, x) CORE_DCAST(T &, x)
 #endif
 
 #ifndef CORE_IGNORE

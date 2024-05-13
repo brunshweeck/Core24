@@ -154,6 +154,165 @@ namespace core
         {
         };
 
+        // ============================ [ Const-Vol ] =======================================
+        template <class T>
+        class TRANSFORM<CONST | VOL, T> : public virtual ALWAYS<T const volatile>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REMOVE, T const> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REMOVE, T volatile> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REMOVE, T const volatile> : public virtual ALWAYS<T>
+        {
+        };
+
+        // ============================ [ Const-Ref ] =======================================
+        template <class T>
+        class TRANSFORM<CONST | REF, T> : public virtual ALWAYS<T const&>
+        {
+        };
+
+        template <>
+        class TRANSFORM<CONST | REF, IGNORED<>> : public virtual ALWAYS<IGNORED<>>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | REF | REMOVE, T const> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | REF | REMOVE, T&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | REF | REMOVE, T&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | REF | REMOVE, T const&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | REF | REMOVE, T const&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        // ============================ [ Vol-Ref ] =======================================
+        template <class T>
+        class TRANSFORM<VOL | REF, T> : public virtual ALWAYS<T volatile&>
+        {
+        };
+
+        template <>
+        class TRANSFORM<VOL | REF, IGNORED<>> : public virtual ALWAYS<IGNORED<>>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<VOL | REF | REMOVE, T volatile> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<VOL | REF | REMOVE, T&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<VOL | REF | REMOVE, T&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<VOL | REF | REMOVE, T volatile&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<VOL | REF | REMOVE, T volatile&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        // ============================ [ Const-Vol-Ref ] =======================================
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF, T> : public virtual ALWAYS<T const volatile&>
+        {
+        };
+
+        template <>
+        class TRANSFORM<CONST | VOL | REF, IGNORED<>> : public virtual ALWAYS<IGNORED<>>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T const> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T volatile> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T const&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T volatile&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T const&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T volatile&&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T const volatile> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T const volatile&> : public virtual ALWAYS<T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<CONST | VOL | REF | REMOVE, T const volatile&&> : public virtual ALWAYS<T>
+        {
+        };
+
         // ============================ [ Pointers ] =======================================
         template <class T>
         class TEST<PTR, T*> : public virtual ALWAYS_TRUE
@@ -592,6 +751,11 @@ namespace core
         {
         };
 
+        template <>
+        class TEST<CHR, wchar_t> : public virtual ALWAYS_TRUE
+        {
+        };
+
 #if __cpp_lib_char8_t
         template <>
         class TEST<CHR, char8_t> : public virtual ALWAYS_TRUE
@@ -976,17 +1140,17 @@ namespace core
         };
 
         template <class T>
+        class TRANSFORM<SLIM, T const volatile> : public virtual TRANSFORM<SLIM, T>
+        {
+        };
+
+        template <class T>
         class TRANSFORM<SLIM, T&> : public virtual TRANSFORM<SLIM, T>
         {
         };
 
         template <class T>
         class TRANSFORM<SLIM, T&&> : public virtual TRANSFORM<SLIM, T>
-        {
-        };
-
-        template <class T>
-        class TRANSFORM<SLIM, T const volatile> : public virtual TRANSFORM<SLIM, T>
         {
         };
 
@@ -1001,12 +1165,57 @@ namespace core
         };
 
         template <class T>
+        class TRANSFORM<SLIM, const T[]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<SLIM, volatile T[]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<SLIM, const volatile T[]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T>
+        {
+        };
+
+        template <class T>
         class TRANSFORM<SLIM, T[0]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, 0>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<SLIM, const T[0]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, 0>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<SLIM, volatile T[0]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, 0>
+        {
+        };
+
+        template <class T>
+        class TRANSFORM<SLIM, const volatile T[0]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, 0>
         {
         };
 
         template <class T, glong N>
         class TRANSFORM<SLIM, T[N]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, N>
+        {
+        };
+
+        template <class T, glong N>
+        class TRANSFORM<SLIM, const T[N]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, N>
+        {
+        };
+
+        template <class T, glong N>
+        class TRANSFORM<SLIM, volatile T[N]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, N>
+        {
+        };
+
+        template <class T, glong N>
+        class TRANSFORM<SLIM, const volatile T[N]> : public virtual TRANSFORM<ARR, typename TRANSFORM<SLIM, T>::T, N>
         {
         };
 
@@ -1018,16 +1227,24 @@ namespace core
             template <gbool isClass, class S = T>
             class IMPL
             {
+            public:
                 template <class E>
                 static CORE_FAST gbool checkInstance(E&& e)
                 {
-                    return CORE_XCAST($(TRANSFORM<PTR, S>), &e);
+                    CORE_ALIAS(T1, ) typename TRANSFORM<CONST | VOL | REF | REMOVE, S>::T;
+                    CORE_ALIAS(T2, ) typename TRANSFORM<CONST | VOL | REF | REMOVE, E>::T;
+
+                    CORE_ALIAS(S, ) typename TRANSFORM<PTR, T2>::T;
+                    CORE_ALIAS(D, ) typename TRANSFORM<PTR, T1>::T;
+
+                    return CORE_DCAST(D, CORE_FCAST(S, &e)) != 0;
                 }
             };
 
             template <class S>
             class IMPL<false, S>
             {
+            public:
                 template <class E>
                 static CORE_FAST gbool checkInstance(E&&)
                 {

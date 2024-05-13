@@ -177,6 +177,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{39BDE3AC-1C48-31CD-B463-71DB69E7E463}</Project>
       <Name>Core24</Name>
     </ProjectReference>
+    <ProjectReference Include="E:\CLionProjects\Core24\Cmake\VisualStudio2019\Debug\LibFiles.vcxproj">
+      <Project>{D7FD230B-FF71-3A2B-8111-1463E97B2581}</Project>
+      <Name>LibFiles</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
     <ProjectReference Include="E:\CLionProjects\Core24\Cmake\VisualStudio2019\Debug\Main.vcxproj">
       <Project>{F805EEC3-8129-3503-A6FD-0011976EC51F}</Project>
       <Name>Main</Name>

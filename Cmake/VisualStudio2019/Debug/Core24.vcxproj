@@ -261,18 +261,60 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Boolean.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Boolean.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\BooleanArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\BooleanArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Byte.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Byte.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\ByteArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\ByteArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\CharArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\CharArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\CharSequence.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\CharSequence.h" />
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Class.cpp" />
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Class.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Comparable.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Comparable.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\DoubleArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\DoubleArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\FloatArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\FloatArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\IntArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\IntArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Integer.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Integer.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Long.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Long.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\LongArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\LongArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Number.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Number.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Object.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Object.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Short.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Short.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\ShortArray.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\ShortArray.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\String.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\String.h" />
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Compiler.cpp" />
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Compiler.h" />
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Literals.cpp" />
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Literals.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Nil.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Nil.h" />
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\OS.cpp" />
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\OS.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Precondion.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Precondition.h" />
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Templates.cpp" />
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Templates.h" />
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Types.cpp" />
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Types.h" />
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\StringUtils.cpp" />
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\StringUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="E:\CLionProjects\Core24\Cmake\VisualStudio2019\Debug\ZERO_CHECK.vcxproj">

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+    <Type Name="core::BooleanArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::ByteArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::ShortArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::CharArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::IntArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::FloatArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::LongArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::DoubleArray">
+        <DisplayString Optional="true" Condition="(count &gt; 0) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count &gt; 0) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::misc::NIL">
+        <DisplayString Optional="true">NULL</DisplayString>
+    </Type>
+
+    <Type Name="core::String">
+        <DisplayString Condition="coder == String::LATIN1 &amp;&amp; value != 0 &amp;&amp; count &gt; 0">
+            {(char const *)value, s}
+        </DisplayString>
+        <DisplayString Condition="coder == String::UTF16 &amp;&amp; value != 0 &amp;&amp; count &gt; 0">
+            {(char16_t const*)value, s}
+        </DisplayString>
+        <DisplayString>
+            {"", s}
+        </DisplayString>
+    </Type>
+
+</AutoVisualizer>
