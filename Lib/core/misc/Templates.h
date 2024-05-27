@@ -2,8 +2,8 @@
 // Created by bruns on 05/05/2024.
 //
 
-#ifndef Core24_TEMPLATES_H
-#define Core24_TEMPLATES_H
+#ifndef CORE24_TEMPLATES_H
+#define CORE24_TEMPLATES_H
 
 #include <core/misc/Types.h>
 
@@ -354,6 +354,28 @@ namespace core
         {
         };
 
+        // ============================ [ Level: N Dimension ] =======================================
+        template <class T, gint N, gbool = (N > 0)>
+        class TRANSFORM_PTR_LV: ALWAYS<T> {};
+
+        template <class T>
+        class TRANSFORM_PTR_LV<T, 0>: ALWAYS<T> {};
+
+        template <class T>
+        class TRANSFORM_PTR_LV<T, 1>: TRANSFORM<PTR, T> {};
+
+        template <class T, gint N>
+        class TRANSFORM_PTR_LV<T, N, true>: TRANSFORM<PTR, typename TRANSFORM_PTR_LV<T, N-1>::T> {};
+
+        template <class T, gint ...N>
+        class TRANSFORM_ARR_LV: ALWAYS<T> {};
+
+        template <class T, gint N>
+        class TRANSFORM_ARR_LV<T, N>: TRANSFORM<ARR, T, N> {};
+
+        template <class T, gint N1, gint ...N>
+        class TRANSFORM_ARR_LV<T, N1, N...>: TRANSFORM_ARR_LV<typename TRANSFORM<ARR, T, N1>::T, N...> {};
+
         // ============================ [ Array ] =======================================
         template <class T>
         class TEST<ARR, T[]> : public virtual ALWAYS_TRUE
@@ -490,7 +512,7 @@ namespace core
         template <class T, class... A>
         class TEST<CTOR, T, A...>
         {
-            template <class C, class... P, gint = sizeof C>
+            template <class C, class... P, gint = sizeof(C)>
             static CONSTANT<__is_constructible(C, P...)> test(gint) { return {}; }
 
             template <class...>
@@ -783,7 +805,7 @@ namespace core
         template <class T, gbool Condition>
         class ONLY_IF : public virtual ALWAYS_FALSE
         {
-            CORE_FAST_XASSERT(Condition, "Incompatible type");
+//            CORE_FAST_XASSERT(Condition, "Incompatible type");
         };
 
         template <class T>
@@ -833,7 +855,7 @@ namespace core
             static ALWAYS_FALSE callTest(...) { return {}; }
 
         public:
-            CORE_ALIAS(T, decltype(callTest<C, A...>(0)));
+            CORE_ALIAS(T, ) decltype(callTest<C, A...>(0));
             static CORE_FAST gint V = ~TEST<SAME, T, ALWAYS_FALSE>::V & 0x1;
         };
 
@@ -1234,10 +1256,10 @@ namespace core
                     CORE_ALIAS(T1, ) typename TRANSFORM<CONST | VOL | REF | REMOVE, S>::T;
                     CORE_ALIAS(T2, ) typename TRANSFORM<CONST | VOL | REF | REMOVE, E>::T;
 
-                    CORE_ALIAS(S, ) typename TRANSFORM<PTR, T2>::T;
-                    CORE_ALIAS(D, ) typename TRANSFORM<PTR, T1>::T;
+                    CORE_ALIAS(Super, ) typename TRANSFORM<PTR, T2>::T;
+                    CORE_ALIAS(Derived, ) typename TRANSFORM<PTR, T1>::T;
 
-                    return CORE_DCAST(D, CORE_FCAST(S, &e)) != 0;
+                    return CORE_DCAST(Derived, CORE_FCAST(Super, &e)) != 0;
                 }
             };
 
@@ -1264,7 +1286,7 @@ namespace core
         class MEMORY_SIZE
         {
         public:
-            static CORE_FAST gint V = (gint) sizeof T;
+            static CORE_FAST gint V = (gint) sizeof(T);
         };
 
         template <class T>
@@ -1278,4 +1300,4 @@ namespace core
     }
 } // core
 
-#endif // Core24_TEMPLATES_H
+#endif // CORE24_TEMPLATES_H

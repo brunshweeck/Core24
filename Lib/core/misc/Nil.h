@@ -2,8 +2,8 @@
 // Created by bruns on 09/05/2024.
 //
 
-#ifndef Core24_NIL_H
-#define Core24_NIL_H
+#ifndef CORE24_NIL_H
+#define CORE24_NIL_H
 
 #include <core/Object.h>
 
@@ -49,4 +49,4 @@ namespace core
 } // core
 
 
-#endif // Core24_NIL_H
+#endif // CORE24_NIL_H

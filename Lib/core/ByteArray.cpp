@@ -9,6 +9,8 @@ namespace core
     ByteArray::ByteArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gbyte[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     ByteArray::ByteArray(gint length, gbyte initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gbyte[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    ByteArray::ByteArray(ByteArray const& array)
+    ByteArray::ByteArray(ByteArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    ByteArray::ByteArray(ByteArray&& array) noexcept
+    ByteArray::ByteArray(ByteArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gbyte& ByteArray::get(gint index)
+    gbyte &ByteArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gbyte const& ByteArray::get(gint index) const
+    gbyte const &ByteArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gbyte oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -239,5 +240,39 @@ namespace core
         bytes.value[9] = v9;
 
         return CORE_CAST(ByteArray &&, bytes);
+    }
+
+    ByteArray ByteArray::ofRange(gbyte limit)
+    {
+        return ofRange(0, limit);
+    }
+
+    ByteArray ByteArray::ofRange(gbyte firstValue, gbyte limit)
+    {
+        return ofRange(firstValue, limit, 1);
+    }
+
+    ByteArray ByteArray::ofRange(gbyte firstValue, gbyte limit, gint offsetByValue)
+    {
+        if (offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if (count == 0)
+                count += 1;
+
+            ByteArray array = ByteArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (gbyte) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(ByteArray &&, array);
+        } else {
+            return ByteArray(0);
+        }
     }
 } // core

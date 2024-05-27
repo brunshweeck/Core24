@@ -9,6 +9,8 @@ namespace core
     BooleanArray::BooleanArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gbool[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     BooleanArray::BooleanArray(gint length, gbool initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gbool[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    BooleanArray::BooleanArray(BooleanArray const& array)
+    BooleanArray::BooleanArray(BooleanArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    BooleanArray::BooleanArray(BooleanArray&& array) noexcept
+    BooleanArray::BooleanArray(BooleanArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gbool& BooleanArray::get(gint index)
+    gbool &BooleanArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gbool const& BooleanArray::get(gint index) const
+    gbool const &BooleanArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gbool oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -157,7 +158,7 @@ namespace core
     }
 
     BooleanArray BooleanArray::of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5)
+                                  gbool v5)
     {
         BooleanArray bools = BooleanArray(6);
 
@@ -172,7 +173,7 @@ namespace core
     }
 
     BooleanArray BooleanArray::of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6)
+                                  gbool v5, gbool v6)
     {
         BooleanArray bools = BooleanArray(7);
 
@@ -188,7 +189,7 @@ namespace core
     }
 
     BooleanArray BooleanArray::of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6, gbool v7)
+                                  gbool v5, gbool v6, gbool v7)
     {
         BooleanArray bools = BooleanArray(8);
 
@@ -205,7 +206,7 @@ namespace core
     }
 
     BooleanArray BooleanArray::of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6, gbool v7, gbool v8)
+                                  gbool v5, gbool v6, gbool v7, gbool v8)
     {
         BooleanArray bools = BooleanArray(9);
 
@@ -223,7 +224,7 @@ namespace core
     }
 
     BooleanArray BooleanArray::of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6, gbool v7, gbool v8, gbool v9)
+                                  gbool v5, gbool v6, gbool v7, gbool v8, gbool v9)
     {
         BooleanArray bools = BooleanArray(10);
 

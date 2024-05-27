@@ -9,6 +9,8 @@ namespace core
     DoubleArray::DoubleArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gdouble[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     DoubleArray::DoubleArray(gint length, gdouble initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gdouble[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    DoubleArray::DoubleArray(DoubleArray const& array)
+    DoubleArray::DoubleArray(DoubleArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    DoubleArray::DoubleArray(DoubleArray&& array) noexcept
+    DoubleArray::DoubleArray(DoubleArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gdouble& DoubleArray::get(gint index)
+    gdouble &DoubleArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gdouble const& DoubleArray::get(gint index) const
+    gdouble const &DoubleArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gdouble oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -157,7 +158,7 @@ namespace core
     }
 
     DoubleArray DoubleArray::of(gdouble v0, gdouble v1, gdouble v2, gdouble v3, gdouble v4,
-                            gdouble v5)
+                                gdouble v5)
     {
         DoubleArray doubles = DoubleArray(6);
 
@@ -172,7 +173,7 @@ namespace core
     }
 
     DoubleArray DoubleArray::of(gdouble v0, gdouble v1, gdouble v2, gdouble v3, gdouble v4,
-                            gdouble v5, gdouble v6)
+                                gdouble v5, gdouble v6)
     {
         DoubleArray doubles = DoubleArray(7);
 
@@ -188,7 +189,7 @@ namespace core
     }
 
     DoubleArray DoubleArray::of(gdouble v0, gdouble v1, gdouble v2, gdouble v3, gdouble v4,
-                            gdouble v5, gdouble v6, gdouble v7)
+                                gdouble v5, gdouble v6, gdouble v7)
     {
         DoubleArray doubles = DoubleArray(8);
 
@@ -205,7 +206,7 @@ namespace core
     }
 
     DoubleArray DoubleArray::of(gdouble v0, gdouble v1, gdouble v2, gdouble v3, gdouble v4,
-                            gdouble v5, gdouble v6, gdouble v7, gdouble v8)
+                                gdouble v5, gdouble v6, gdouble v7, gdouble v8)
     {
         DoubleArray doubles = DoubleArray(9);
 
@@ -223,7 +224,7 @@ namespace core
     }
 
     DoubleArray DoubleArray::of(gdouble v0, gdouble v1, gdouble v2, gdouble v3, gdouble v4,
-                            gdouble v5, gdouble v6, gdouble v7, gdouble v8, gdouble v9)
+                                gdouble v5, gdouble v6, gdouble v7, gdouble v8, gdouble v9)
     {
         DoubleArray doubles = DoubleArray(10);
 
@@ -239,5 +240,39 @@ namespace core
         doubles.value[9] = v9;
 
         return CORE_CAST(DoubleArray &&, doubles);
+    }
+
+    DoubleArray DoubleArray::ofRange(gdouble limit)
+    {
+        return ofRange(0.0, limit);
+    }
+
+    DoubleArray DoubleArray::ofRange(gdouble firstValue, gdouble limit)
+    {
+        return ofRange(firstValue, limit, 1.0);
+    }
+
+    DoubleArray DoubleArray::ofRange(gdouble firstValue, gdouble limit, gdouble offsetByValue)
+    {
+        if (offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if (count == 0)
+                count += 1;
+
+            DoubleArray array = DoubleArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (gdouble) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(DoubleArray &&, array);
+        } else {
+            return DoubleArray(0);
+        }
     }
 } // core

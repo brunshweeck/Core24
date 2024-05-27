@@ -2,10 +2,13 @@
 // Created by bruns on 05/05/2024.
 //
 
-#ifndef Core24_LITERALS_H
-#define Core24_LITERALS_H
+#ifndef CORE24_LITERALS_H
+#define CORE24_LITERALS_H
 
 #include <core/misc/Templates.h>
+
+CORE_WARNING_PUSH
+CORE_WARNING_DISABLE_UDL
 
 namespace core
 {
@@ -19,7 +22,20 @@ namespace core
     class FloatArray;
     class LongArray;
     class DoubleArray;
+    class CharArray;
+    class Boolean;
+    class Byte;
+    class Short;
+    class Integer;
+    class Long;
+    class Float;
+    class Double;
     class Complex;
+    class Character;
+
+    namespace misc {
+        class Foreign;
+    }
 
 
         /*
@@ -34,21 +50,21 @@ namespace core
          *
          * @return A new String
          */
-        extern String operator""_S(misc::__literal_chr_t const*, misc::size_t);
+        extern String operator""_S(misc::__literal_chr_t const*, misc::__memory_size_t);
 
         /**
          * Obtain newly created @c String with given UTF-16 chars sequence.
          *
          * @return A new String
          */
-        extern String operator""_S(misc::__ucs2_t const*, misc::size_t);
+        extern String operator""_S(misc::__ucs2_t const*, misc::__memory_size_t);
 
         /**
          * Obtain newly created @c String with given UTF-32 chars sequence.
          *
          * @return A new String
          */
-        extern String operator""_S(misc::__ucs4_t const*, misc::size_t);
+        extern String operator""_S(misc::__ucs4_t const*, misc::__memory_size_t);
 
         /**
          * Obtain newly created @c String with given variable chars sequence.
@@ -57,7 +73,7 @@ namespace core
          *
          * @return A new String
          */
-        extern String operator""_S(wchar_t const*, misc::size_t);
+        extern String operator""_S(wchar_t const*, misc::__memory_size_t);
 
         /**
          * Obtain newly created @c Complex with given integer
@@ -171,7 +187,14 @@ namespace core
          */
         extern Complex const operator""_J(misc::__literal_float64_t);
 
+#ifndef $trace
+#define $trace(...) Trace($(__VA_ARGS__), misc::Foreign::str(CORE_FUNCTION), CORE_FILE ""_S, CORE_LINE)
+#define $ftrace(...) Trace($(__VA_ARGS__), misc::Foreign::str(CORE_FUNCTION_SIGNATURE), CORE_FILE ""_S, CORE_LINE)
+#endif
+
 
 } // core
 
-#endif // Core24_LITERALS_H
+CORE_WARNING_POP
+
+#endif // CORE24_LITERALS_H

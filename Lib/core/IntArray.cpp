@@ -9,6 +9,8 @@ namespace core
     IntArray::IntArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gint[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     IntArray::IntArray(gint length, gint initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gint[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    IntArray::IntArray(IntArray const& array)
+    IntArray::IntArray(IntArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    IntArray::IntArray(IntArray&& array) noexcept
+    IntArray::IntArray(IntArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gint& IntArray::get(gint index)
+    gint &IntArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gint const& IntArray::get(gint index) const
+    gint const &IntArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gint oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -157,7 +158,7 @@ namespace core
     }
 
     IntArray IntArray::of(gint v0, gint v1, gint v2, gint v3, gint v4,
-                            gint v5)
+                          gint v5)
     {
         IntArray ints = IntArray(6);
 
@@ -172,7 +173,7 @@ namespace core
     }
 
     IntArray IntArray::of(gint v0, gint v1, gint v2, gint v3, gint v4,
-                            gint v5, gint v6)
+                          gint v5, gint v6)
     {
         IntArray ints = IntArray(7);
 
@@ -188,7 +189,7 @@ namespace core
     }
 
     IntArray IntArray::of(gint v0, gint v1, gint v2, gint v3, gint v4,
-                            gint v5, gint v6, gint v7)
+                          gint v5, gint v6, gint v7)
     {
         IntArray ints = IntArray(8);
 
@@ -205,7 +206,7 @@ namespace core
     }
 
     IntArray IntArray::of(gint v0, gint v1, gint v2, gint v3, gint v4,
-                            gint v5, gint v6, gint v7, gint v8)
+                          gint v5, gint v6, gint v7, gint v8)
     {
         IntArray ints = IntArray(9);
 
@@ -223,7 +224,7 @@ namespace core
     }
 
     IntArray IntArray::of(gint v0, gint v1, gint v2, gint v3, gint v4,
-                            gint v5, gint v6, gint v7, gint v8, gint v9)
+                          gint v5, gint v6, gint v7, gint v8, gint v9)
     {
         IntArray ints = IntArray(10);
 
@@ -239,5 +240,39 @@ namespace core
         ints.value[9] = v9;
 
         return CORE_CAST(IntArray &&, ints);
+    }
+
+    IntArray IntArray::ofRange(gint limit)
+    {
+        return ofRange(0, limit);
+    }
+
+    IntArray IntArray::ofRange(gint firstValue, gint limit)
+    {
+        return ofRange(firstValue, limit, 1);
+    }
+
+    IntArray IntArray::ofRange(gint firstValue, gint limit, gint offsetByValue)
+    {
+        if (offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if (count == 0)
+                count += 1;
+
+            IntArray array = IntArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (gint) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(IntArray &&, array);
+        } else {
+            return IntArray(0);
+        }
     }
 } // core

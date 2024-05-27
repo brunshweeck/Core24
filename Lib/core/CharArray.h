@@ -2,8 +2,8 @@
 // Created by bruns on 09/05/2024.
 //
 
-#ifndef Core24_CHARARRAY_H
-#define Core24_CHARARRAY_H
+#ifndef CORE24_CHARARRAY_H
+#define CORE24_CHARARRAY_H
 
 #include <core/Class.h>
 
@@ -18,11 +18,11 @@ namespace core
      */
     class CharArray final : public virtual Object
     {
-        CORE_ALIAS(ARRAY, Class<gchar>::Pointer);
+        CORE_ALIAS(ARRAY, Class< gchar >::Pointer);
         CORE_ADD_AS_FRIEND(String);
         CORE_ADD_AS_FRIEND(XString);
 
-        static CORE_FAST gint SOFT_ARRAY_LENGHT = 0x7FFFFFFF - 8;
+        static CORE_FAST gint SOFT_MAX_LENGTH = (gint) ((1LL << 31) - (1LL << 3) - 1);
 
     private:
         /**
@@ -37,7 +37,7 @@ namespace core
 
     public:
         /**
-         * Construct new @c CharArray instance able to containt
+         * Construct new @c CharArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with value @c U+0000.
@@ -48,7 +48,7 @@ namespace core
         CORE_EXPLICIT CharArray(gint length);
 
         /**
-         * Construct new @c CharArray instance able to containt
+         * Construct new @c CharArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with given initial value.
@@ -66,7 +66,7 @@ namespace core
          *
          * @param array The array used to create this array.
          */
-        CORE_IMPLICIT CharArray(CharArray const& array);
+        CORE_IMPLICIT CharArray(CharArray const &array);
 
         /**
          * Construct new @c CharArray instance by swaping of content
@@ -78,7 +78,7 @@ namespace core
          *
          * @param array The array used to create this array.
          */
-        CORE_IMPLICIT CharArray(CharArray&& array) CORE_NOTHROW;
+        CORE_IMPLICIT CharArray(CharArray &&array) CORE_NOTHROW;
 
         /**
          * Return the number of values on this array
@@ -100,7 +100,7 @@ namespace core
          * @param index The index of desired element.
          * @throws IndexOutOfBoundsException If the given index out of bounds
          */
-        gchar& get(gint index);
+        gchar &get(gint index);
 
         /**
          * Return the value of elements at specified index
@@ -108,7 +108,7 @@ namespace core
          * @param index The index of desired element.
          * @throws IndexOutOfBoundsException If the given index out of bounds
          */
-        gchar const& get(gint index) const;
+        gchar const &get(gint index) const;
 
         /**
          * Set value of element at specified index with
@@ -139,46 +139,39 @@ namespace core
          * @param array The array to be copied
          * @return The new CharArray that contains all values of given array
          */
-        template <class T,
-                  Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
-                  class CharT = typename Class<T>::ArrayElement,
-                  Class<gbool>::OnlyIf<Class<CharT>::isCharacter()>  = true
+        template<class T,
+                Class< gbool >::OnlyIf< Class< T >::isArray() >  = true,
+                class CharT = typename Class< T >::ArrayElement,
+                Class< gbool >::OnlyIf< Class< CharT >::isCharacter() >  = true
         >
-        static CharArray copyOf(T&& array)
+        static CharArray copyOf(T &&array)
         {
-            CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<CharT>::MEMORY_SIZE;
+            CORE_FAST glong n = Class< T >::MEMORY_SIZE / Class< CharT >::MEMORY_SIZE;
 
             switch (n) {
-            case 0:
-                return of();
-            case 1:
-                return of(array[0]);
-            case 2:
-                return of(array[0], array[1]);
-            case 3:
-                return of(array[0], array[1], array[2]);
-            case 4:
-                return of(array[0], array[1], array[2], array[3]);
-            case 5:
-                return of(array[0], array[1], array[2], array[3], array[4]);
-            case 6:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5]);
-            case 7:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6]);
-            case 8:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7]);
-            case 9:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8]);
-            case 10:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8], array[9]);
-            default:
-                {
-                    CORE_FAST gint length = n > SOFT_ARRAY_LENGHT ? SOFT_ARRAY_LENGHT : (gint) n;
+                case 0:return of();
+                case 1:return of(array[0]);
+                case 2:return of(array[0], array[1]);
+                case 3:return of(array[0], array[1], array[2]);
+                case 4:return of(array[0], array[1], array[2], array[3]);
+                case 5:return of(array[0], array[1], array[2], array[3], array[4]);
+                case 6:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5]);
+                case 7:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6]);
+                case 8:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7]);
+                case 9:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8]);
+                case 10:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8], array[9]);
+                default: {
+                    CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint) n;
 
                     CharArray chars = CharArray(length);
 
@@ -228,22 +221,61 @@ namespace core
          *
          * @tparam T The arguments types list
          * @param args The characters (or unicode code points) list used to initialize array
-         * @return The new CharArray that containt all given values
+         * @return The new CharArray that contains all given values
          */
-        template <class... T,
-                  Class<gbool>::OnlyIf<
-                      Class<Object>::allIsTrue<
-                          (Class<T>::isCharacter() | Class<T>::isInteger())...
-                      >()
-                  >  = true
-        >
-        static CharArray of(T&&... args)
+        template<class... T>
+        static CharArray of(T &&... args)
         {
-            gchar array[] = {CORE_FCAST(gchar, args)...};
+            CORE_FAST_XASSERT(Class< CharArray >::allIsTrue< (Class< T >::isCharacter() | Class< T >::isInteger() &&
+                                                              sizeof(T) <= 4)... >(),
+                              "Couldn't create new CharArray with given values.");
+
+            gchar array[] = { CORE_FCAST(gchar, args)... };
 
             return copyOf(array);
         }
+
+        /**
+         * Obtain newly created @c CharArray instance representing the sequence of chars
+         * from @c 0 to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c CharArray::ofRange(l) produces [0, 1, 2, ..., l-1].
+         * For example: @c CharArray::ofRange(4) produces [0, 1, 2, 3].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static CharArray ofRange(gchar limit);
+
+        /**
+         * Obtain newly created @c CharArray instance representing the sequence of chars
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c CharArray::ofRange(i,l) produces [i, i+1, i+2, ..., l-1].
+         * For example: @c CharArray::ofRange(1,5) produces [1, 2, 3, 4].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static CharArray ofRange(gchar firstValue, gchar limit);
+
+        /**
+         * Obtain newly created @c CharArray instance representing the sequence of chars
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c offsetByValue.
+         *
+         * @note The call of @c CharArray::ofRange(i,l,k) produces [i, i+k, i+2k, ..., i+nk] (where i+nk < l).
+         * For example: @c CharArray::ofRange(1,8,2) produces [1, 3, 5, 7].
+         *
+         * @param firstValue the start value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         * @param offsetByValue the value of step.
+         */
+        static CharArray ofRange(gchar firstValue, gchar limit, gint offsetByValue);
+
+        gchar const &operator[](gint index) const;
+
+        gchar &operator[](gint index);
     };
 } // core
 
-#endif // Core24_CHARARRAY_H
+#endif // CORE24_CHARARRAY_H

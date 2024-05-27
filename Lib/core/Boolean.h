@@ -2,9 +2,10 @@
 // Created by bruns on 13/05/2024.
 //
 
-#ifndef Core24_BOOLEAN_H
-#define Core24_BOOLEAN_H
-#include "Comparable.h"
+#ifndef CORE24_BOOLEAN_H
+#define CORE24_BOOLEAN_H
+
+#include <core/Byte.h>
 
 namespace core
 {
@@ -50,9 +51,9 @@ namespace core
          * a false value is returned.
          *
          * Example:
-         * @code
-         *  Boolean.parseBoolean("True") // returns @c true.
-         *  Boolean.parseBoolean("yes") // returns @c false.
+         * @code{.cpp}
+         *  Boolean::parseBoolean("True") // returns true.
+         *  Boolean::parseBoolean("yes") // returns false.
          * @endcode
          *
          * @param s the @c String containing the boolean representation
@@ -112,7 +113,7 @@ namespace core
          *
          * @return  a string representation of this object.
          */
-        String toString() const;
+        String toString() const override;
 
         /**
          * Returns a hash code for this @c Boolean object.
@@ -204,7 +205,19 @@ namespace core
          *
          */
         static gbool logicalXor(gbool a, gbool b);
+
+        /**
+         * The number of bits used to represent a @c gbyte value in two's
+         * complement binary form.
+         */
+        CORE_FAST static gint SIZE = 8;
+
+        /**
+         * The number of bytes used to represent a @c gbyte value in two's
+         * complement binary form.
+         */
+        CORE_FAST static gint BYTES = SIZE / Byte::SIZE;
     };
 } // core
 
-#endif // Core24_BOOLEAN_H
+#endif // CORE24_BOOLEAN_H

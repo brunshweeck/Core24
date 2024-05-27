@@ -8,22 +8,15 @@
 
 namespace core
 {
-    Boolean::Boolean(gbool value): value(value)
+    Boolean::Boolean(gbool value) : value(value)
     {
     }
 
-    gbool Boolean::parseBoolean(String const& s)
+    gbool Boolean::parseBoolean(String const &s)
     {
         if (s.length() != 4)
             return false;
-        gchar c = s.charAt(0);
-        if (c != 't' && c != 'T') return false;
-        c = s.charAt(1);
-        if (c != 'r' && c != 'R') return false;
-        c = s.charAt(2);
-        if (c != 'u' && c != 'U') return false;
-        c = s.charAt(3);
-        return c == 'e' || c == 'E';
+        return s.equals("true"_S);
     }
 
     gbool Boolean::booleanValue() const
@@ -36,7 +29,7 @@ namespace core
         return b ? TRUE : FALSE;
     }
 
-    Boolean Boolean::valueOf(String const& s)
+    Boolean Boolean::valueOf(String const &s)
     {
         return valueOf(parseBoolean(s));
     }
@@ -61,16 +54,12 @@ namespace core
         return value ? 1231 : 1237;
     }
 
-    gbool Boolean::equals(Object const& obj) const
+    gbool Boolean::equals(Object const &obj) const
     {
-        return this == &obj
-                   ? true
-                   : !Class<Boolean>::hasInstance(obj)
-                   ? false
-                   : value == CORE_XCAST(Boolean const, obj).value;
+        return this == &obj || Class<Boolean>::hasInstance(obj) && value == CORE_XCAST(Boolean const, obj).value;
     }
 
-    gint Boolean::compareTo(Boolean const& other) const
+    gint Boolean::compareTo(Boolean const &other) const
     {
         return compare(value, other.value);
     }

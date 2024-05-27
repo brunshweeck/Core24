@@ -2,8 +2,8 @@
 // Created by bruns on 09/05/2024.
 //
 
-#ifndef Core24_COMPARABLE_H
-#define Core24_COMPARABLE_H
+#ifndef CORE24_COMPARABLE_H
+#define CORE24_COMPARABLE_H
 
 #include <core/Class.h>
 
@@ -86,4 +86,4 @@ namespace core
     };
 } // core
 
-#endif // Core24_COMPARABLE_H
+#endif // CORE24_COMPARABLE_H

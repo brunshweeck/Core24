@@ -2,8 +2,8 @@
 // Created by bruns on 10/05/2024.
 //
 
-#ifndef Core24_LONGARRAY_H
-#define Core24_LONGARRAY_H
+#ifndef CORE24_LONGARRAY_H
+#define CORE24_LONGARRAY_H
 
 #include <core/Class.h>
 
@@ -20,7 +20,7 @@ namespace core
     {
         CORE_ALIAS(ARRAY, Class<glong>::Pointer);
 
-        static CORE_FAST gint SOFT_ARRAY_LENGHT = 0x7FFFFFFF - 8;
+        static CORE_FAST gint SOFT_MAX_LENGTH = (gint) ((1LL << 31) - (1LL << 3) - 1);
 
     private:
         /**
@@ -35,7 +35,7 @@ namespace core
 
     public:
         /**
-         * Construct new @c LongArray instance able to containt
+         * Construct new @c LongArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with value @c U+0000.
@@ -46,7 +46,7 @@ namespace core
         CORE_EXPLICIT LongArray(gint length);
 
         /**
-         * Construct new @c LongArray instance able to containt
+         * Construct new @c LongArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with given initial value.
@@ -140,8 +140,7 @@ namespace core
         template <class T,
                   Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
                   class E = typename Class<T>::ArrayElement,
-                  Class<gbool>::OnlyIf<Class<E>::isIntegral()>  = true
-        >
+                  Class<gbool>::OnlyIf<Class<E>::isIntegral()>  = true>
         static LongArray copyOf(T&& array)
         {
             CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
@@ -176,7 +175,7 @@ namespace core
                           array[5], array[6], array[7], array[8], array[9]);
             default:
                 {
-                    CORE_FAST gint length = n > SOFT_ARRAY_LENGHT ? SOFT_ARRAY_LENGHT : (gint) n;
+                    CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint) n;
 
                     LongArray longs = LongArray(length);
 
@@ -226,22 +225,55 @@ namespace core
          *
          * @tparam T The arguments types list
          * @param args The values list used to initialize array
-         * @return The new LongArray that containt all given values
+         * @return The new LongArray that contains all given values
          */
-        template <class... T,
-                  Class<gbool>::OnlyIf<
-                      Class<Object>::allIsTrue<
-                          Class<T>::isInteger()...
-                      >()
-                  >  = true
-        >
+        template <class... T>
         static LongArray of(T&&... args)
         {
+            CORE_FAST_XASSERT(Class<LongArray>::allIsTrue<Class<T>::isIntegral()...>(), "Couldn't create new LongArray with given values.");
+
             glong array[] = {CORE_FCAST(glong, args)...};
 
             return copyOf(array);
         }
+
+        /**
+         * Obtain newly created @c LongArray instance representing the sequence of longs
+         * from @c 0 to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c LongArray::ofRange(l) produces [0, 1, 2, ..., l-1].
+         * For example: @c LongArray::ofRange(4) produces [0, 1, 2, 3].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static LongArray ofRange(glong limit);
+
+        /**
+         * Obtain newly created @c LongArray instance representing the sequence of longs
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c LongArray::ofRange(i,l) produces [i, i+1, i+2, ..., l-1].
+         * For example: @c LongArray::ofRange(1,5) produces [1, 2, 3, 4].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static LongArray ofRange(glong firstValue, glong limit);
+
+        /**
+         * Obtain newly created @c LongArray instance representing the sequence of longs
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c offsetByValue.
+         *
+         * @note The call of @c LongArray::ofRange(i,l,k) produces [i, i+k, i+2k, ..., i+nk] (where i+nk < l).
+         * For example: @c LongArray::ofRange(1,8,2) produces [1, 3, 5, 7].
+         *
+         * @param firstValue the start value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         * @param offsetByValue the value of step.
+         */
+        static LongArray ofRange(glong firstValue, glong limit, glong offsetByValue);
     };
 } // core
 
-#endif // Core24_LONGARRAY_H
+#endif // CORE24_LONGARRAY_H

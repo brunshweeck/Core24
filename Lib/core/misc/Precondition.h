@@ -2,8 +2,8 @@
 // Created by bruns on 12/05/2024.
 //
 
-#ifndef Core24_PRECONDION_H
-#define Core24_PRECONDION_H
+#ifndef CORE24_PRECONDION_H
+#define CORE24_PRECONDION_H
 #include <core/Object.h>
 
 namespace core
@@ -28,4 +28,4 @@ namespace core
     } // misc
 } // core
 
-#endif // Core24_PRECONDION_H
+#endif // CORE24_PRECONDION_H

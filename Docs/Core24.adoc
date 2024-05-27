@@ -1,33 +1,31 @@
-= Projet
+== Docs
 
-[#_core24]
-== Core24
+.Core24
+****
+[quote, Une nouvelle vision du C++, mai 2024]
+*Core24* represente une version optimisée du système de fonction standard lié au c++. Dans une vision, de lié toute les classe à une unique base, ainsi avoir une meilleur traçabilité.
+****
 
-[quote]
-Une nouvelle vision du C++
 
-=== Description
-
-Cette library represente une version optimisée du système de fonction standard lié au c++.Dans une vision, de lié toute les classe à une unique base, ainsi avoir une meilleur traçabilité.
 
 === Requis
 
-* C++ 11 ou plus
-* Un support OpenGL ou DirectX
+* _C++ version 11 ou plus_
+// * Un support *OpenGL* ou *DirectX*
 
 === Packages
 
 * link:core/index.adoc[core]
-* link:core/ui/index.adoc[core/ui]
-* link:core/util/index.adoc[core/util]
-* link:core/time/index.adoc[core/time]
-* link:core/text/index.adoc[core/text]
+// * link:core/ui/index.adoc[core/ui]
+// * link:core/util/index.adoc[core/util]
+// * link:core/time/index.adoc[core/time]
+// * link:core/text/index.adoc[core/text]
 
 === Compatibilité des types
 
-.core/misc/Types.h
+.voir le fichier core/misc/Types.h
 |===
-| *Nouveau*   | *ancien (standard au C/C++)*
+| *Nouveau*   | *ancien (C/C++ standard)*
 | gbool     | bool
 | gbyte     | signed char
 | gshort    | signed short
@@ -42,67 +40,133 @@ Cette library represente une version optimisée du système de fonction standard
 
 .core/misc/Types.h
 |===
-| *Class* | *Primitive*   | *ancien (standard au C/C++)*
-| Boolean | gbool     | bool
-| Byte | gbyte     | signed char +
+| *Class* | *Primitive*   | *ancien (C/C++ standard)*
+| link:core/Boolean.adoc[Boolean]
+| gbool     
+| bool
+
+| link:core/Byte.adoc[Byte]
+| gbyte     
+| signed char + 
 unsigned char
-| Short | gshort    | signed short +
+
+| link:core/Short.adoc[Short]
+| gshort    
+| signed short +
 unsigned short
-| Character | gchar     | char16_t +
+
+| link:core/Character.adoc[Character]
+| gchar     
+| char16_t +
 wchar_t +
 char8_t
-| Integer | gint      | signed int +
-unsigned int
-signed long
-unsigned long
-wchar_t
+
+| link:core/Integer.adoc[Integer]
+| gint      
+| signed int +
+unsigned int +
+signed long +
+unsigned long +
+wchar_t +
 char32_t
-| Float | gfloat    | float
-| Long | glong     | signed long +
+
+| link:core/Float.adoc[Float]
+| gfloat    
+| float
+
+| link:core/Long.adoc[Long]
+| glong     
+| signed long +
 unsigned long +
 signed long long +
 unsigned long long +
 signed __int128 +
 unsigned __int128
-| Double | gdouble | double +
+
+| link:core/Double.adoc[Double]
+| gdouble 
+| double +
 long double +
 __float128
+
+| link:core/BooleanArray.adoc[BooleanArray]
+| gbool[]
+|
+
+| link:core/ByteArray.adoc[ByteArray]
+| gbyte[]
+|
+
+| link:core/ShortArray.adoc[ShortArray]
+| gshort[]
+|
+
+| link:core/CharArray.adoc[CharArray]
+| gchar[]
+|
+
+| link:core/IntArray.adoc[IntArray]
+| gint[]
+|
+
+| link:core/FloatArray.adoc[FloatArray]
+| gfloat[]
+|
+
+| link:core/LongArray.adoc[LongArray]
+| glong[]
+|
+
+| link:core/DoubleArray.adoc[DoubleArray]
+| gdouble[]
+|
+
+| link:core/Array.adoc[Array]
+| Object[]
+|
+
+
 |===
 
 === Expression literal (Suffixes)
 [source, c++]
 .String
 --
- String operator ""_S(...);
+ String operator ""_S(char_t const*, size_t); // avec char_t = {char, char8_t, char16_t, char32_t, wchar_t}
 
 // Usage
 auto str = "hello"_S // ok, str est de type String
-auto str2 = "hello" // bad, str2 est de type char[6]
+auto str2 = "hello" // ok, str2 est de type char[6]
 
 String s = "hello"_S // ok
-String s2 = "hello" // error, impossible de convertir une valeur de type char[6] en String
+String s2 = "hello" // erreur, impossible de convertir une valeur de type char[6] en String
+
+// Solution
+String s2 = Foreign::toString("hello");
+String s2 = Foreign::toLatin1String("hello");
+String s2 = Foreign::toUtf8String("hello");
 
 --
 
 [source, c++]
 .Complex
 --
- Complex operator ""_i(...);
- Complex operator ""_I(...);
- Complex operator ""_j(...);
- Complex operator ""_J(...);
+ Complex operator ""_i(gdouble);
+ Complex operator ""_I(gdouble);
+ Complex operator ""_j(gdouble);
+ Complex operator ""_J(gdouble);
 
- Complex operator ""i(...); // deprecated, ambigous with C++ standard complex class
- Complex operator ""I(...); // deprecated, ambigous with C++ standard complex class
- Complex operator ""j(...); // deprecated, ambigous with C++ standard complex class
- Complex operator ""J(...); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""i(gdouble); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""I(gdouble); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""j(gdouble); // deprecated, ambigous with C++ standard complex class
+ Complex operator ""J(gdouble); // deprecated, ambigous with C++ standard complex class
 
 // Usage
-auto z = 23_i; // ok, z est de type Complex
-auto z2 = 23i // bad, ambigous (core::Complex, std::complex, _Complex, _DComplex, etc.)
+auto z = 23.0_i; // ok, z est de type Complex
+auto z2 = 23.0i // ok, z2 est de type (core::Complex, std::complex, _Complex double, _DComplex, etc.)
 
-Complex z3 = 23_i // ok
-Complex z4 = 23i // ok, auto convert.
+Complex z3 = 23.0_i // ok
+Complex z4 = 23.0i // ok, auto convert.
 --
 
 [source, c++]
@@ -113,14 +177,14 @@ extern NIL null;
 // null reference est equivalent a nullptr en C++ et NULL en C
 
 // Usage
-auto a = null; // error
+auto a = null; // erreur
 auto &a = null; // ok
 auto &&a = null; // ok
 
 int *iptr = null; // ok, iptr == nullptr
 
 null == NULL; // vrai
-null == nullptr; // faux
+null == nullptr; // vrai, si et seulement si ClassOf(nullptr)::hasInstance(NULL) retourne vrai; sinon faux.
 --
 
 [source, c++]

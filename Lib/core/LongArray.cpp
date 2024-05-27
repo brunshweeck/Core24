@@ -9,6 +9,8 @@ namespace core
     LongArray::LongArray(gint length)
     {
         if (length > 0) {
+            if(length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new glong[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     LongArray::LongArray(gint length, glong initialValue)
     {
         if (length > 0) {
+            if(length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new glong[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -239,5 +243,36 @@ namespace core
         longs.value[9] = v9;
 
         return CORE_CAST(LongArray &&, longs);
+    }
+
+    LongArray LongArray::ofRange(glong limit) {
+        return ofRange(0, limit);
+    }
+
+    LongArray LongArray::ofRange(glong firstValue, glong limit) {
+        return ofRange(firstValue, limit, 1LL);
+    }
+
+    LongArray LongArray::ofRange(glong firstValue, glong limit, glong offsetByValue) {
+        if(offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if(count == 0)
+                count += 1;
+
+            LongArray array = LongArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (glong) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(LongArray &&, array);
+        } else {
+            return LongArray(0);
+        }
     }
 } // core

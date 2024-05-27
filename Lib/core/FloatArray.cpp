@@ -9,6 +9,8 @@ namespace core
     FloatArray::FloatArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gfloat[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     FloatArray::FloatArray(gint length, gfloat initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gfloat[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    FloatArray::FloatArray(FloatArray const& array)
+    FloatArray::FloatArray(FloatArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    FloatArray::FloatArray(FloatArray&& array) noexcept
+    FloatArray::FloatArray(FloatArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gfloat& FloatArray::get(gint index)
+    gfloat &FloatArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gfloat const& FloatArray::get(gint index) const
+    gfloat const &FloatArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gfloat oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -157,7 +158,7 @@ namespace core
     }
 
     FloatArray FloatArray::of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5)
+                              gfloat v5)
     {
         FloatArray floats = FloatArray(6);
 
@@ -172,7 +173,7 @@ namespace core
     }
 
     FloatArray FloatArray::of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6)
+                              gfloat v5, gfloat v6)
     {
         FloatArray floats = FloatArray(7);
 
@@ -188,7 +189,7 @@ namespace core
     }
 
     FloatArray FloatArray::of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6, gfloat v7)
+                              gfloat v5, gfloat v6, gfloat v7)
     {
         FloatArray floats = FloatArray(8);
 
@@ -205,7 +206,7 @@ namespace core
     }
 
     FloatArray FloatArray::of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6, gfloat v7, gfloat v8)
+                              gfloat v5, gfloat v6, gfloat v7, gfloat v8)
     {
         FloatArray floats = FloatArray(9);
 
@@ -223,7 +224,7 @@ namespace core
     }
 
     FloatArray FloatArray::of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6, gfloat v7, gfloat v8, gfloat v9)
+                              gfloat v5, gfloat v6, gfloat v7, gfloat v8, gfloat v9)
     {
         FloatArray floats = FloatArray(10);
 
@@ -239,5 +240,39 @@ namespace core
         floats.value[9] = v9;
 
         return CORE_CAST(FloatArray &&, floats);
+    }
+
+    FloatArray FloatArray::ofRange(gfloat limit)
+    {
+        return ofRange(0.0f, limit);
+    }
+
+    FloatArray FloatArray::ofRange(gfloat firstValue, gfloat limit)
+    {
+        return ofRange(firstValue, limit, 1.0);
+    }
+
+    FloatArray FloatArray::ofRange(gfloat firstValue, gfloat limit, gdouble offsetByValue)
+    {
+        if (offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if (count == 0)
+                count += 1;
+
+            FloatArray array = FloatArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (gfloat) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(FloatArray &&, array);
+        } else {
+            return FloatArray(0);
+        }
     }
 } // core

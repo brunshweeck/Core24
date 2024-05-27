@@ -137,8 +137,8 @@ namespace core
                               ? StringUtils::copyOfLatin1(other.value, 0, length)
                               : StringUtils::copyOfUTF16(other.value, 0, length);
             coder == LATIN1
-                ? StringUtils::destoryLatin1String(value, count)
-                : StringUtils::destoryUTF16String(value, count);
+                ? StringUtils::destroyLatin1String(value, count)
+                : StringUtils::destroyUTF16String(value, count);
             count = 0;
 
             value      = bytes;
@@ -269,8 +269,8 @@ namespace core
     {
         if (count > 0) {
             coder == LATIN1
-                ? StringUtils::destoryLatin1String(value, count)
-                : StringUtils::destoryUTF16String(value, count);
+                ? StringUtils::destroyLatin1String(value, count)
+                : StringUtils::destroyUTF16String(value, count);
             count = 0;
             value = StringUtils::newLatin1String(0);
             coder = COMPACT_STRINGS ? LATIN1 : UTF16;

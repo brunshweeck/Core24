@@ -2,24 +2,23 @@
 // Created by bruns on 01/05/2024.
 //
 
-#include <iostream>
+
 #include <core/CharArray.h>
 #include <core/Class.h>
 #include <core/LongArray.h>
 #include <core/String.h>
-#include <core/misc/Literals.h>
 
 namespace core
 {
 }
 
 using namespace core;
-using namespace core::misc;
 
 class A;
 
 int main()
 {
+
     CharArray chars  = CharArray(30);
     auto      a      = chars.length();
     auto      b      = chars.set(3, a);
@@ -45,7 +44,14 @@ int main()
     auto str4 = U"hello"_S;
     auto str5 = "hello"_S;
 
-    std::cout << &value.get(0) << std::endl;
+    CORE_FAST auto aaa = '@';
+    CORE_FAST gint bbb = aaa;
+
+    auto ia1 = IntArray::ofRange(100);
+    auto ia2 = IntArray::ofRange(1, 100);
+    auto ia3 = IntArray::ofRange(0, 100, 10);
+
+    auto al = (1LL << 63) >> 63;
 
     return 0;
 }

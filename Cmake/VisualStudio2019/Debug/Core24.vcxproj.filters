@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\ArithmeticException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Boolean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -19,16 +22,40 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\CharSequence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Comparable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Double.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\DoubleArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Float.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\FloatArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\IllegalArgumentException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\IllegalStateException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\IndexOutOfBoundsException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\IntArray.cpp">
@@ -43,10 +70,22 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\LongArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Number.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\NumberFormatException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\OutOfMemoryError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\RuntimeException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Short.cpp">
@@ -58,7 +97,16 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Throwable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\Trace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Compiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Foreign.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Literals.cpp">
@@ -70,7 +118,7 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\OS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Precondion.cpp">
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Precondition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Templates.cpp">
@@ -79,11 +127,53 @@
     <ClCompile Include="E:\CLionProjects\Core24\Lib\core\misc\Types.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterData00.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterData01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterData02.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterData03.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterData0E.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterDataLatin1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterDataPrivateUse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\CharacterDataUndefined.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\DoubleConsts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\FdLibm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\FloatConsts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\MathUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="E:\CLionProjects\Core24\Lib\meta\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\ArithmeticException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Boolean.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -102,16 +192,40 @@
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\CharSequence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Comparable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\DoubleArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Float.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\FloatArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\IllegalArgumentException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\IllegalStateException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\IndexOutOfBoundsException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\IntArray.h">
@@ -126,10 +240,22 @@
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\LongArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\NumberFormatException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\OutOfMemoryError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\RuntimeException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Short.h">
@@ -141,7 +267,16 @@
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\String.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Throwable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\Trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Foreign.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Literals.h">
@@ -160,6 +295,45 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\core\misc\Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterData00.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterData01.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterData02.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterData03.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterData0E.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterDataLatin1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterDataPrivateUse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\CharacterDataUndefined.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\DoubleConsts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\FdLibm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\FloatConsts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\MathUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="E:\CLionProjects\Core24\Lib\meta\StringUtils.h">

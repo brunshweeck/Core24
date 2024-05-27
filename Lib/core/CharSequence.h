@@ -2,8 +2,8 @@
 // Created by bruns on 09/05/2024.
 //
 
-#ifndef Core24_CHARSEQUENCE_H
-#define Core24_CHARSEQUENCE_H
+#ifndef CORE24_CHARSEQUENCE_H
+#define CORE24_CHARSEQUENCE_H
 
 #include <core/Class.h>
 
@@ -56,4 +56,4 @@ namespace core
     };
 } // core
 
-#endif // Core24_CHARSEQUENCE_H
+#endif // CORE24_CHARSEQUENCE_H

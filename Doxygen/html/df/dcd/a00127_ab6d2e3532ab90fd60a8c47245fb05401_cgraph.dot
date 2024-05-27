@@ -1,0 +1,20 @@
+digraph "core::DoubleArray::of"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="core::DoubleArray::of",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Obtain newly created DoubleArray instance with given doubles values or code points."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="core::DoubleArray\l::copyOf",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dcd/a00127.html#a0e174d290855e8da15a3cf24afd19c11",tooltip="Obtain newly created DoubleArray instance with primitive double array, such as int8_t[],..."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="core::DoubleArray\l::DoubleArray",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dcd/a00127.html#a2970f7b43ec2bacb25ed74808a13401a",tooltip="Construct new DoubleArray instance able to contains the given number of values."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="core::DoubleArray\l::length",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dcd/a00127.html#aa12eedf68ccfdd940d678f447355b9cf",tooltip="Return the number of values on this array."];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="core::DoubleArray::of",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dcd/a00127.html#af0a3a4d574ed73f7c9edfb815d572890",tooltip="Obtains newly created empty array."];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="core::DoubleArray::set",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dcd/a00127.html#a097b724e3df077d8f76fa3663e1e3f2d",tooltip="Set value of element at specified index with specified new value."];
+}

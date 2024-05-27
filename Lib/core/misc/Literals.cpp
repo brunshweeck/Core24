@@ -11,7 +11,7 @@ namespace core
     {
     } // misc
 
-    String operator ""_S(misc::__literal_chr_t const* str, misc::size_t size)
+    String operator ""_S(misc::__literal_chr_t const* str, misc::__memory_size_t size)
     {
         gint length = (gint) (size & 0x7fffffff);
         if (length == 0) {
@@ -145,7 +145,7 @@ namespace core
         }
     }
 
-    String operator ""_S(misc::__ucs2_t const* str, misc::size_t size)
+    String operator ""_S(misc::__ucs2_t const* str, misc::__memory_size_t size)
     {
         gint length = (gint) (size & 0x7fffffff);
         gint hibyte = 0;
@@ -172,7 +172,7 @@ namespace core
         }
     }
 
-    String operator ""_S(misc::__ucs4_t const* str, misc::size_t size)
+    String operator ""_S(misc::__ucs4_t const* str, misc::__memory_size_t size)
     {
         gint length = (gint) size;
         gint hibyte = 0;
@@ -200,7 +200,7 @@ namespace core
         }
     }
 
-    String operator ""_S(wchar_t const* str, misc::size_t size)
+    String operator ""_S(wchar_t const* str, misc::__memory_size_t size)
     {
         return ClassOf(*str)::MEMORY_SIZE == 2
                    ? operator ""_S(CORE_CAST(misc::__ucs2_t const *, str), size)

@@ -9,6 +9,8 @@ namespace core
     ShortArray::ShortArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gshort[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     ShortArray::ShortArray(gint length, gshort initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gshort[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    ShortArray::ShortArray(ShortArray const& array)
+    ShortArray::ShortArray(ShortArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    ShortArray::ShortArray(ShortArray&& array) noexcept
+    ShortArray::ShortArray(ShortArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gshort& ShortArray::get(gint index)
+    gshort &ShortArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gshort const& ShortArray::get(gint index) const
+    gshort const &ShortArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gshort oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -157,7 +158,7 @@ namespace core
     }
 
     ShortArray ShortArray::of(gshort v0, gshort v1, gshort v2, gshort v3, gshort v4,
-                            gshort v5)
+                              gshort v5)
     {
         ShortArray shorts = ShortArray(6);
 
@@ -172,7 +173,7 @@ namespace core
     }
 
     ShortArray ShortArray::of(gshort v0, gshort v1, gshort v2, gshort v3, gshort v4,
-                            gshort v5, gshort v6)
+                              gshort v5, gshort v6)
     {
         ShortArray shorts = ShortArray(7);
 
@@ -188,7 +189,7 @@ namespace core
     }
 
     ShortArray ShortArray::of(gshort v0, gshort v1, gshort v2, gshort v3, gshort v4,
-                            gshort v5, gshort v6, gshort v7)
+                              gshort v5, gshort v6, gshort v7)
     {
         ShortArray shorts = ShortArray(8);
 
@@ -205,7 +206,7 @@ namespace core
     }
 
     ShortArray ShortArray::of(gshort v0, gshort v1, gshort v2, gshort v3, gshort v4,
-                            gshort v5, gshort v6, gshort v7, gshort v8)
+                              gshort v5, gshort v6, gshort v7, gshort v8)
     {
         ShortArray shorts = ShortArray(9);
 
@@ -223,7 +224,7 @@ namespace core
     }
 
     ShortArray ShortArray::of(gshort v0, gshort v1, gshort v2, gshort v3, gshort v4,
-                            gshort v5, gshort v6, gshort v7, gshort v8, gshort v9)
+                              gshort v5, gshort v6, gshort v7, gshort v8, gshort v9)
     {
         ShortArray shorts = ShortArray(10);
 
@@ -239,5 +240,39 @@ namespace core
         shorts.value[9] = v9;
 
         return CORE_CAST(ShortArray &&, shorts);
+    }
+
+    ShortArray ShortArray::ofRange(gshort limit)
+    {
+        return ofRange(0, limit);
+    }
+
+    ShortArray ShortArray::ofRange(gshort firstValue, gshort limit)
+    {
+        return ofRange(firstValue, limit, 1);
+    }
+
+    ShortArray ShortArray::ofRange(gshort firstValue, gshort limit, gint offsetByValue)
+    {
+        if (offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if (count == 0)
+                count += 1;
+
+            ShortArray array = ShortArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (gshort) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(ShortArray &&, array);
+        } else {
+            return ShortArray(0);
+        }
     }
 } // core

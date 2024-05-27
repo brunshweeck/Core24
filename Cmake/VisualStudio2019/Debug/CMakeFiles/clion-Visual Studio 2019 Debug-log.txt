@@ -1,5 +1,5 @@
 "C:\Program Files\JetBrains\CLion 2024.1.1\bin\cmake\win\x64\bin\cmake.exe" -G "Visual Studio 16 2019" -S E:\CLionProjects\Core24 -B E:\CLionProjects\Core24\Cmake\VisualStudio2019\Debug
 -- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.19045.
 -- Configuring done (0.1s)
--- Generating done (0.2s)
+-- Generating done (0.4s)
 -- Build files have been written to: E:/CLionProjects/Core24/Cmake/VisualStudio2019/Debug

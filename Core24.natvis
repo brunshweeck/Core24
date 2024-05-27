@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+    <Type Name="core::BooleanArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::ByteArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::ShortArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::CharArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::IntArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::FloatArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::LongArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::DoubleArray">
+        <DisplayString Optional="true" Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">[{count}]</DisplayString>
+        <DisplayString Optional="true">[0]</DisplayString>
+        <Expand HideRawView="true">
+            <IndexListItems>
+                <Size>count</Size>
+                <ValueNode Condition="(count > 0) &amp;&amp; (count <= 0x7ffffff7) &amp;&amp; (value != 0)">value[$i]</ValueNode>
+            </IndexListItems>
+        </Expand>
+    </Type>
+
+    <Type Name="core::misc::NIL">
+        <DisplayString Optional="true">NULL</DisplayString>
+    </Type>
+
+    <Type Name="core::String">
+        <!-- Latin-1 -->
+        <DisplayString Condition="(coder == 0) &amp;&amp; (value != 0) &amp;&amp; (count > 0)">
+            {(char const *)value, s}
+        </DisplayString>
+        <!-- UTF-16 -->
+        <DisplayString Condition="(coder == 1) &amp;&amp; (value != 0) &amp;&amp; (count > 0)">
+            {(char16_t const*)value, s}
+        </DisplayString>
+        <DisplayString>
+            {"", s}
+        </DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::XString">
+        <!-- Latin-1 -->
+        <DisplayString Condition="(coder == 0) &amp;&amp; (value != 0) &amp;&amp; (count > 0)">
+            {(char const *)value, s}
+        </DisplayString>
+        <!-- UTF-16 -->
+        <DisplayString Condition="(coder == 1) &amp;&amp; (value != 0) &amp;&amp; (count > 0)">
+            {(char16_t const*)value, s}
+        </DisplayString>
+        <DisplayString>
+            {"", s}
+        </DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::Number" Inheritable="true">
+        <DisplayString Optional="true">{value}</DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::Complex" Inheritable="true">
+        <!-- 0 + (nan)i -->
+        <!-- 0 + (inf)i -->
+        <DisplayString Optional="true" Condition="(re == 0) &amp;&amp; ((im != im) || (1/im == 0) &amp;&amp; (im > 0))">({im})i</DisplayString>
+        <!-- 0 - (nan)i -->
+        <!-- 0 - (inf)i -->
+        <DisplayString Optional="true" Condition="(re == 0) &amp;&amp; ((im != im) || (1/im == 0) &amp;&amp; (im < 0))">-({-im})i</DisplayString>
+        <!-- 0 + yi -->
+        <DisplayString Optional="true" Condition="(re == 0)">{im}i</DisplayString>
+
+        <!-- x + (nan)i -->
+        <!-- x + (inf)i -->
+        <DisplayString Optional="true" Condition="((im != im) || (1/im == 0) &amp;&amp; (im > 0))">{re} + ({im})i</DisplayString>
+        <!-- x - (nan)i -->
+        <!-- x - (inf)i -->
+        <DisplayString Optional="true" Condition="((im != im) || (1/im == 0) &amp;&amp; (im < 0))">{re} - ({-im})i</DisplayString>
+        <!-- x + 0i -->
+        <DisplayString Optional="true" Condition="(im == 0)">{re}</DisplayString>
+        <!-- error -->
+        <DisplayString>({re}, {im})</DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::Enum<*>" Inheritable="true">
+        <DisplayString Optional="true">{value}</DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::Throwable" Inheritable="true">
+        <DisplayString Optional="true">{detailMessage}</DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::Trace" Inheritable="true">
+        <DisplayString Optional="true" Condition="(line != -2)">{module}@{version}/{declaringClass}.{method}({file}:{line &amp; 0xFFFFFFFF})</DisplayString>
+        <DisplayString Optional="true" Condition="">{module}@{version}/{declaringClass}.{method}(builtin-method)</DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+    <Type Name="core::Thread" Inheritable="true">
+        <DisplayString Optional="true" Condition="threadName.count > 0">thread[{threadName}, #{threadId}]</DisplayString>
+        <DisplayString Optional="true">thread[{"Unnamed", s},#{threadId}]</DisplayString>
+        <Expand HideRawView="true"/>
+    </Type>
+
+</AutoVisualizer>

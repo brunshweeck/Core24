@@ -9,6 +9,8 @@ namespace core
     CharArray::CharArray(gint length)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gchar[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -20,6 +22,8 @@ namespace core
     CharArray::CharArray(gint length, gchar initialValue)
     {
         if (length > 0) {
+            if (length > SOFT_MAX_LENGTH)
+                length = SOFT_MAX_LENGTH;
             value = new gchar[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -28,7 +32,7 @@ namespace core
         }
     }
 
-    CharArray::CharArray(CharArray const& array)
+    CharArray::CharArray(CharArray const &array)
     {
         gint length = array.length();
         if (length > 0) {
@@ -40,7 +44,7 @@ namespace core
         }
     }
 
-    CharArray::CharArray(CharArray&& array) noexcept
+    CharArray::CharArray(CharArray &&array) noexcept
     {
         value = array.value;
         count = array.count;
@@ -59,22 +63,20 @@ namespace core
         return count <= 0;
     }
 
-    gchar& CharArray::get(gint index)
+    gchar &CharArray::get(gint index)
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
 
-    gchar const& CharArray::get(gint index) const
+    gchar const &CharArray::get(gint index) const
     {
         if (index >= 0 && index < count) {
             return value[index];
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -83,10 +85,9 @@ namespace core
     {
         if (index >= 0 && index < count) {
             gchar oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
-        }
-        else {
+        } else {
             throw 0;
         }
     }
@@ -95,7 +96,7 @@ namespace core
     {
         if (count > 0) {
             count = 0;
-            delete [] value;
+            delete[] value;
             value = null;
         }
     }
@@ -239,5 +240,49 @@ namespace core
         chars.value[9] = v9;
 
         return CORE_CAST(CharArray &&, chars);
+    }
+
+    CharArray CharArray::ofRange(gchar limit)
+    {
+        return ofRange(0, limit);
+    }
+
+    CharArray CharArray::ofRange(gchar firstValue, gchar limit)
+    {
+        return ofRange(firstValue, limit, 1);
+    }
+
+    CharArray CharArray::ofRange(gchar firstValue, gchar limit, gint offsetByValue)
+    {
+        if (offsetByValue == 0) {
+            throw 0;
+        }
+        if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
+
+            gint count = (limit - firstValue) / offsetByValue;
+
+            if (count == 0)
+                count += 1;
+
+            CharArray array = CharArray(count);
+
+            for (int i = 0; i < count; i++) {
+                array.value[i] = (gchar) (firstValue + offsetByValue * i);
+            }
+
+            return CORE_CAST(CharArray &&, array);
+        } else {
+            return CharArray(0);
+        }
+    }
+
+    gchar const &CharArray::operator[](gint index) const
+    {
+        return get(index);
+    }
+
+    gchar &CharArray::operator[](gint index)
+    {
+        return get(index);
     }
 } // core

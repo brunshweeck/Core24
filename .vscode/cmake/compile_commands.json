@@ -1,0 +1,326 @@
+[
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Boolean.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Boolean.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Boolean.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Boolean.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\BooleanArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\BooleanArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\BooleanArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\BooleanArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Byte.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Byte.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Byte.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Byte.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\ByteArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\ByteArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\ByteArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\ByteArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\CharArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\CharArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\CharArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\CharArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\CharSequence.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\CharSequence.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\CharSequence.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\CharSequence.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Class.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Class.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Class.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Class.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Comparable.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Comparable.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Comparable.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Comparable.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\DoubleArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\DoubleArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\DoubleArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\DoubleArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\FloatArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\FloatArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\FloatArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\FloatArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\IntArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\IntArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\IntArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\IntArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Integer.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Integer.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Integer.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Integer.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Long.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Long.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Long.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Long.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\LongArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\LongArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\LongArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\LongArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Number.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Number.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Number.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Number.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Object.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Object.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Object.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Object.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Short.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Short.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Short.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Short.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\ShortArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\ShortArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\ShortArray.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\ShortArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\String.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\String.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\String.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\String.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Throwable.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Throwable.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Throwable.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Throwable.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\Trace.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Trace.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Trace.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\Trace.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Compiler.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Compiler.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Compiler.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Compiler.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Literals.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Literals.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Literals.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Literals.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Nil.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Nil.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Nil.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Nil.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\OS.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\OS.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\OS.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\OS.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Precondition.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Precondition.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Precondition.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Precondition.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Templates.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Templates.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Templates.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Templates.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Types.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Types.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Types.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\core\\misc\\Types.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Core24.dir\\Lib\\meta\\StringUtils.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\meta\\StringUtils.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\meta\\StringUtils.cpp",
+  "output": "CMakeFiles\\Core24.dir\\Lib\\meta\\StringUtils.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\Main.dir\\Exe\\Main.cpp.obj -c E:\\CLionProjects\\Core24\\Exe\\Main.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Exe\\Main.cpp",
+  "output": "CMakeFiles\\Main.dir\\Exe\\Main.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Class.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Class.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Class.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Class.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Object.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Object.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Object.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Object.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\misc\\Nil.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Nil.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Nil.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\misc\\Nil.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Comparable.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Comparable.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Comparable.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Comparable.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Number.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Number.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Number.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Number.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\CharSequence.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\CharSequence.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\CharSequence.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\CharSequence.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\CharArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\CharArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\CharArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\CharArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\ByteArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\ByteArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\ByteArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\ByteArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\IntArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\IntArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\IntArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\IntArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\LongArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\LongArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\LongArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\LongArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\FloatArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\FloatArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\FloatArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\FloatArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\DoubleArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\DoubleArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\DoubleArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\DoubleArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\ShortArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\ShortArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\ShortArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\ShortArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\BooleanArray.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\BooleanArray.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\BooleanArray.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\BooleanArray.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\String.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\String.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\String.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\String.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\meta\\StringUtils.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\meta\\StringUtils.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\meta\\StringUtils.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\meta\\StringUtils.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\misc\\Precondition.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Precondition.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\misc\\Precondition.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\misc\\Precondition.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Boolean.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Boolean.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Boolean.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Boolean.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Integer.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Integer.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Integer.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Integer.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Long.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Long.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Long.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Long.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Byte.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Byte.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Byte.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Byte.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Short.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Short.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Short.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Short.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Throwable.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Throwable.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Throwable.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Throwable.cpp.obj"
+},
+{
+  "directory": "E:/CLionProjects/Core24/.vscode/cmake",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.1\\bin\\mingw\\bin\\G__~1.EXE -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32 -g -std=gnu++14 -o CMakeFiles\\LibFiles.dir\\Lib\\core\\Trace.cpp.obj -c E:\\CLionProjects\\Core24\\Lib\\core\\Trace.cpp",
+  "file": "E:\\CLionProjects\\Core24\\Lib\\core\\Trace.cpp",
+  "output": "CMakeFiles\\LibFiles.dir\\Lib\\core\\Trace.cpp.obj"
+}
+]

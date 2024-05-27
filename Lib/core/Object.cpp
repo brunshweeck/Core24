@@ -5,7 +5,10 @@
 #include <core/Object.h>
 #include <core/Class.h>
 
-namespace core {
+#include "String.h"
+
+namespace core
+{
     Object::Object()
     {
     }
@@ -14,7 +17,7 @@ namespace core {
     {
     }
 
-    gbool Object::equals(Object const& obj) const
+    gbool Object::equals(Object const &obj) const
     {
         return this == &obj;
     }
@@ -22,6 +25,11 @@ namespace core {
     gint Object::hash() const
     {
         return CORE_FCAST(glong, this);
+    }
+
+    String Object::toString() const
+    {
+        return "<object>"_S;
     }
 
     misc::NIL &null = misc::NIL::INSTANCE;

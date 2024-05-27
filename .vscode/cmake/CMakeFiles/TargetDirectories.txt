@@ -1,0 +1,9 @@
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/Core24.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/Main.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/LibFiles.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/edit_cache.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/rebuild_cache.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/list_install_components.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/install.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/install/local.dir
+E:/CLionProjects/Core24/.vscode/cmake/CMakeFiles/install/strip.dir

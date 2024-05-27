@@ -2,13 +2,12 @@
 // Created by bruns on 10/05/2024.
 //
 
-#ifndef Core24_FLOATARRAY_H
-#define Core24_FLOATARRAY_H
+#ifndef CORE24_FLOATARRAY_H
+#define CORE24_FLOATARRAY_H
 
 #include <core/Class.h>
 
-namespace core
-{
+namespace core {
     /**
      * The class @c FloatArray wrap the array of primitive
      * type @c gfloat in the object.
@@ -16,11 +15,10 @@ namespace core
      * @note This class provide the random access to elements.
      *
      */
-    class FloatArray final : public virtual Object
-    {
+    class FloatArray final : public virtual Object {
         CORE_ALIAS(ARRAY, ClassOf(.0F)::Pointer);
 
-        static CORE_FAST gint SOFT_ARRAY_LENGHT = 0x7FFFFFFF - 8;
+        static CORE_FAST gint SOFT_MAX_LENGTH = (gint) ((1LL << 31) - (1LL << 3) - 1);
 
     private:
         /**
@@ -35,7 +33,7 @@ namespace core
 
     public:
         /**
-         * Construct new @c FloatArray instance able to containt
+         * Construct new @c FloatArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with value @c U+0000.
@@ -46,7 +44,7 @@ namespace core
         CORE_EXPLICIT FloatArray(gint length);
 
         /**
-         * Construct new @c FloatArray instance able to containt
+         * Construct new @c FloatArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with given initial value.
@@ -64,7 +62,7 @@ namespace core
          *
          * @param array The array used to create this array.
          */
-        CORE_IMPLICIT FloatArray(FloatArray const& array);
+        CORE_IMPLICIT FloatArray(FloatArray const &array);
 
         /**
          * Construct new @c FloatArray instance by swaping of content
@@ -76,7 +74,7 @@ namespace core
          *
          * @param array The array used to create this array.
          */
-        CORE_IMPLICIT FloatArray(FloatArray&& array) CORE_NOTHROW;
+        CORE_IMPLICIT FloatArray(FloatArray &&array) CORE_NOTHROW;
 
         /**
          * Return the number of values on this array
@@ -98,7 +96,7 @@ namespace core
          * @param index The index of desired element.
          * @throws IndexOutOfBoundsException If the given index out of bounds
          */
-        gfloat& get(gint index);
+        gfloat &get(gint index);
 
         /**
          * Return the value of elements at specified index
@@ -106,7 +104,7 @@ namespace core
          * @param index The index of desired element.
          * @throws IndexOutOfBoundsException If the given index out of bounds
          */
-        gfloat const& get(gint index) const;
+        gfloat const &get(gint index) const;
 
         /**
          * Set value of element at specified index with
@@ -138,46 +136,43 @@ namespace core
          * @param array The array to be copied
          * @return The new FloatArray that contains all values of given array
          */
-        template <class T,
-                  Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
-                  class E = typename Class<T>::ArrayElement,
-                  Class<gbool>::OnlyIf<Class<E>::isNumber()>  = true
-        >
-        static FloatArray copyOf(T&& array)
-        {
-            CORE_FAST gfloat n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
+        template<class T,
+                Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
+                class E = typename Class<T>::ArrayElement,
+                Class<gbool>::OnlyIf<Class<E>::isNumber()>  = true>
+        static FloatArray copyOf(T &&array) {
+            CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
 
             switch (n) {
-            case 0:
-                return of();
-            case 1:
-                return of(array[0]);
-            case 2:
-                return of(array[0], array[1]);
-            case 3:
-                return of(array[0], array[1], array[2]);
-            case 4:
-                return of(array[0], array[1], array[2], array[3]);
-            case 5:
-                return of(array[0], array[1], array[2], array[3], array[4]);
-            case 6:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5]);
-            case 7:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6]);
-            case 8:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7]);
-            case 9:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8]);
-            case 10:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8], array[9]);
-            default:
-                {
-                    CORE_FAST gint length = n > SOFT_ARRAY_LENGHT ? SOFT_ARRAY_LENGHT : (gint) n;
+                case 0:
+                    return of();
+                case 1:
+                    return of(array[0]);
+                case 2:
+                    return of(array[0], array[1]);
+                case 3:
+                    return of(array[0], array[1], array[2]);
+                case 4:
+                    return of(array[0], array[1], array[2], array[3]);
+                case 5:
+                    return of(array[0], array[1], array[2], array[3], array[4]);
+                case 6:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5]);
+                case 7:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6]);
+                case 8:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7]);
+                case 9:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8]);
+                case 10:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8], array[9]);
+                default: {
+                    CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint) n;
 
                     FloatArray floats = FloatArray(length);
 
@@ -208,41 +203,74 @@ namespace core
         static FloatArray of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4);
 
         static FloatArray of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5);
+                             gfloat v5);
 
         static FloatArray of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6);
+                             gfloat v5, gfloat v6);
 
         static FloatArray of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6, gfloat v7);
+                             gfloat v5, gfloat v6, gfloat v7);
 
         static FloatArray of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6, gfloat v7, gfloat v8);
+                             gfloat v5, gfloat v6, gfloat v7, gfloat v8);
 
         static FloatArray of(gfloat v0, gfloat v1, gfloat v2, gfloat v3, gfloat v4,
-                            gfloat v5, gfloat v6, gfloat v7, gfloat v8, gfloat v9);
+                             gfloat v5, gfloat v6, gfloat v7, gfloat v8, gfloat v9);
 
         /**
          * Obtain newly created @c FloatArray instance with given floats values or code points.
          *
          * @tparam T The arguments types list
          * @param args The values list used to initialize array
-         * @return The new FloatArray that containt all given values
+         * @return The new FloatArray that contains all given values
          */
-        template <class... T,
-                  Class<gbool>::OnlyIf<
-                      Class<Object>::allIsTrue<
-                          Class<T>::isInteger()...
-                      >()
-                  >  = true
-        >
-        static FloatArray of(T&&... args)
-        {
+        template<class... T>
+        static FloatArray of(T &&... args) {
+            CORE_FAST_XASSERT(Class<FloatArray>::allIsTrue<Class<T>::isNumber()...>(),
+                              "Couldn't create new FloatArray with given values.");
+
             gfloat array[] = {CORE_FCAST(gfloat, args)...};
 
             return copyOf(array);
         }
+
+        /**
+         * Obtain newly created @c FloatArray instance representing the sequence of floats
+         * from @c 0 to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c FloatArray::ofRange(l) produces [0, 1, 2, ..., l-1].
+         * For example: @c FloatArray::ofRange(4) produces [0, 1, 2, 3].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static FloatArray ofRange(gfloat limit);
+
+        /**
+         * Obtain newly created @c FloatArray instance representing the sequence of floats
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c FloatArray::ofRange(i,l) produces [i, i+1, i+2, ..., l-1].
+         * For example: @c FloatArray::ofRange(1,5) produces [1, 2, 3, 4].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static FloatArray ofRange(gfloat firstValue, gfloat limit);
+
+        /**
+         * Obtain newly created @c FloatArray instance representing the sequence of floats
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c offsetByValue.
+         *
+         * @note The call of @c FloatArray::ofRange(i,l,k) produces [i, i+k, i+2k, ..., i+nk] (where i+nk < l).
+         * For example: @c FloatArray::ofRange(1,8,2) produces [1, 3, 5, 7].
+         *
+         * @param firstValue the start value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         * @param offsetByValue the value of step.
+         */
+        static FloatArray ofRange(gfloat firstValue, gfloat limit, gdouble offsetByValue);
     };
 } // core
 
-#endif // Core24_FLOATARRAY_H
+#endif // CORE24_FLOATARRAY_H

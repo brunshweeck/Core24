@@ -2,8 +2,8 @@
 // Created by bruns on 04/05/2024.
 //
 
-#ifndef Core24_OS_H
-#define Core24_OS_H
+#ifndef CORE24_OS_H
+#define CORE24_OS_H
 
 namespace core
 {
@@ -286,4 +286,4 @@ namespace core
     } // misc
 } // core
 
-#endif // Core24_OS_H
+#endif // CORE24_OS_H

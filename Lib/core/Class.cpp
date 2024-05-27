@@ -4,5 +4,6 @@
 
 #include "Class.h"
 
-namespace core {
+namespace core
+{
 } // core

@@ -2,8 +2,8 @@
 // Created by bruns on 10/05/2024.
 //
 
-#ifndef Core24_SHORTARRAY_H
-#define Core24_SHORTARRAY_H
+#ifndef CORE24_SHORTARRAY_H
+#define CORE24_SHORTARRAY_H
 
 #include <core/Class.h>
 
@@ -20,7 +20,7 @@ namespace core
     {
         CORE_ALIAS(ARRAY, Class<gshort>::Pointer);
 
-        static CORE_FAST gint SOFT_ARRAY_LENGHT = 0x7FFFFFFF - 8;
+        static CORE_FAST gint SOFT_MAX_LENGTH = (gint) ((1LL << 31) - (1LL << 3) - 1);
 
     private:
         /**
@@ -35,7 +35,7 @@ namespace core
 
     public:
         /**
-         * Construct new @c ShortArray instance able to containt
+         * Construct new @c ShortArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with value @c U+0000.
@@ -46,7 +46,7 @@ namespace core
         CORE_EXPLICIT ShortArray(gint length);
 
         /**
-         * Construct new @c ShortArray instance able to containt
+         * Construct new @c ShortArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with given initial value.
@@ -176,7 +176,7 @@ namespace core
                           array[5], array[6], array[7], array[8], array[9]);
             default:
                 {
-                    CORE_FAST gint length = n > SOFT_ARRAY_LENGHT ? SOFT_ARRAY_LENGHT : (gint) n;
+                    CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint) n;
 
                     ShortArray shorts = ShortArray(length);
 
@@ -226,22 +226,55 @@ namespace core
          *
          * @tparam T The arguments types list
          * @param args The values list used to initialize array
-         * @return The new ShortArray that containt all given values
+         * @return The new ShortArray that contains all given values
          */
-        template <class... T,
-                  Class<gbool>::OnlyIf<
-                      Class<Object>::allIsTrue<
-                          Class<T>::isInteger()...
-                      >()
-                  >  = true
-        >
+        template <class... T>
         static ShortArray of(T&&... args)
         {
+            CORE_FAST_XASSERT(Class<ShortArray>::allIsTrue<Class<T>::isInteger()...>(), "Couldn't create new ShortArray with given values.");
+
             gshort array[] = {CORE_FCAST(gshort, args)...};
 
             return copyOf(array);
         }
+
+        /**
+         * Obtain newly created @c ShortArray instance representing the sequence of shorts
+         * from @c 0 to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c ShortArray::ofRange(l) produces [0, 1, 2, ..., l-1].
+         * For example: @c ShortArray::ofRange(4) produces [0, 1, 2, 3].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static ShortArray ofRange(gshort limit);
+
+        /**
+         * Obtain newly created @c ShortArray instance representing the sequence of shorts
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c 1.
+         *
+         * @note The call of @c ShortArray::ofRange(i,l) produces [i, i+1, i+2, ..., l-1].
+         * For example: @c ShortArray::ofRange(1,5) produces [1, 2, 3, 4].
+         *
+         * @param firstValue the first value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         */
+        static ShortArray ofRange(gshort firstValue, gshort limit);
+
+        /**
+         * Obtain newly created @c ShortArray instance representing the sequence of shorts
+         * from @c firstValue ( @a inclusive) to @c limit ( @a exclusive) by @a step @c offsetByValue.
+         *
+         * @note The call of @c ShortArray::ofRange(i,l,k) produces [i, i+k, i+2k, ..., i+nk] (where i+nk < l).
+         * For example: @c ShortArray::ofRange(1,8,2) produces [1, 3, 5, 7].
+         *
+         * @param firstValue the start value of array
+         * @param limit the value used as limit value of array such that @code max(this) < limit @endcode
+         * @param offsetByValue the value of step.
+         */
+        static ShortArray ofRange(gshort firstValue, gshort limit, gint offsetByValue);
     };
 } // core
 
-#endif // Core24_SHORTARRAY_H
+#endif // CORE24_SHORTARRAY_H

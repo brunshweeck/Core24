@@ -4,5 +4,6 @@
 
 #include "Comparable.h"
 
-namespace core {
+namespace core
+{
 } // core

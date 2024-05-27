@@ -2,8 +2,8 @@
 // Created by bruns on 05/05/2024.
 //
 
-#ifndef Core24_COMPILER_H
-#define Core24_COMPILER_H
+#ifndef CORE24_COMPILER_H
+#define CORE24_COMPILER_H
 
 namespace core
 {
@@ -1367,4 +1367,4 @@ namespace core
     } // misc
 } // core
 
-#endif // Core24_COMPILER_H
+#endif // CORE24_COMPILER_H

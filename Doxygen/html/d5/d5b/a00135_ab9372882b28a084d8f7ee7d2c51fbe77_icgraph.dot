@@ -1,0 +1,12 @@
+digraph "core::IntArray::copyOf"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="core::IntArray::copyOf",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Obtain newly created IntArray instance with primitive int array, such as int8_t[],..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="core::IntArray::of",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d5b/a00135.html#a0dc2eeaaf550da3907922c0ba7be1c48",tooltip="Obtain newly created IntArray instance with given integers values or code points."];
+}

@@ -2,8 +2,8 @@
 // Created by bruns on 10/05/2024.
 //
 
-#ifndef Core24_BOOLEANARRAY_H
-#define Core24_BOOLEANARRAY_H
+#ifndef CORE24_BOOLEANARRAY_H
+#define CORE24_BOOLEANARRAY_H
 
 #include <core/Class.h>
 
@@ -20,7 +20,11 @@ namespace core
     {
         CORE_ALIAS(ARRAY, ClassOf(false)::Pointer);
 
-        static CORE_FAST gint SOFT_ARRAY_LENGHT = 0x7FFFFFFF - 8;
+    public:
+        /**
+         * The maximum number of value supported by array.
+         */
+        static CORE_FAST gint SOFT_MAX_LENGTH = (gint) ((1LL << 31) - (1LL << 3) - 1);
 
     private:
         /**
@@ -35,7 +39,7 @@ namespace core
 
     public:
         /**
-         * Construct new @c BooleanArray instance able to containt
+         * Construct new @c BooleanArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with value @c U+0000.
@@ -46,7 +50,7 @@ namespace core
         CORE_EXPLICIT BooleanArray(gint length);
 
         /**
-         * Construct new @c BooleanArray instance able to containt
+         * Construct new @c BooleanArray instance able to contains
          * the given number of values.
          *
          * @note All value will be initialized with given initial value.
@@ -64,7 +68,7 @@ namespace core
          *
          * @param array The array used to create this array.
          */
-        CORE_IMPLICIT BooleanArray(BooleanArray const& array);
+        CORE_IMPLICIT BooleanArray(BooleanArray const &array);
 
         /**
          * Construct new @c BooleanArray instance by swaping of content
@@ -76,7 +80,7 @@ namespace core
          *
          * @param array The array used to create this array.
          */
-        CORE_IMPLICIT BooleanArray(BooleanArray&& array) CORE_NOTHROW;
+        CORE_IMPLICIT BooleanArray(BooleanArray &&array) CORE_NOTHROW;
 
         /**
          * Return the number of values on this array
@@ -98,7 +102,7 @@ namespace core
          * @param index The index of desired element.
          * @throws IndexOutOfBoundsException If the given index out of bounds
          */
-        gbool& get(gint index);
+        gbool &get(gint index);
 
         /**
          * Return the value of elements at specified index
@@ -106,7 +110,7 @@ namespace core
          * @param index The index of desired element.
          * @throws IndexOutOfBoundsException If the given index out of bounds
          */
-        gbool const& get(gint index) const;
+        gbool const &get(gint index) const;
 
         /**
          * Set value of element at specified index with
@@ -127,53 +131,51 @@ namespace core
 
         /**
          * Obtain newly created @c BooleanArray instance with primitive bool array,
-         * such as @c bool[]
+         * such as @c gbool[]
          *
          * @tparam T The array type
          * @tparam E The bool type
          * @param array The array to be copied
          * @return The new BooleanArray that contains all values of given array
          */
-        template <class T,
-                  Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
-                  class E = typename Class<T>::ArrayElement,
-                  Class<gbool>::OnlyIf<Class<E>::isBoolean()>  = true
-        >
-        static BooleanArray copyOf(T&& array)
+        template<class T,
+                Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
+                class E = typename Class<T>::ArrayElement,
+                Class<gbool>::OnlyIf<Class<E>::isBoolean()>  = true>
+        static BooleanArray copyOf(T &&array)
         {
             CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
 
             switch (n) {
-            case 0:
-                return of();
-            case 1:
-                return of(array[0]);
-            case 2:
-                return of(array[0], array[1]);
-            case 3:
-                return of(array[0], array[1], array[2]);
-            case 4:
-                return of(array[0], array[1], array[2], array[3]);
-            case 5:
-                return of(array[0], array[1], array[2], array[3], array[4]);
-            case 6:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5]);
-            case 7:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6]);
-            case 8:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7]);
-            case 9:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8]);
-            case 10:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8], array[9]);
-            default:
-                {
-                    CORE_FAST gint length = n > SOFT_ARRAY_LENGHT ? SOFT_ARRAY_LENGHT : (gint) n;
+                case 0:
+                    return of();
+                case 1:
+                    return of(array[0]);
+                case 2:
+                    return of(array[0], array[1]);
+                case 3:
+                    return of(array[0], array[1], array[2]);
+                case 4:
+                    return of(array[0], array[1], array[2], array[3]);
+                case 5:
+                    return of(array[0], array[1], array[2], array[3], array[4]);
+                case 6:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5]);
+                case 7:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6]);
+                case 8:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7]);
+                case 9:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8]);
+                case 10:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8], array[9]);
+                default: {
+                    CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint) n;
 
                     BooleanArray bools = BooleanArray(length);
 
@@ -204,36 +206,33 @@ namespace core
         static BooleanArray of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4);
 
         static BooleanArray of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5);
+                               gbool v5);
 
         static BooleanArray of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6);
+                               gbool v5, gbool v6);
 
         static BooleanArray of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6, gbool v7);
+                               gbool v5, gbool v6, gbool v7);
 
         static BooleanArray of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6, gbool v7, gbool v8);
+                               gbool v5, gbool v6, gbool v7, gbool v8);
 
         static BooleanArray of(gbool v0, gbool v1, gbool v2, gbool v3, gbool v4,
-                            gbool v5, gbool v6, gbool v7, gbool v8, gbool v9);
+                               gbool v5, gbool v6, gbool v7, gbool v8, gbool v9);
 
         /**
          * Obtain newly created @c BooleanArray instance with given bools values or code points.
          *
          * @tparam T The arguments types list
          * @param args The values list used to initialize array
-         * @return The new BooleanArray that containt all given values
+         * @return The new BooleanArray that contains all given values
          */
-        template <class... T,
-                  Class<gbool>::OnlyIf<
-                      Class<Object>::allIsTrue<
-                          Class<T>::isBoolean()...
-                      >()
-                  >  = true
-        >
-        static BooleanArray of(T&&... args)
+        template<class... T>
+        static BooleanArray of(T &&... args)
         {
+            CORE_FAST_XASSERT(Class<BooleanArray>::allIsTrue<Class<T>::isBoolean()...>(),
+                              "Couldn't create new BooleanArray with given values.");
+
             gbool array[] = {CORE_FCAST(gbool, args)...};
 
             return copyOf(array);
@@ -241,4 +240,4 @@ namespace core
     };
 } // core
 
-#endif // Core24_BOOLEANARRAY_H
+#endif // CORE24_BOOLEANARRAY_H

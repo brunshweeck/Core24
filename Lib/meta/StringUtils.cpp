@@ -2,7 +2,7 @@
 // Created by bruns on 10/05/2024.
 //
 
-#include "StringUtils.h"
+#include <meta/StringUtils.h>
 
 namespace core
 {
@@ -79,8 +79,8 @@ namespace core
 
     gint String::StringUtils::copyUTF16ToUTF32(BYTES val1, gint off1, BYTES val2, gint off2, gint count)
     {
-        CHARS chars      = CORE_FCAST(CHARS, val1);
-        INTS  codePoints = CORE_FCAST(INTS, val2);
+        CHARS chars = CORE_FCAST(CHARS, val1);
+        INTS codePoints = CORE_FCAST(INTS, val2);
         return copyUTF16ToUTF32(chars, off1, codePoints, off2, count);
     }
 
@@ -104,12 +104,10 @@ namespace core
                 if (isLowSurrogate(val1[off1 + 1])) {
                     val2[off2++] = toCodePoint(val1[off1], val1[off1 + 1]);
                     i += 1;
-                }
-                else {
+                } else {
                     val2[off2++] = val1[off1++];
                 }
-            }
-            else {
+            } else {
                 val2[off2++] = val1[off1++];
             }
         }
@@ -179,7 +177,7 @@ namespace core
         return bytes;
     }
 
-    String::StringUtils::BYTES String::StringUtils::copyOfUTF32ToUTF16(INTS val, gint off, gint count, gint& length)
+    String::StringUtils::BYTES String::StringUtils::copyOfUTF32ToUTF16(INTS val, gint off, gint count, gint &length)
     {
         gint n = 0;
         for (int i = 0; i < count; ++i) {
@@ -194,11 +192,9 @@ namespace core
             gint cp = val[i + off];
             if (cp >= 0 && cp <= 0xffff) {
                 chars[j++] = (gchar) cp;
-            }
-            else if (cp < 0 || cp > 0x10ffff) {
+            } else if (cp < 0 || cp > 0x10ffff) {
                 chars[j++] = '?';
-            }
-            else {
+            } else {
                 chars[j++] = (cp >> 10) + 0xd800 - (0x10000 >> 10);
                 chars[j++] = (cp & 0x3ff) + 0xdc00;
             }
@@ -218,12 +214,12 @@ namespace core
     {
         if (count > 0) {
             glong length = count;
-            if(length % 8 == 0 ) length += 7;
+            if (length % 8 == 0) length += 7;
             CHARS chars = new gchar[count + (length % 8)];
             for (int i = 0; i < count; i += 2) {
                 chars[i] = chars[count--] = 0;
             }
-            for (glong i = 0; i < (length % 8)/2; ++i) {
+            for (glong i = 0; i < (length % 8) / 2; ++i) {
                 chars[count + i] = '0';
             }
             return (BYTES) chars;
@@ -290,11 +286,10 @@ namespace core
         BYTES bytes = newLatin1String(count);
         for (int i = 0; i < count; ++i) {
             if ((val[i] >> 8) != 0) {
-                destoryLatin1String(bytes, count);
+                destroyLatin1String(bytes, count);
                 bytes = (BYTES) EMPTY_STRING;
                 return null;
-            }
-            else {
+            } else {
                 bytes[i] = (gbyte) (val[off++] & 0xff);
             }
         }
@@ -306,34 +301,33 @@ namespace core
         BYTES bytes = newLatin1String(count);
         for (int i = 0; i < count; ++i) {
             if (((val[i] + 0u) >> 8) != 0) {
-                destoryLatin1String(bytes, count);
+                destroyLatin1String(bytes, count);
                 bytes = (BYTES) EMPTY_STRING;
                 return null;
-            }
-            else {
+            } else {
                 bytes[i] = (gbyte) (val[off++] & 0xff);
             }
         }
         return bytes;
     }
 
-    void String::StringUtils::destoryLatin1String(BYTES val, gint count)
+    void String::StringUtils::destroyLatin1String(BYTES val, gint count)
     {
         if (val != (BYTES) EMPTY_STRING) {
             if (val[0] != 0) {
                 fillLatin1String(val, 0, count, 0);
             }
-            delete [] val;
+            delete[] val;
         }
     }
 
-    void String::StringUtils::destoryUTF16String(BYTES val, gint count)
+    void String::StringUtils::destroyUTF16String(BYTES val, gint count)
     {
         if (val != (BYTES) EMPTY_STRING) {
             if (val[0] != 0) {
                 fillUTF16String(val, 0, count, 0);
             }
-            delete [] val;
+            delete[] val;
         }
     }
 
@@ -359,7 +353,7 @@ namespace core
 
     void String::StringUtils::writeUTF16CharAt(BYTES val, gint index, gchar value)
     {
-        CHARS chars  = CORE_FCAST(CHARS, val);
+        CHARS chars = CORE_FCAST(CHARS, val);
         chars[index] = value;
     }
 
@@ -411,7 +405,7 @@ namespace core
         if (count > 7) {
             LONGS lhs = CORE_FCAST(LONGS, val1 + off1);
             LONGS rhs = CORE_FCAST(LONGS, val2 + off2);
-            gint n   = count >> 3;
+            gint n = count >> 3;
             for (; i < n; ++i) {
                 if (lhs[i] != rhs[i])
                     break;
@@ -431,7 +425,7 @@ namespace core
         if (count > 7) {
             LONGS lhs = CORE_FCAST(LONGS, val1 + off1);
             LONGS rhs = CORE_FCAST(LONGS, val2 + off2);
-            gint n   = count >> 3;
+            gint n = count >> 3;
             for (; i < n; ++i) {
                 if (lhs[i] != rhs[i])
                     break;
@@ -452,7 +446,7 @@ namespace core
         for (int i = 0; i < count; ++i) {
             gchar c1 = readUTF16CharAt(val1, i + off1);
             gchar c2 = readLatin1CharAt(val2, i + off2);
-            if(c1 != c2)
+            if (c1 != c2)
                 return c1 - c2;
         }
         return 0;

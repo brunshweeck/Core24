@@ -2,8 +2,8 @@
 // Created by bruns on 09/05/2024.
 //
 
-#ifndef Core24_NUMBER_H
-#define Core24_NUMBER_H
+#ifndef CORE24_NUMBER_H
+#define CORE24_NUMBER_H
 
 #include <core/Class.h>
 
@@ -64,4 +64,4 @@ namespace core
     };
 } // core
 
-#endif // Core24_NUMBER_H
+#endif // CORE24_NUMBER_H

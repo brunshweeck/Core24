@@ -4,7 +4,8 @@
 
 #include "CharSequence.h"
 
-namespace core {
+namespace core
+{
     gbool CharSequence::isEmpty() const
     {
         return length() == 0;

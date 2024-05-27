@@ -1,7 +1,9 @@
-== Object
+== Docs
 
-=== Description
-La classe *Object* est la racine dans la hierachie des classes definie dans la librarie xref:../Core24.adoc#_core24[Core24]
+.Object
+****
+La classe *Object* est la racine dans la hierachie des classes definie dans la librarie xref:..\Core24.adoc[*Core24*]
+****
 
 === Inclusion
 [source, c++]
@@ -9,43 +11,49 @@ La classe *Object* est la racine dans la hierachie des classes definie dans la l
 #include <core/Object>
 --
 
+=== Bases
+_aucune bases_
+
 === Constructeurs
-la classe object n'est pas instantiable
+_Cette classe n'est pas instantiable._
 
 === Destructeurs
-[source, c++]
---
-public:
-    Object::~Object();
---
+_Destructeur par defaut definie par le compilateur._
 
 === Methodes
+
+* Methodes Propres
+
 [#_equals]
 [source, c++]
+.Equals
 --
 public:
     Object::equals(Object const& obj) const;
 --
+_Test et retourne *true* si cet objet est egale à un autre objet donnée._
 
 [#_hash]
 [source, c++]
+.Hash
 --
 public:
     Object::hash() const;
 --
+_Retourne une valeur entiere representant le code de hachage de cet objet._
 
-=== Methodes Statiques
+* Methodes Héritées
+_Aucune methodes héritées_
+
+* Methodes Statiques
+_Aucune methodes statiques implementées._
+
+=== Sous Types
+_Aucun sous types definies_
+
 === Constantes
-[#_nil]
-[source, c++]
---
-NIL &null;
---
-L' object de type #NIL# represent une reference vers un pointeur null et pour d'autre type une valeur intialiale vide.
-
-=== Sous Classes
-aucune sous classes definies
+_Aucune constantes definies._
 
 === Macros
-aucune macro definies
+_Aucune macro definies_
 

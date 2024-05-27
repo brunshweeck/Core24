@@ -2,8 +2,8 @@
 // Created by bruns on 05/05/2024.
 //
 
-#ifndef Core24_TYPES_H
-#define Core24_TYPES_H
+#ifndef CORE24_TYPES_H
+#define CORE24_TYPES_H
 
 #include <core/misc/OS.h>
 #include <core/misc/Compiler.h>
@@ -72,7 +72,7 @@ namespace core
 #endif
 
 #ifndef CORE_IGNORE
-#define CORE_IGNORE(x) CORE_FCAST(void, x)
+#define CORE_IGNORE(x) CORE_CAST(void, x)
 #define CORE_HIDE_FIRST(x, y,...) ((CORE_IGNORE(x), (y __VA_ARGS__)))
 #endif
 
@@ -112,14 +112,14 @@ CORE_ALIAS(gdouble, core::misc::__float64_t);
 /**
  *  Check The validity of compiler
  */
-CORE_FAST_ASSERT(sizeof gbool == 1);
-CORE_FAST_ASSERT(sizeof gbyte == 1);
-CORE_FAST_ASSERT(sizeof gshort == 2);
-CORE_FAST_ASSERT(sizeof gchar == 2);
-CORE_FAST_ASSERT(sizeof gint == 4);
-CORE_FAST_ASSERT(sizeof gfloat == 4);
-CORE_FAST_ASSERT(sizeof glong == 8);
-CORE_FAST_ASSERT(sizeof gdouble == 8);
+CORE_FAST_ASSERT(sizeof(gbool) == 1L);
+CORE_FAST_ASSERT(sizeof(gbyte) == 1L);
+CORE_FAST_ASSERT(sizeof(gshort) == 2L);
+CORE_FAST_ASSERT(sizeof(gchar) == 2L);
+CORE_FAST_ASSERT(sizeof(gint) == 4L);
+CORE_FAST_ASSERT(sizeof(gfloat) == 4L);
+CORE_FAST_ASSERT(sizeof(glong) == 8L);
+CORE_FAST_ASSERT(sizeof(gdouble) == 8L);
 
 #ifndef CORE_TRY
 #define CORE_TRY(...) try { __VA_ARGS__ }
@@ -133,4 +133,4 @@ CORE_FAST_ASSERT(sizeof gdouble == 8);
 #undef TRUE
 #undef FALSE
 
-#endif // Core24_TYPES_H
+#endif // CORE24_TYPES_H
