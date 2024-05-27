@@ -49,6 +49,13 @@ cmake_ninja_workdir = E$:/CLionProjects/Core24/.vscode/cmake/
 
 build cmake_object_order_depends_target_Core24: phony || CMakeFiles/Core24.dir
 
+build CMakeFiles/Core24.dir/Lib/core/ArithmeticException.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/ArithmeticException.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\ArithmeticException.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
 build CMakeFiles/Core24.dir/Lib/core/Boolean.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Boolean.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Boolean.cpp.obj.d
   FLAGS = -g -std=gnu++14
@@ -91,6 +98,13 @@ build CMakeFiles/Core24.dir/Lib/core/CharSequence.cpp.obj: CXX_COMPILER__Core24_
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
 
+build CMakeFiles/Core24.dir/Lib/core/Character.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Character.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Character.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
 build CMakeFiles/Core24.dir/Lib/core/Class.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Class.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Class.cpp.obj.d
   FLAGS = -g -std=gnu++14
@@ -105,6 +119,13 @@ build CMakeFiles/Core24.dir/Lib/core/Comparable.cpp.obj: CXX_COMPILER__Core24_un
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
 
+build CMakeFiles/Core24.dir/Lib/core/Double.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Double.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Double.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
 build CMakeFiles/Core24.dir/Lib/core/DoubleArray.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/DoubleArray.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\DoubleArray.cpp.obj.d
   FLAGS = -g -std=gnu++14
@@ -112,8 +133,50 @@ build CMakeFiles/Core24.dir/Lib/core/DoubleArray.cpp.obj: CXX_COMPILER__Core24_u
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
 
+build CMakeFiles/Core24.dir/Lib/core/Error.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Error.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Error.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/Exception.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Exception.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Exception.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/Float.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Float.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Float.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
 build CMakeFiles/Core24.dir/Lib/core/FloatArray.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/FloatArray.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\FloatArray.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/IllegalArgumentException.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/IllegalArgumentException.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\IllegalArgumentException.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/IllegalStateException.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/IllegalStateException.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\IllegalStateException.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/IndexOutOfBoundsException.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/IndexOutOfBoundsException.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\IndexOutOfBoundsException.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
   OBJECT_DIR = CMakeFiles\Core24.dir
@@ -147,6 +210,13 @@ build CMakeFiles/Core24.dir/Lib/core/LongArray.cpp.obj: CXX_COMPILER__Core24_uns
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
 
+build CMakeFiles/Core24.dir/Lib/core/Math.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Math.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Math.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
 build CMakeFiles/Core24.dir/Lib/core/Number.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Number.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Number.cpp.obj.d
   FLAGS = -g -std=gnu++14
@@ -154,8 +224,29 @@ build CMakeFiles/Core24.dir/Lib/core/Number.cpp.obj: CXX_COMPILER__Core24_unscan
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
 
+build CMakeFiles/Core24.dir/Lib/core/NumberFormatException.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/NumberFormatException.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\NumberFormatException.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
 build CMakeFiles/Core24.dir/Lib/core/Object.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Object.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\Object.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/OutOfMemoryError.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/OutOfMemoryError.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\OutOfMemoryError.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core
+
+build CMakeFiles/Core24.dir/Lib/core/RuntimeException.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/RuntimeException.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\RuntimeException.cpp.obj.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
   OBJECT_DIR = CMakeFiles\Core24.dir
@@ -203,6 +294,13 @@ build CMakeFiles/Core24.dir/Lib/core/misc/Compiler.cpp.obj: CXX_COMPILER__Core24
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core\misc
 
+build CMakeFiles/Core24.dir/Lib/core/misc/Foreign.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/misc/Foreign.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\core\misc\Foreign.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core\misc
+
 build CMakeFiles/Core24.dir/Lib/core/misc/Literals.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/misc/Literals.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\core\misc\Literals.cpp.obj.d
   FLAGS = -g -std=gnu++14
@@ -245,6 +343,97 @@ build CMakeFiles/Core24.dir/Lib/core/misc/Types.cpp.obj: CXX_COMPILER__Core24_un
   OBJECT_DIR = CMakeFiles\Core24.dir
   OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\core\misc
 
+build CMakeFiles/Core24.dir/Lib/meta/CharacterData.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterData.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterData.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterData00.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterData00.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterData00.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterData01.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterData01.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterData01.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterData02.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterData02.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterData02.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterData03.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterData03.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterData03.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterData0E.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterData0E.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterData0E.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterDataLatin1.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterDataLatin1.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterDataLatin1.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterDataPrivateUse.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterDataPrivateUse.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterDataPrivateUse.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/CharacterDataUndefined.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/CharacterDataUndefined.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\CharacterDataUndefined.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/DoubleConsts.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/DoubleConsts.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\DoubleConsts.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/FdLibm.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/FdLibm.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\FdLibm.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/FloatConsts.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/FloatConsts.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\FloatConsts.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
+build CMakeFiles/Core24.dir/Lib/meta/MathUtils.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/MathUtils.cpp || cmake_object_order_depends_target_Core24
+  DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\MathUtils.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
+  OBJECT_DIR = CMakeFiles\Core24.dir
+  OBJECT_FILE_DIR = CMakeFiles\Core24.dir\Lib\meta
+
 build CMakeFiles/Core24.dir/Lib/meta/StringUtils.cpp.obj: CXX_COMPILER__Core24_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/StringUtils.cpp || cmake_object_order_depends_target_Core24
   DEP_FILE = CMakeFiles\Core24.dir\Lib\meta\StringUtils.cpp.obj.d
   FLAGS = -g -std=gnu++14
@@ -260,7 +449,7 @@ build CMakeFiles/Core24.dir/Lib/meta/StringUtils.cpp.obj: CXX_COMPILER__Core24_u
 #############################################
 # Link the static library libCore24.a
 
-build libCore24.a: CXX_STATIC_LIBRARY_LINKER__Core24_Debug CMakeFiles/Core24.dir/Lib/core/Boolean.cpp.obj CMakeFiles/Core24.dir/Lib/core/BooleanArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Byte.cpp.obj CMakeFiles/Core24.dir/Lib/core/ByteArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/CharArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/CharSequence.cpp.obj CMakeFiles/Core24.dir/Lib/core/Class.cpp.obj CMakeFiles/Core24.dir/Lib/core/Comparable.cpp.obj CMakeFiles/Core24.dir/Lib/core/DoubleArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/FloatArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/IntArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Integer.cpp.obj CMakeFiles/Core24.dir/Lib/core/Long.cpp.obj CMakeFiles/Core24.dir/Lib/core/LongArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Number.cpp.obj CMakeFiles/Core24.dir/Lib/core/Object.cpp.obj CMakeFiles/Core24.dir/Lib/core/Short.cpp.obj CMakeFiles/Core24.dir/Lib/core/ShortArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/String.cpp.obj CMakeFiles/Core24.dir/Lib/core/Throwable.cpp.obj CMakeFiles/Core24.dir/Lib/core/Trace.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Compiler.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Literals.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Nil.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/OS.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Precondition.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Templates.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Types.cpp.obj CMakeFiles/Core24.dir/Lib/meta/StringUtils.cpp.obj
+build libCore24.a: CXX_STATIC_LIBRARY_LINKER__Core24_Debug CMakeFiles/Core24.dir/Lib/core/ArithmeticException.cpp.obj CMakeFiles/Core24.dir/Lib/core/Boolean.cpp.obj CMakeFiles/Core24.dir/Lib/core/BooleanArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Byte.cpp.obj CMakeFiles/Core24.dir/Lib/core/ByteArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/CharArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/CharSequence.cpp.obj CMakeFiles/Core24.dir/Lib/core/Character.cpp.obj CMakeFiles/Core24.dir/Lib/core/Class.cpp.obj CMakeFiles/Core24.dir/Lib/core/Comparable.cpp.obj CMakeFiles/Core24.dir/Lib/core/Double.cpp.obj CMakeFiles/Core24.dir/Lib/core/DoubleArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Error.cpp.obj CMakeFiles/Core24.dir/Lib/core/Exception.cpp.obj CMakeFiles/Core24.dir/Lib/core/Float.cpp.obj CMakeFiles/Core24.dir/Lib/core/FloatArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/IllegalArgumentException.cpp.obj CMakeFiles/Core24.dir/Lib/core/IllegalStateException.cpp.obj CMakeFiles/Core24.dir/Lib/core/IndexOutOfBoundsException.cpp.obj CMakeFiles/Core24.dir/Lib/core/IntArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Integer.cpp.obj CMakeFiles/Core24.dir/Lib/core/Long.cpp.obj CMakeFiles/Core24.dir/Lib/core/LongArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/Math.cpp.obj CMakeFiles/Core24.dir/Lib/core/Number.cpp.obj CMakeFiles/Core24.dir/Lib/core/NumberFormatException.cpp.obj CMakeFiles/Core24.dir/Lib/core/Object.cpp.obj CMakeFiles/Core24.dir/Lib/core/OutOfMemoryError.cpp.obj CMakeFiles/Core24.dir/Lib/core/RuntimeException.cpp.obj CMakeFiles/Core24.dir/Lib/core/Short.cpp.obj CMakeFiles/Core24.dir/Lib/core/ShortArray.cpp.obj CMakeFiles/Core24.dir/Lib/core/String.cpp.obj CMakeFiles/Core24.dir/Lib/core/Throwable.cpp.obj CMakeFiles/Core24.dir/Lib/core/Trace.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Compiler.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Foreign.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Literals.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Nil.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/OS.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Precondition.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Templates.cpp.obj CMakeFiles/Core24.dir/Lib/core/misc/Types.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterData.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterData00.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterData01.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterData02.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterData03.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterData0E.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterDataLatin1.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterDataPrivateUse.cpp.obj CMakeFiles/Core24.dir/Lib/meta/CharacterDataUndefined.cpp.obj CMakeFiles/Core24.dir/Lib/meta/DoubleConsts.cpp.obj CMakeFiles/Core24.dir/Lib/meta/FdLibm.cpp.obj CMakeFiles/Core24.dir/Lib/meta/FloatConsts.cpp.obj CMakeFiles/Core24.dir/Lib/meta/MathUtils.cpp.obj CMakeFiles/Core24.dir/Lib/meta/StringUtils.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\Core24.dir
   POST_BUILD = cd .
@@ -301,190 +490,6 @@ build Main.exe: CXX_EXECUTABLE_LINKER__Main_Debug CMakeFiles/Main.dir/Exe/Main.c
   TARGET_FILE = Main.exe
   TARGET_IMPLIB = libMain.dll.a
   TARGET_PDB = Main.exe.dbg
-
-# =============================================================================
-# Object build statements for OBJECT_LIBRARY target LibFiles
-
-
-#############################################
-# Order-only phony target for LibFiles
-
-build cmake_object_order_depends_target_LibFiles: phony || CMakeFiles/LibFiles.dir
-
-build CMakeFiles/LibFiles.dir/Lib/core/Class.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Class.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Class.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Object.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Object.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Object.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/misc/Nil.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/misc/Nil.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\misc\Nil.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core\misc
-
-build CMakeFiles/LibFiles.dir/Lib/core/Comparable.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Comparable.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Comparable.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Number.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Number.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Number.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/CharSequence.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/CharSequence.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\CharSequence.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/CharArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/CharArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\CharArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/ByteArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/ByteArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\ByteArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/IntArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/IntArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\IntArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/LongArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/LongArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\LongArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/FloatArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/FloatArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\FloatArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/DoubleArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/DoubleArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\DoubleArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/ShortArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/ShortArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\ShortArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/BooleanArray.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/BooleanArray.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\BooleanArray.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/String.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/String.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\String.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/meta/StringUtils.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/meta/StringUtils.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\meta\StringUtils.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\meta
-
-build CMakeFiles/LibFiles.dir/Lib/core/misc/Precondition.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/misc/Precondition.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\misc\Precondition.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core\misc
-
-build CMakeFiles/LibFiles.dir/Lib/core/Boolean.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Boolean.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Boolean.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Integer.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Integer.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Integer.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Long.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Long.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Long.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Byte.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Byte.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Byte.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Short.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Short.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Short.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Throwable.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Throwable.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Throwable.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-build CMakeFiles/LibFiles.dir/Lib/core/Trace.cpp.obj: CXX_COMPILER__LibFiles_unscanned_Debug E$:/CLionProjects/Core24/Lib/core/Trace.cpp || cmake_object_order_depends_target_LibFiles
-  DEP_FILE = CMakeFiles\LibFiles.dir\Lib\core\Trace.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  INCLUDES = -IE:/CLionProjects/Core24/Lib -IE:/CLionProjects/Core24/Native/Win32
-  OBJECT_DIR = CMakeFiles\LibFiles.dir
-  OBJECT_FILE_DIR = CMakeFiles\LibFiles.dir\Lib\core
-
-
-
-#############################################
-# Object library LibFiles
-
-build LibFiles: phony CMakeFiles/LibFiles.dir/Lib/core/Class.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Object.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/misc/Nil.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Comparable.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Number.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/CharSequence.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/CharArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/ByteArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/IntArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/LongArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/FloatArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/DoubleArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/ShortArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/BooleanArray.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/String.cpp.obj CMakeFiles/LibFiles.dir/Lib/meta/StringUtils.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/misc/Precondition.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Boolean.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Integer.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Long.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Byte.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Short.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Throwable.cpp.obj CMakeFiles/LibFiles.dir/Lib/core/Trace.cpp.obj
 
 
 #############################################
@@ -566,7 +571,7 @@ build Main: phony Main.exe
 #############################################
 # Folder: E:/CLionProjects/Core24/.vscode/cmake
 
-build all: phony libCore24.a Main.exe LibFiles
+build all: phony libCore24.a Main.exe
 
 # =============================================================================
 # Built-in targets

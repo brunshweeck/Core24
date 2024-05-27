@@ -50,16 +50,6 @@ rule CXX_EXECUTABLE_LINKER__Main_Debug
 
 
 #############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__LibFiles_unscanned_Debug
-  depfile = $DEP_FILE
-  deps = gcc
-  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
-  description = Building CXX object $out
-
-
-#############################################
 # Rule for running custom commands.
 
 rule CUSTOM_COMMAND

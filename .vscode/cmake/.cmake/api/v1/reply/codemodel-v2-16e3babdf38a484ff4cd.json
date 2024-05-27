@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-d0dd99c5d8328eb0fe68.json",
+					"jsonFile" : "directory-.-Debug-8293ef9aadb89f66f08e.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -17,8 +17,7 @@
 					"targetIndexes" : 
 					[
 						0,
-						1,
-						2
+						1
 					]
 				}
 			],
@@ -34,8 +33,7 @@
 					"targetIndexes" : 
 					[
 						0,
-						1,
-						2
+						1
 					]
 				}
 			],
@@ -44,15 +42,8 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Core24::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Core24-Debug-904607b30e1fff60923d.json",
+					"jsonFile" : "target-Core24-Debug-4e56fbd7c5503b8c834a.json",
 					"name" : "Core24",
-					"projectIndex" : 0
-				},
-				{
-					"directoryIndex" : 0,
-					"id" : "LibFiles::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-LibFiles-Debug-a4246f16dbb28998b1bd.json",
-					"name" : "LibFiles",
 					"projectIndex" : 0
 				},
 				{
