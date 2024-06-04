@@ -451,7 +451,7 @@ namespace core
         return (gchar) toLowerCase((gint) ch);
     }
 
-    gchar Character::toLowerCase(gint codePoint)
+    gint Character::toLowerCase(gint codePoint)
     {
         return CharacterData::of(codePoint).toLowerCase(codePoint);
     }
@@ -461,7 +461,7 @@ namespace core
         return (gchar) toUpperCase((gint) ch);
     }
 
-    gchar Character::toUpperCase(gint codePoint)
+    gint Character::toUpperCase(gint codePoint)
     {
         return CharacterData::of(codePoint).toUpperCase(codePoint);
     }
@@ -471,7 +471,7 @@ namespace core
         return (gchar) toTitleCase((gint) ch);
     }
 
-    gchar Character::toTitleCase(gint codePoint)
+    gint Character::toTitleCase(gint codePoint)
     {
         return CharacterData::of(codePoint).toTitleCase(codePoint);
     }
@@ -519,12 +519,12 @@ namespace core
                != 0;
     }
 
-    gbool Character::isWhiteSpace(gchar ch)
+    gbool Character::isWhitespace(gchar ch)
     {
-        return isWhiteSpace((gint) ch);
+        return isWhitespace((gint) ch);
     }
 
-    gbool Character::isWhiteSpace(gint codePoint)
+    gbool Character::isWhitespace(gint codePoint)
     {
         return CharacterData::of(codePoint).isWhitespace(codePoint);
     }

@@ -26,39 +26,39 @@ namespace core
     {
     public:
         /**
-         * Returns the value of the specified number as an @c int.
+         * Returns the value of the specified number as an @c gint.
          * @return The numeric value represented by this object
-         * after conversion to type @c int
+         * after conversion to type @c gint
          */
         virtual gint intValue() const = 0;
         /**
-         * Returns the value of the specified number as an @c long.
+         * Returns the value of the specified number as an @c glong.
          * @return The numeric value represented by this object
-         * after conversion to type @c long
+         * after conversion to type @c glong
          */
         virtual glong longValue() const = 0;
         /**
-         * Returns the value of the specified number as an @c float.
+         * Returns the value of the specified number as an @c gfloat.
          * @return The numeric value represented by this object
-         * after conversion to type @c float
+         * after conversion to type @c gfloat
          */
         virtual gfloat floatValue() const = 0;
         /**
-         * Returns the value of the specified number as an @c double.
+         * Returns the value of the specified number as an @c gdouble.
          * @return The numeric value represented by this object
-         * after conversion to type @c double
+         * after conversion to type @c gdouble
          */
         virtual gdouble doubleValue() const = 0;
         /**
-         * Returns the value of the specified number as an @c byte.
+         * Returns the value of the specified number as an @c gbyte.
          * @return The numeric value represented by this object
-         * after conversion to type @c byte
+         * after conversion to type @c gbyte
          */
         virtual gbyte byteValue() const;
         /**
-         * Returns the value of the specified number as an @c short.
+         * Returns the value of the specified number as an @c gshort.
          * @return The numeric value represented by this object
-         * after conversion to type @c short
+         * after conversion to type @c gshort
          */
         virtual gshort shortValue() const;
     };

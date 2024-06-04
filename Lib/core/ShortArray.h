@@ -274,6 +274,10 @@ namespace core
          * @param offsetByValue the value of step.
          */
         static ShortArray ofRange(gshort firstValue, gshort limit, gint offsetByValue);
+
+        gshort const &operator[](gint index) const;
+
+        gshort &operator[](gint index);
     };
 } // core
 

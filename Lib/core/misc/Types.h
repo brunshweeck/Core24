@@ -8,6 +8,7 @@
 #include <core/misc/OS.h>
 #include <core/misc/Compiler.h>
 
+
 namespace core
 {
     namespace misc
@@ -36,6 +37,11 @@ namespace core
         typedef char32_t            __ucs4_t;
         typedef bool                __bool_t;
         typedef decltype(sizeof(1)) __memory_size_t;
+
+        typedef _Fcomplex           __cplex32_t;
+        typedef _Dcomplex           __cplex64_t;
+        typedef _Lcomplex           __cplex64x_t;
+
         }
 
 
@@ -83,10 +89,6 @@ namespace core
     } // misc
 } // core
 
-#ifdef __SIZE_TYPE__
-typedef __SIZE_TYPE__ 	size_t;
-#endif
-
 
 /*
  * Define the generic type (g?)
@@ -126,7 +128,6 @@ CORE_FAST_ASSERT(sizeof(gdouble) == 8L);
 #define CORE_CATCH(T, ...) catch (T const & ex) { __VA_ARGS__ }
 #define CORE_TRY_ONLY(...) try { __VA_ARGS__ } catch(...) {}
 #endif
-
 
 #undef max
 #undef min

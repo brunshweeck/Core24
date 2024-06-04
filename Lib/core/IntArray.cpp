@@ -3,14 +3,22 @@
 //
 
 #include <core/IntArray.h>
+#include <core/IllegalArgumentException.h>
+#include <core/OutOfMemoryError.h>
+#include <core/misc/Precondition.h>
+#include <core/misc/Foreign.h>
 
 namespace core
 {
     IntArray::IntArray(gint length)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gint[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -21,9 +29,14 @@ namespace core
 
     IntArray::IntArray(gint length, gint initialValue)
     {
+
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gint[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -65,30 +78,39 @@ namespace core
 
     gint &IntArray::get(gint index)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gint const &IntArray::get(gint index) const
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gint IntArray::set(gint index, gint newValue)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             gint oldValue = value[index];
             value[index] = newValue;
             return oldValue;
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
@@ -255,11 +277,17 @@ namespace core
     IntArray IntArray::ofRange(gint firstValue, gint limit, gint offsetByValue)
     {
         if (offsetByValue == 0) {
-            throw 0;
+            IllegalArgumentException("Zero offset"_S).throws($ftrace(""_S));
         }
         if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
 
             gint count = (limit - firstValue) / offsetByValue;
+
+            if (count > SOFT_MAX_LENGTH) {
+                OutOfMemoryError("Number of value in range ["_S + String::valueOf(firstValue) + ", "_S
+                                 + String::valueOf(limit) + ") "_S + " with step"_S + String::valueOf(offsetByValue)
+                                 + ", exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+            }
 
             if (count == 0)
                 count += 1;
@@ -274,5 +302,55 @@ namespace core
         } else {
             return IntArray(0);
         }
+    }
+
+    gint const &IntArray::operator[](gint index) const
+    {
+        try{
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
+        }
+    }
+
+    gint &IntArray::operator[](gint index)
+    {
+        try{
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
+        }
+    }
+
+    IntArray &IntArray::operator=(IntArray const &array)
+    {
+        if(this != &array) {
+            gint count1 = length();
+            gint count2 = array.length();
+            ARRAY a = new gint [count2];
+            for (int i = 0; i < count2; ++i) {
+                a[i] = array.value[i];
+            }
+            delete [] value;
+            value = a;
+            count = count2;
+        }
+        return *this;
+    }
+
+    IntArray &IntArray::operator=(IntArray &&array) CORE_NOTHROW
+    {
+        if(this != &array) {
+            ARRAY a = array.value;
+            gint c = array.count;
+            array.value = value;
+            array.count = c;
+
+            value = a;
+            count = c;
+        }
+        return *this;
     }
 } // core

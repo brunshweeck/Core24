@@ -876,6 +876,10 @@ namespace core
          * @return the smaller of @c a and @c b
          */
         static glong min(glong a, glong b);
+
+        CORE_IMPLICIT operator glong () const;
+
+        CORE_IMPLICIT operator glong &();
     };
 } // core
 

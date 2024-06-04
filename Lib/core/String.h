@@ -4,6 +4,7 @@
 
 #ifndef CORE24_STRING_H
 #define CORE24_STRING_H
+
 #include <core/ByteArray.h>
 #include <core/CharArray.h>
 #include <core/CharSequence.h>
@@ -12,16 +13,15 @@
 
 namespace core
 {
-    class String final : public virtual CharSequence, public virtual Comparable<String>
+    class String final : public virtual CharSequence, public virtual Comparable< String >
     {
-        CORE_ALIAS(ARRAY, Class<gbyte>::Pointer);
-        CORE_ALIAS(BYTES, Class<gbyte>::Pointer);
-        CORE_ALIAS(CHARS, Class<gchar>::Pointer);
-        CORE_ALIAS(INTS, Class<gint>::Pointer);
+        CORE_ALIAS(ARRAY, Class< gbyte >::Pointer);
+        CORE_ALIAS(BYTES, Class< gbyte >::Pointer);
+        CORE_ALIAS(CHARS, Class< gchar >::Pointer);
+        CORE_ALIAS(INTS, Class< gint >::Pointer);
 
         CORE_ADD_AS_FRIEND(::core::misc::Foreign);
-        CORE_ADD_AS_FRIEND(::core::Integer);
-        CORE_ADD_AS_FRIEND(::core::Long);
+        CORE_ADD_AS_FRIEND(::core::XString);
 
         class StringUtils;
 
@@ -40,7 +40,10 @@ namespace core
          * The identifier of the encoding used to encode
          * the bytes in the @c value field.
          */
-        enum Coder { LATIN1 = 0, UTF16 = 1 } coder = LATIN1;
+        enum Coder
+        {
+            LATIN1 = 0, UTF16 = 1
+        } coder = LATIN1;
 
         /**
          * Cache of hash value for the String
@@ -77,7 +80,7 @@ namespace core
          *
          * @param  original A @c String
          */
-        CORE_IMPLICIT String(String const& original);
+        CORE_IMPLICIT String(String const &original);
 
         /**
          * Initializes a newly created @c String object so that it represents
@@ -88,7 +91,7 @@ namespace core
          *
          * @param  original A @c String
          */
-        CORE_IMPLICIT String(String&& original) CORE_NOTHROW;
+        CORE_IMPLICIT String(String &&original) CORE_NOTHROW;
 
         /**
          * Allocates a new @c String so that it represents the sequence of
@@ -98,7 +101,7 @@ namespace core
          *
          * @param  value The initial value of the string
          */
-        CORE_EXPLICIT String(CharArray const& value);
+        CORE_EXPLICIT String(CharArray const &value);
 
         /**
          * Allocates a new @c String that contains characters from a subarray
@@ -116,7 +119,7 @@ namespace core
          *          If @c offset is negative, @c count is negative, or
          *          @c offset is greater than @c value.length() - count
          */
-        CORE_EXPLICIT String(CharArray const& value, gint offset, gint count);
+        CORE_EXPLICIT String(CharArray const &value, gint offset, gint count);
 
         /**
          * Allocates a new @c String that contains characters from a subarray
@@ -135,7 +138,7 @@ namespace core
          *          If @c offset is negative, @c count is negative, or
          *          @c offset is greater than @c codePoints.length - count
          */
-        CORE_EXPLICIT String(IntArray const& codePoints, gint offset, gint count);
+        CORE_EXPLICIT String(IntArray const &codePoints, gint offset, gint count);
 
         /**
          * Allocates a new @c String constructed from a subarray of an array
@@ -162,7 +165,7 @@ namespace core
          *          If @c offset is negative, @c count is negative, or
          *          @c offset is greater than @c ascii.length - count
          */
-        CORE_EXPLICIT String(ByteArray const& ascii, gint hibyte, gint offset, gint count);
+        CORE_EXPLICIT String(ByteArray const &ascii, gint hibyte, gint offset, gint count);
 
         /**
          * Allocates a new @c String containing characters constructed from
@@ -181,7 +184,7 @@ namespace core
          * @param  ascii The bytes to be converted to characters
          * @param  hibyte The top 8 bits of each 16-bit Unicode code unit
          */
-        CORE_EXPLICIT String(ByteArray const& ascii, gint hibyte);
+        CORE_EXPLICIT String(ByteArray const &ascii, gint hibyte);
 
         /**
          * Set this String content with given String.
@@ -189,7 +192,7 @@ namespace core
          * @param other A @c String
          * @return itself
          */
-        String& operator=(String const& other);
+        String &operator=(String const &other);
 
         /**
          * Return the length of this String. The length
@@ -221,6 +224,7 @@ namespace core
          * @return the @c char value at the specified index of this string.
          */
         gchar charAt(gint index) const override;
+
         /**
          * Returns the character (Unicode code point) at the specified
          * index. The index refers to @c char values
@@ -285,7 +289,7 @@ namespace core
          *            @li @c offset is negative
          *            @li @c offset + (endIndex - beginIndex) is larger than @c dest.length()
          */
-        void toChars(gint beginIndex, gint endIndex, CharArray& dest, gint offset);
+        void toChars(gint beginIndex, gint endIndex, CharArray &dest, gint offset);
 
         /**
          * Copies characters from this string into the destination byte array. Each
@@ -301,7 +305,7 @@ namespace core
          * @code offset + (endIndex-beginIndex) - 1 @endcode
          *
          * @note  This method does not properly convert characters into
-         * bytes.  The recommanded way to do this is via the @c toBytes() method,
+         * bytes.  The recommended way to do this is via the @c toBytes() method,
          * which uses the default charset.
          *
          * @param  beginIndex Index of the first character in the string to copy
@@ -315,7 +319,7 @@ namespace core
          *            @li @c offset is negative
          *            @li @c offset+(endIndex-beginIndex) is larger than @c dest.length()
          */
-        void toBytes(gint beginIndex, gint endIndex, ByteArray& dest, gint offset);
+        void toBytes(gint beginIndex, gint endIndex, ByteArray &dest, gint offset);
 
         /**
          * Compares this string to the specified object.  The result is @c true
@@ -328,7 +332,7 @@ namespace core
          * @return  @c true if the given object represents a @c String
          *          equivalent to this string, @c false otherwise
          */
-        gbool equals(Object const& obj) const override;
+        gbool equals(Object const &obj) const override;
 
         /**
          * Compares two strings lexicographically.
@@ -368,7 +372,7 @@ namespace core
          *          value greater than @c 0 if this string is
          *          lexicographically greater than the string argument.
          */
-        gint compareTo(String const& anotherString) const override;
+        gint compareTo(String const &anotherString) const override;
 
         /**
          * Tests if the substring of this string beginning at the
@@ -399,7 +403,7 @@ namespace core
          *          Note also that @c true will be returned if the
          *          argument is an empty string or is equal to this
          *          @c String object as determined by the
-         *          <b style="color:orange;">#equals(Object) method.
+         *          @c equals(Object) method.
          */
         gbool startsWith(String const &prefix) const;
 
@@ -412,16 +416,16 @@ namespace core
          *          this object; @c false otherwise. Note that the
          *          result will be @c true if the argument is the
          *          empty string or is equal to this @c String object
-         *          as determined by the <b style="color:orange;">#equals(Object) method.
+         *          as determined by the @c equals(Object) method.
          */
         gbool endsWith(String const &suffix) const;
 
         /**
          * Returns a hash code for this string. The hash code for a
          * @c String object is computed as
-         * <blockquote><pre>
+         * @code{c++}
          * s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
-         * </pre></blockquote>
+         * @endcode
          * using @c int arithmetic, where @c s[i] is the
          * <i>i</i>th character of the string, @c n is the length of
          * the string, and @c ^ indicates exponentiation.
@@ -439,14 +443,14 @@ namespace core
          * code units) of the first such occurrence is returned. For
          * values of @c ch in the range from 0 to 0xFFFF
          * (inclusive), this is the smallest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * this.charAt(<i>k</i>) == ch
-         * </pre></blockquote>
+         * @endcode
          * is true. For other values of @c ch, it is the
          * smallest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * this.codePointAt(<i>k</i>) == ch
-         * </pre></blockquote>
+         * @endcode
          * is true. In either case, if no such character occurs in this
          * string, then @c -1 is returned.
          *
@@ -467,14 +471,14 @@ namespace core
          * the index of the first such occurrence is returned. For values
          * of @c ch in the range from 0 to 0xFFFF (inclusive),
          * this is the smallest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * (this.charAt(<i>k</i>) == ch) @c && (<i>k</i> &gt;= fromIndex)
-         * </pre></blockquote>
+         * @endcode
          * is true. For other values of @c ch, it is the
          * smallest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * (this.codePointAt(<i>k</i>) == ch) @c && (<i>k</i> &gt;= fromIndex)
-         * </pre></blockquote>
+         * @endcode
          * is true. In either case, if no such character occurs in this
          * string at or after position @c fromIndex, then
          * @c -1 is returned.
@@ -503,14 +507,14 @@ namespace core
          * the specified character. For values of @c ch in the
          * range from 0 to 0xFFFF (inclusive), the index (in Unicode code
          * units) returned is the largest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * this.charAt(<i>k</i>) == ch
-         * </pre></blockquote>
+         * @endcode
          * is true. For other values of @c ch, it is the
          * largest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * this.codePointAt(<i>k</i>) == ch
-         * </pre></blockquote>
+         * @endcode
          * is true.  In either case, if no such character occurs in this
          * string, then @c -1 is returned.  The
          * @c String is searched backwards starting at the last
@@ -529,14 +533,14 @@ namespace core
          * specified index. For values of @c ch in the range
          * from 0 to 0xFFFF (inclusive), the index returned is the largest
          * value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * (this.charAt(<i>k</i>) == ch) @c && (<i>k</i> &lt;= fromIndex)
-         * </pre></blockquote>
+         * @endcode
          * is true. For other values of @c ch, it is the
          * largest value <i>k</i> such that:
-         * <blockquote><pre>
+         * @code{c++}
          * (this.codePointAt(<i>k</i>) == ch) @c && (<i>k</i> &lt;= fromIndex)
-         * </pre></blockquote>
+         * @endcode
          * is true. In either case, if no such character occurs in this
          * string at or before position @c fromIndex, then
          * @c -1 is returned.
@@ -635,11 +639,11 @@ namespace core
          * substring begins with the character at the specified index and
          * extends to the end of this string. <p>
          * Examples:
-         * <blockquote><pre>
+         * @code{c++}
          * "unhappy".subString(2) returns "happy"
          * "Harbison".subString(3) returns "bison"
          * "emptiness".subString(9) returns "" (an empty string)
-         * </pre></blockquote>
+         * @endcode
          *
          * @param      beginIndex   the beginning index, inclusive.
          * @return     the specified substring.
@@ -656,10 +660,10 @@ namespace core
          * Thus the length of the substring is @c endIndex-beginIndex.
          * <p>
          * Examples:
-         * <blockquote><pre>
+         * @code{c++}
          * "hamburger".subString(4, 8) returns "urge"
          * "smiles".subString(1, 5) returns "mile"
-         * </pre></blockquote>
+         * @endcode
          *
          * @param      beginIndex   the beginning index, inclusive.
          * @param      endIndex     the ending index, exclusive.
@@ -674,6 +678,36 @@ namespace core
         String subString(gint beginIndex, gint endIndex) const;
 
         /**
+         * Returns a character sequence that is a subsequence of this sequence.
+         *
+         * <p> An invocation of this method of the form
+         *
+         * @code{c++}
+         * str.subSequence(begin,&nbsp;end)@endcode
+         *
+         * behaves in exactly the same way as the invocation
+         *
+         * @code{c++}
+         * str.subString(begin,&nbsp;end)@endcode
+         *
+         * @apiNote
+         * This method is defined so that the @c String class can implement
+         * the @c CharSequence interface.
+         *
+         * @param   beginIndex   the begin index, inclusive.
+         * @param   endIndex     the end index, exclusive.
+         * @return  the specified subsequence.
+         *
+         * @throws  IndexOutOfBoundsException
+         *          if @c beginIndex or @c endIndex is negative,
+         *          if @c endIndex is greater than @c length(),
+         *          or if @c beginIndex is greater than @c endIndex
+         *
+         *
+         */
+        CharSequence &subSequence(gint startIndex, gint endIndex) const override;
+
+        /**
          * Concatenates the specified string to the end of this string.
          * <p>
          * If the length of the argument string is @c 0, then this
@@ -681,12 +715,13 @@ namespace core
          * @c String object is returned that represents a character
          * sequence that is the concatenation of the character sequence
          * represented by this @c String object and the character
-         * sequence represented by the argument string.<p>
+         * sequence represented by the argument string.
+         * <p>
          * Examples:
-         * <blockquote><pre>
-         * "cares".concat("s") returns "caress"
-         * "to".concat("get").concat("her") returns "together"
-         * </pre></blockquote>
+         * @code
+         *  "cares".concat("s"); // returns "caress".
+         *  "to".concat("get").concat("her"); // returns "together"
+         * @endcode
          *
          * @param   str   the @c String that is concatenated to the end
          *                of this @c String.
@@ -709,7 +744,7 @@ namespace core
          * of @c newChar.
          * <p>
          * Examples:
-         * <blockquote><pre>
+         * @code{c++}
          * "mesquite in your cellar".replace('e', 'o')
          *         returns "mosquito in your collar"
          * "the war of baronets".replace('r', 'y')
@@ -717,7 +752,7 @@ namespace core
          * "sparring with a purple porpoise".replace('p', 't')
          *         returns "starring with a turtle tortoise"
          * "JonL".replace('q', 'x') returns "JonL" (no change)
-         * </pre></blockquote>
+         * @endcode
          *
          * @param   oldChar   the old character.
          * @param   newChar   the new character.
@@ -725,34 +760,6 @@ namespace core
          *          occurrence of @c oldChar with @c newChar.
          */
         String replace(gchar oldChar, gchar newChar) const;
-
-        /**
-         * Tells whether or not this string matches the given <a
-         * href="">regular expression</a>.
-         *
-         * <p> An invocation of this method of the form
-         * <i>str</i>@c .matches(<i>regex</i>@c ) yields exactly the
-         * same result as the expression
-         *
-         * <blockquote>
-         * <b style="color:orange;">java.util.regex.Pattern.<b style="color:orange;">
-         * matches(<i>regex</i>, <i>str</i>)
-         * </blockquote>
-         *
-         * @param   regex
-         *          the regular expression to which this string is to be matched
-         *
-         * @return  @c true if, and only if, this string matches the
-         *          given regular expression
-         *
-         * @throws  PatternSyntaxException
-         *          if the regular expression's syntax is invalid
-         *
-         * @see java.util.regex.Pattern
-         *
-         *
-         */
-        gbool matches(String const &regex) const;
 
         /**
          * Returns true if and only if this string contains the specified
@@ -763,78 +770,6 @@ namespace core
          *
          */
         gbool contains(CharSequence const &s) const;
-
-        /**
-         * Replaces the first substring of this string that matches the given <a
-         * href="">regular expression</a> with the
-         * given replacement.
-         *
-         * <p> An invocation of this method of the form
-         * <i>str</i>@c .replaceFirst(<i>regex</i>@c , <i>repl</i>@c )
-         * yields exactly the same result as the expression
-         *
-         * <blockquote>
-         * <code>
-         * <b style="color:orange;">java.util.regex.Pattern.<b style="color:orange;">compile(<i>regex</i>).<b style="color:orange;">matcher(<i>str</i>).<b style="color:orange;">replaceFirst(<i>repl</i>)
-         * </code>
-         * </blockquote>
-         *
-         *<p>
-         * Note that backslashes (@c \) and dollar signs (@c $) in the
-         * replacement string may cause the results to be different than if it were
-         * being treated as a literal replacement string; see
-         * <b style="color:orange;">java.util.regex.Matcher#replaceFirst.
-         * Use <b style="color:orange;">java.util.regex.Matcher#quoteReplacement to suppress the special
-         * meaning of these characters, if desired.
-         *
-         * @param   regex
-         *          the regular expression to which this string is to be matched
-         * @param   replacement
-         *          the string to be substituted for the first match
-         *
-         * @return  The resulting @c String
-         *
-         * @throws  PatternSyntaxException if the regular expression's syntax is invalid
-         */
-        String replaceFirst(String const &regex, String const &replacement) const;
-
-        /**
-         * Replaces each substring of this string that matches the given
-         * <a href="">regular expression</a> with the given replacement.
-         *
-         * <p> An invocation of this method of the form
-         * <i>str</i>@c .replaceAll(<i>regex</i>@c , <i>repl</i>@c )
-         * yields exactly the same result as the expression
-         *
-         * <blockquote>
-         * <code>
-         * <b style="color:orange;">java.util.regex.Pattern.<b style="color:orange;">compile(<i>regex</i>).<b style="color:orange;">matcher(<i>str</i>).<b style="color:orange;">replaceAll(<i>repl</i>)
-         * </code>
-         * </blockquote>
-         *
-         *<p>
-         * Note that backslashes (@c \) and dollar signs (@c $) in the
-         * replacement string may cause the results to be different than if it were
-         * being treated as a literal replacement string; see
-         * <b style="color:orange;">java.util.regex.Matcher#replaceAll Matcher.replaceAll.
-         * Use <b style="color:orange;">java.util.regex.Matcher#quoteReplacement to suppress the special
-         * meaning of these characters, if desired.
-         *
-         * @param   regex
-         *          the regular expression to which this string is to be matched
-         * @param   replacement
-         *          the string to be substituted for each match
-         *
-         * @return  The resulting @c String
-         *
-         * @throws  PatternSyntaxException
-         *          if the regular expression's syntax is invalid
-         *
-         * @see java.util.regex.Pattern
-         *
-         *
-         */
-        String replaceAll(String const &regex, String const &replacement) const;
 
         /**
          * Replaces each substring of this string that matches the literal target
@@ -861,13 +796,12 @@ namespace core
          * Examples are programming language identifiers, protocol keys, and HTML
          * tags.
          * For instance, @c "TITLE"::toLowerCase() in a Turkish locale
-         * returns @c "t&#92;u0131tle", where '&#92;u0131' is the
+         * returns @c "t\\u0131tle", where '\\u0131' is the
          * LATIN SMALL LETTER DOTLESS I character.
          * To obtain correct results for locale insensitive strings, use
          * @c toLowerCase(Locale.ROOT).
          *
          * @return  the @c String, converted to lowercase.
-         * @see     String::toLowerCase(Locale)
          */
         String toLowerCase() const;
 
@@ -882,13 +816,12 @@ namespace core
          * Examples are programming language identifiers, protocol keys, and HTML
          * tags.
          * For instance, @c "title"::toUpperCase() in a Turkish locale
-         * returns @c "T&#92;u0130TLE", where '&#92;u0130' is the
+         * returns @c "T\\u0130TLE", where '\\u0130' is the
          * LATIN CAPITAL LETTER I WITH DOT ABOVE character.
          * To obtain correct results for locale insensitive strings, use
          * @c toUpperCase(Locale.ROOT).
          *
          * @return  the @c String, converted to uppercase.
-         * @see     String::toUpperCase(Locale)
          */
         String toUpperCase() const;
 
@@ -928,226 +861,81 @@ namespace core
 
         /**
          * Returns a string whose value is this string, with all leading
-         * and trailing <b style="color:green;">white space
-         * removed.
+         * and trailing @a whitespace removed.
          * <p>
          * If this @c String object represents an empty string,
          * or if all code points in this string are
-         * <b style="color:green;">white space, then an empty string
+         * @a whitespace, then an empty string
          * is returned.
          * <p>
          * Otherwise, returns a substring of this string beginning with the first
-         * code point that is not a <b style="color:green;">white space
+         * code point that is not a @a whitespace
          * up to and including the last code point that is not a
-         * <b style="color:green;">white space.
+         * @a whitespace.
          * <p>
          * This method may be used to strip
-         * <b style="color:green;">white space from
+         * @a whitespace from
          * the beginning and end of a string.
          *
          * @return  a string whose value is this string, with all leading
-         *          and trailing white space removed
-         *
-         * @see Character#isWhitespace(int)
-         *
-         *
+         *          and trailing whitespace removed
          */
         String strip() const;
 
         /**
          * Returns a string whose value is this string, with all leading
-         * <b style="color:green;">white space removed.
+         * @a whitespace removed.
          * <p>
          * If this @c String object represents an empty string,
          * or if all code points in this string are
-         * <b style="color:green;">white space, then an empty string
+         * @a whitespace, then an empty string
          * is returned.
          * <p>
          * Otherwise, returns a substring of this string beginning with the first
-         * code point that is not a <b style="color:green;">white space
+         * code point that is not a @a whitespace
          * up to and including the last code point of this string.
          * <p>
          * This method may be used to trim
-         * <b style="color:green;">white space from
+         * @a whitespace from
          * the beginning of a string.
          *
          * @return  a string whose value is this string, with all leading white
          *          space removed
-         *
-         * @see Character#isWhitespace(int)
-         *
-         *
          */
         String stripLeading() const;
 
         /**
          * Returns a string whose value is this string, with all trailing
-         * <b style="color:green;">white space removed.
+         * @a whitespace removed.
          * <p>
          * If this @c String object represents an empty string,
          * or if all characters in this string are
-         * <b style="color:green;">white space, then an empty string
+         * @a whitespace, then an empty string
          * is returned.
          * <p>
          * Otherwise, returns a substring of this string beginning with the first
          * code point of this string up to and including the last code point
-         * that is not a <b style="color:green;">white space.
+         * that is not a @a whitespace.
          * <p>
          * This method may be used to trim
-         * <b style="color:green;">white space from
+         * @a whitespace from
          * the end of a string.
          *
          * @return  a string whose value is this string, with all trailing white
          *          space removed
-         *
-         * @see Character#isWhitespace(int)
-         *
-         *
          */
         String stripTrailing() const;
 
         /**
          * Returns @c true if the string is empty or contains only
-         * <b style="color:green;">white space codepoints,
+         * @a whitespace codepoints,
          * otherwise @c false.
          *
          * @return @c true if the string is empty or contains only
-         *         <b style="color:green;">white space codepoints,
+         *         @a whitespace codepoints,
          *         otherwise @c false
-         *
-         * @see Character#isWhitespace(int)
-         *
-         *
          */
         gbool isBlank() const;
-
-        /**
-         * Adjusts the indentation of each line of this string based on the value of
-         * @c n, and normalizes line termination characters.
-         * <p>
-         * This string is conceptually separated into lines using
-         * <b style="color:orange;">String#lines(). Each line is then adjusted as described below
-         * and then suffixed with a line feed @c "\n" (U+000A). The resulting
-         * lines are then concatenated and returned.
-         * <p>
-         * If @c n > 0 then @c n spaces (U+0020) are inserted at the
-         * beginning of each line.
-         * <p>
-         * If @c n < 0 then up to @c n
-         * <b style="color:green;">white space characters are removed
-         * from the beginning of each line. If a given line does not contain
-         * sufficient white space then all leading
-         * <b style="color:green;">white space characters are removed.
-         * Each white space character is treated as a single character. In
-         * particular, the tab character @c "\t" (U+0009) is considered a
-         * single character; it is not expanded.
-         * <p>
-         * If @c n == 0 then the line remains unchanged. However, line
-         * terminators are still normalized.
-         *
-         * @param n  number of leading
-         *           <b style="color:green;">white space characters
-         *           to add or remove
-         *
-         * @return string with indentation adjusted and line endings normalized
-         *
-         * @see String#lines()
-         * @see String#isBlank()
-         * @see Character#isWhitespace(int)
-         *
-         *
-         */
-        String indent(gint n) const;
-
-        /**
-         * Returns a string whose value is this string, with incidental
-         * <b style="color:green;">white space removed from
-         * the beginning and end of every line.
-         * <p>
-         * Incidental <b style="color:green;">white space
-         * is often present in a text block to align the content with the opening
-         * delimiter. For example, in the following code, dots represent incidental
-         * <b style="color:green;">white space:
-         * <blockquote><pre>
-         * String html = """
-         * ..............&lt;html&gt;
-         * ..............    &lt;body&gt;
-         * ..............        &lt;p&gt;Hello, world&lt;/p&gt;
-         * ..............    &lt;/body&gt;
-         * ..............&lt;/html&gt;
-         * ..............""";
-         * </pre></blockquote>
-         * This method treats the incidental
-         * <b style="color:green;">white space as indentation to be
-         * stripped, producing a string that preserves the relative indentation of
-         * the content. Using | to visualize the start of each line of the string:
-         * <blockquote><pre>
-         * |&lt;html&gt;
-         * |    &lt;body&gt;
-         * |        &lt;p&gt;Hello, world&lt;/p&gt;
-         * |    &lt;/body&gt;
-         * |&lt;/html&gt;
-         * </pre></blockquote>
-         * First, the individual lines of this string are extracted. A <i>line</i>
-         * is a sequence of zero or more characters followed by either a line
-         * terminator or the end of the string.
-         * If the string has at least one line terminator, the last line consists
-         * of the characters between the last terminator and the end of the string.
-         * Otherwise, if the string has no terminators, the last line is the start
-         * of the string to the end of the string, in other words, the entire
-         * string.
-         * A line does not include the line terminator.
-         * <p>
-         * Then, the <i>minimum indentation</i> (min) is determined as follows:
-         * <ul>
-         *   <li><p>For each non-blank line (as defined by <b style="color:orange;">String#isBlank()),
-         *   the leading <b style="color:green;">white space
-         *   characters are counted.</p>
-         *   </li>
-         *   <li><p>The leading <b style="color:green;">white space
-         *   characters on the last line are also counted even if
-         *   <b style="color:green;">String#isBlank() blank.</p>
-         *   </li>
-         * </ul>
-         * <p>The <i>min</i> value is the smallest of these counts.
-         * <p>
-         * For each <b style="color:green;">String#isBlank() non-blank line, <i>min</i> leading
-         * <b style="color:green;">white space characters are
-         * removed, and any trailing <b style="color:green;">white
-         * space characters are removed. <b style="color:green;">String#isBlank() Blank lines
-         * are replaced with the empty string.
-         *
-         * <p>
-         * Finally, the lines are joined into a new string, using the LF character
-         * @c "\n" (U+000A) to separate lines.
-         *
-         * @apiNote
-         * This method's primary purpose is to shift a block of lines as far as
-         * possible to the left, while preserving relative indentation. Lines
-         * that were indented the least will thus have no leading
-         * <b style="color:green;">white space.
-         * The result will have the same number of line terminators as this string.
-         * If this string ends with a line terminator then the result will end
-         * with a line terminator.
-         *
-         * @implSpec
-         * This method treats all <b style="color:green;">white space
-         * characters as having equal width. As long as the indentation on every
-         * line is consistently composed of the same character sequences, then the
-         * result will be as described above.
-         *
-         * @return string with incidental indentation removed and line
-         *         terminators normalized
-         *
-         * @see String#lines()
-         * @see String#isBlank()
-         * @see String#indent(int)
-         * @see Character#isWhitespace(int)
-         *
-         *
-         *
-         */
-        String stripIndent() const;
 
         /**
          * Returns a string whose value is this string, with escape sequences
@@ -1165,73 +953,69 @@ namespace core
          *   </thead>
          *   <tbody>
          *   <tr>
-         *     <th scope="row">@c &#92;b</th>
+         *     <th scope="row">@c \\b</th>
          *     <td>backspace</td>
          *     <td>@c U+0008</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;t</th>
+         *     <th scope="row">@c \\t</th>
          *     <td>horizontal tab</td>
          *     <td>@c U+0009</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;n</th>
+         *     <th scope="row">@c \\n</th>
          *     <td>line feed</td>
          *     <td>@c U+000A</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;f</th>
+         *     <th scope="row">@c \\f</th>
          *     <td>form feed</td>
          *     <td>@c U+000C</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;r</th>
+         *     <th scope="row">@c \\r</th>
          *     <td>carriage return</td>
          *     <td>@c U+000D</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;s</th>
+         *     <th scope="row">@c \\s</th>
          *     <td>space</td>
          *     <td>@c U+0020</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;"</th>
+         *     <th scope="row">@c \\"</th>
          *     <td>double quote</td>
          *     <td>@c U+0022</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;'</th>
+         *     <th scope="row">@c \\'</th>
          *     <td>single quote</td>
          *     <td>@c U+0027</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;&#92;</th>
+         *     <th scope="row">@c \\\\</th>
          *     <td>backslash</td>
          *     <td>@c U+005C</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;0 - &#92;377</th>
+         *     <th scope="row">@c \\0 - \\377</th>
          *     <td>octal escape</td>
          *     <td>code point equivalents</td>
          *   </tr>
          *   <tr>
-         *     <th scope="row">@c &#92;<line-terminator></th>
+         *     <th scope="row">@c \\<line-terminator></th>
          *     <td>continuation</td>
          *     <td>discard</td>
          *   </tr>
          *   </tbody>
          * </table>
          *
-         * @implNote
-         * This method does <em>not</em> translate Unicode escapes such as "@c &#92;u2022".
-         * Unicode escapes are translated by the Java compiler when reading input characters and
-         * are not part of the string literal specification.
+         * @note
+         * This method does <em>not</em> translate Unicode escapes such as "@c \\u2022".
          *
          * @throws IllegalArgumentException when an escape sequence is malformed.
          *
          * @return String with escape sequences translated.
-         *
-         * @cls 3.10.7 Escape Sequences
          */
         String translateEscapes() const;
 
@@ -1258,7 +1042,6 @@ namespace core
          * @return  if the argument is @c null, then a string equal to
          *          @c "null"; otherwise, the value of
          *          @c obj::toString() is returned.
-         * @see     Object::toString()
          */
         static String valueOf(Object const &obj);
 
@@ -1294,7 +1077,7 @@ namespace core
          *          @c offset+count is larger than
          *          @c data.length.
          */
-        String valueOf(CharArray const &data, gint offset, gint count);
+        static String valueOf(CharArray const &data, gint offset, gint count);
 
         /**
          * Returns the string representation of the @c boolean argument.
@@ -1324,7 +1107,6 @@ namespace core
          *
          * @param   i   an @c int.
          * @return  a string representation of the @c int argument.
-         * @see     Integer::toString(int, int)
          */
         static String valueOf(gint i);
 
@@ -1336,7 +1118,6 @@ namespace core
          *
          * @param   l   a @c long.
          * @return  a string representation of the @c long argument.
-         * @see     Long::toString(long)
          */
         static String valueOf(glong l);
 
@@ -1348,7 +1129,6 @@ namespace core
          *
          * @param   f   a @c float.
          * @return  a string representation of the @c float argument.
-         * @see     Float::toString(float)
          */
         static String valueOf(gfloat f);
 
@@ -1360,7 +1140,6 @@ namespace core
          *
          * @param   d   a @c double.
          * @return  a  string representation of the @c double argument.
-         * @see     Double::toString(double)
          */
         static String valueOf(gdouble d);
 
@@ -1385,7 +1164,65 @@ namespace core
         String repeat(gint count) const;
 
         ~String() override;
+
+        template<class Str,
+                ClassOf(1)::OnlyIf< Class< Str >::isString() && Class< Str >::isArray() > = 1,
+                class CharT = typename Class< Str >::ArrayElement>
+        String operator+(Str &&str) const
+        {
+            // Find number of chars
+            glong n = Class< Str >::MEMORY_SIZE / Class< CharT >::MEMORY_SIZE;
+            if (n < 0) {
+                // Overflow: Required length exceed implementation limit.
+                n = 0x7FFFFFFF;
+            }
+
+            // Remove the last null character
+            if (n > 0 && n <= CharArray::SOFT_MAX_LENGTH && str[n - 1] == 0) {
+                n -= 1;
+            }
+
+            gint count = (gint) n;
+
+            // Launch Concat operation.
+            return (Class< CharT >::MEMORY_SIZE == 1)
+                   ? mixedConcat(CORE_CAST(BYTES, str), count)
+                   : (Class< CharT >::MEMORY_SIZE == 2) ? mixedConcat(CORE_CAST(CHARS, str), count)
+                                                        : mixedConcat(CORE_CAST(INTS, str), count);
+        }
+
+        template<class Str,
+                ClassOf(1)::OnlyIf< Class< Str >::isString() && Class< Str >::isPointer() > = 1,
+                class CharT = typename Class< Str >::PointerTarget>
+        String operator+(Str &&str) const
+        {
+            // Find number of chars
+            glong n = -1;
+            while (str[++n] != 0)
+                ;
+
+            if (n < 0) {
+                // Overflow: Required length exceed implementation limit.
+                n = 0x7FFFFFFF;
+            }
+
+            gint count = (gint) n;
+
+            // Launch Concat operation.
+            return (Class< CharT >::MEMORY_SIZE == 1)
+                   ? mixedConcat(CORE_CAST(BYTES, str), count)
+                   : (Class< CharT >::MEMORY_SIZE == 2) ? mixedConcat(CORE_CAST(CHARS, str), count)
+                                                        : mixedConcat(CORE_CAST(INTS, str), count);
+        }
+
+    private:
+        String mixedConcat(BYTES bytes, gint count2) const;
+
+        String mixedConcat(CHARS chars, gint count2) const;
+
+        String mixedConcat(INTS codePoints, gint count2) const;
     };
+
 } // core
 
 #endif // CORE24_STRING_H

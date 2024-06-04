@@ -3,14 +3,22 @@
 //
 
 #include <core/ByteArray.h>
+#include <core/IllegalArgumentException.h>
+#include <core/OutOfMemoryError.h>
+#include <core/misc/Precondition.h>
+#include <core/misc/Foreign.h>
 
 namespace core
 {
     ByteArray::ByteArray(gint length)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gbyte[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -21,9 +29,13 @@ namespace core
 
     ByteArray::ByteArray(gint length, gbyte initialValue)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gbyte[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -55,40 +67,49 @@ namespace core
 
     gint ByteArray::length() const
     {
-        return count > 0 ? count : 0;
+        return count > 0 && count < SOFT_MAX_LENGTH ? count : 0;
     }
 
     gint ByteArray::isEmpty() const
     {
-        return count <= 0;
+        return count <= 0 || count > SOFT_MAX_LENGTH;
     }
 
     gbyte &ByteArray::get(gint index)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gbyte const &ByteArray::get(gint index) const
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gbyte ByteArray::set(gint index, gbyte newValue)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             gbyte oldValue = value[index];
             value[index] = newValue;
             return oldValue;
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
@@ -255,14 +276,22 @@ namespace core
     ByteArray ByteArray::ofRange(gbyte firstValue, gbyte limit, gint offsetByValue)
     {
         if (offsetByValue == 0) {
-            throw 0;
+            IllegalArgumentException("Zero offset"_S).throws($ftrace(""_S));
         }
+
         if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
 
             gint count = (limit - firstValue) / offsetByValue;
 
-            if (count == 0)
+            if (count > SOFT_MAX_LENGTH) {
+                OutOfMemoryError("Number of value in range ["_S + String::valueOf(firstValue) + ", "_S
+                                 + String::valueOf(limit) + ") "_S + " with step"_S + String::valueOf(offsetByValue)
+                                 + ", exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+            }
+
+            if (count == 0) {
                 count += 1;
+            }
 
             ByteArray array = ByteArray(count);
 
@@ -271,8 +300,29 @@ namespace core
             }
 
             return CORE_CAST(ByteArray &&, array);
-        } else {
+        }
+        else {
             return ByteArray(0);
+        }
+    }
+
+    gbyte const &ByteArray::operator[](gint index) const
+    {
+        try {
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
+        }
+    }
+
+    gbyte &ByteArray::operator[](gint index)
+    {
+        try {
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 } // core

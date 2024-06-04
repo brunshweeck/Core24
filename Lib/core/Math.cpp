@@ -10,20 +10,19 @@
 #include <meta/FloatConsts.h>
 #include <meta/DoubleConsts.h>
 #include <core/misc/Foreign.h>
+#include <core/Integer.h>
+#include <core/Long.h>
 
 namespace core
 {
     using misc::Foreign;
-#define $trace() Trace(                          \
-                    "core::Math"_S,              \
-                    Foreign::str(CORE_FUNCTION), \
-                    CORE_FILE ""_S,              \
-                    CORE_LINE                    \
-                )
 
     // Constants used in scalb
     static gdouble twoToTheDoubleScaleUp = Math::powerOfTwoD(512);
     static gdouble twoToTheDoubleScaleDown = Math::powerOfTwoD(-512);
+
+//    gdouble const Math::INF = Double::fromLongBits(0x7FF0000000000000LL);
+    gdouble const Math::NaN = Double::fromLongBits(0x7FF8000000000000LL);
 
     Math::Math()
     {
@@ -229,7 +228,7 @@ namespace core
         gint r = x + y;
         // HD 2-12 Overflow iff both arguments have the opposite sign of the result
         if (((x ^ r) & (y ^ r)) < 0) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
         return r;
     }
@@ -238,7 +237,7 @@ namespace core
         glong r = x + y;
         // HD 2-12 Overflow iff both arguments have the opposite sign of the result
         if (((x ^ r) & (y ^ r)) < 0) {
-            ArithmeticException("glong overflow"_S).throws($trace());
+            ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
         }
         return r;
     }
@@ -248,7 +247,7 @@ namespace core
         // HD 2-12 Overflow iff the arguments have different signs and
         // the sign of the result is different from the sign of x
         if (((x ^ y) & (x ^ r)) < 0) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
         return r;
     }
@@ -258,7 +257,7 @@ namespace core
         // HD 2-12 Overflow iff the arguments have different signs and
         // the sign of the result is different from the sign of x
         if (((x ^ y) & (x ^ r)) < 0) {
-            ArithmeticException("glong overflow"_S).throws($trace());
+            ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
         }
         return r;
     }
@@ -266,7 +265,7 @@ namespace core
     gint Math::multiplyExact(gint x, gint y) {
         glong r = (glong) x * (glong) y;
         if ((gint) r != r) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
         return (gint) r;
     }
@@ -285,7 +284,7 @@ namespace core
             // and check for the special case of Long::MIN_VALUE * -1
             if (((y != 0) && (r / y != x)) ||
                 (x == Long::MIN_VALUE && y == -1)) {
-                ArithmeticException("glong overflow"_S).throws($trace());
+                ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
             }
         }
         return r;
@@ -296,7 +295,7 @@ namespace core
         if ((x & y & q) >= 0) {
             return q;
         }
-        ArithmeticException("integer overflow"_S).throws($trace());
+        ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
     }
 
     glong Math::divideExact(glong x, glong y) {
@@ -304,7 +303,7 @@ namespace core
         if ((x & y & q) >= 0) {
             return q;
         }
-        ArithmeticException("glong overflow"_S).throws($trace());
+        ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
     }
 
     gint Math::floorDivExact(gint x, gint y) {
@@ -316,7 +315,7 @@ namespace core
             }
             return q;
         }
-        ArithmeticException("integer overflow"_S).throws($trace());
+        ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
     }
 
     glong Math::floorDivExact(glong x, glong y) {
@@ -328,7 +327,7 @@ namespace core
             }
             return q;
         }
-        ArithmeticException("glong overflow"_S).throws($trace());
+        ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
     }
 
     gint Math::ceilDivExact(gint x, gint y) {
@@ -340,7 +339,7 @@ namespace core
             }
             return q;
         }
-        ArithmeticException("integer overflow"_S).throws($trace());
+        ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
     }
 
     glong Math::ceilDivExact(glong x, glong y) {
@@ -352,12 +351,12 @@ namespace core
             }
             return q;
         }
-        ArithmeticException("glong overflow"_S).throws($trace());
+        ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
     }
 
     gint Math::incrementExact(gint a) {
         if (a == Integer::MAX_VALUE) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
 
         return a + 1;
@@ -365,7 +364,7 @@ namespace core
 
     glong Math::incrementExact(glong a) {
         if (a == Long::MAX_VALUE) {
-            ArithmeticException("glong overflow"_S).throws($trace());
+            ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
         }
 
         return a + 1LL;
@@ -373,7 +372,7 @@ namespace core
 
     gint Math::decrementExact(gint a) {
         if (a == Integer::MIN_VALUE) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
 
         return a - 1;
@@ -381,7 +380,7 @@ namespace core
 
     glong Math::decrementExact(glong a) {
         if (a == Long::MIN_VALUE) {
-            ArithmeticException("glong overflow"_S).throws($trace());
+            ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
         }
 
         return a - 1LL;
@@ -389,7 +388,7 @@ namespace core
 
     gint Math::negateExact(gint a) {
         if (a == Integer::MIN_VALUE) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
 
         return -a;
@@ -397,7 +396,7 @@ namespace core
 
     glong Math::negateExact(glong a) {
         if (a == Long::MIN_VALUE) {
-            ArithmeticException("glong overflow"_S).throws($trace());
+            ArithmeticException("glong overflow"_S).throws($ftrace(""_S));
         }
 
         return -a;
@@ -405,7 +404,7 @@ namespace core
 
     gint Math::toIntExact(glong value) {
         if ((gint) value != value) {
-            ArithmeticException("integer overflow"_S).throws($trace());
+            ArithmeticException("integer overflow"_S).throws($ftrace(""_S));
         }
         return (gint) value;
     }
@@ -536,7 +535,7 @@ namespace core
     gint Math::absExact(gint a) {
         if (a == Integer::MIN_VALUE)
             ArithmeticException(
-                    "Overflow to represent absolute value of Integer::MIN_VALUE"_S).throws($trace());
+                    "Overflow to represent absolute value of Integer::MIN_VALUE"_S).throws($ftrace(""_S));
         else
             return abs(a);
     }
@@ -548,7 +547,7 @@ namespace core
     glong Math::absExact(glong a) {
         if (a == Long::MIN_VALUE)
             ArithmeticException(
-                    "Overflow to represent absolute value of Long::MIN_VALUE"_S).throws($trace());
+                    "Overflow to represent absolute value of Long::MIN_VALUE"_S).throws($ftrace(""_S));
         else
             return abs(a);
     }
@@ -629,14 +628,14 @@ namespace core
 
     gint Math::clamp(glong value, gint min, gint max) {
         if (min > max) {
-            IllegalArgumentException(/*String::valueOf(min) + " > "_S + String::valueOf(max)*/).throws($trace());
+            IllegalArgumentException(String::valueOf(min) + " > "_S + String::valueOf(max)).throws($ftrace(""_S));
         }
         return (gint) Math::min((glong) max, Math::max(value, (glong) min));
     }
 
     glong Math::clamp(glong value, glong min, glong max) {
         if (min > max) {
-            IllegalArgumentException(/*String::valueOf(min) + " > "_S + String::valueOf(max)*/).throws($trace());
+            IllegalArgumentException(String::valueOf(min) + " > "_S + String::valueOf(max)).throws($ftrace(""_S));
         }
         return Math::min(max, Math::max(value, min));
     }
@@ -648,13 +647,13 @@ namespace core
         // so we're still visiting the if statement.
         if (!(min < max)) { // min greater than, equal to, or unordered with respect to max; NaN values are unordered
             if (Double::isNaN(min)) {
-                IllegalArgumentException("min is NaN"_S).throws($trace());
+                IllegalArgumentException("min is NaN"_S).throws($ftrace(""_S));
             }
             if (Double::isNaN(max)) {
-                IllegalArgumentException("max is NaN"_S).throws($trace());
+                IllegalArgumentException("max is NaN"_S).throws($ftrace(""_S));
             }
             if (Double::compare(min, max) > 0) {
-                IllegalArgumentException(/*String::valueOf(min) + " > "_S + String::valueOf(max)*/).throws($trace());
+                IllegalArgumentException(String::valueOf(min) + " > "_S + String::valueOf(max)).throws($ftrace(""_S));
             }
             // Fall-through if min and max are exactly equal (or min = -0.0 and max = +0.0)
             // and none of them is NaN
@@ -669,13 +668,13 @@ namespace core
         // so we're still visiting the if statement.
         if (!(min < max)) { // min greater than, equal to, or unordered with respect to max; NaN values are unordered
             if (Float::isNaN(min)) {
-                IllegalArgumentException("min is NaN"_S).throws($trace());
+                IllegalArgumentException("min is NaN"_S).throws($ftrace(""_S));
             }
             if (Float::isNaN(max)) {
-                IllegalArgumentException("max is NaN"_S).throws($trace());
+                IllegalArgumentException("max is NaN"_S).throws($ftrace(""_S));
             }
             if (Float::compare(min, max) > 0) {
-                IllegalArgumentException(/*String::valueOf(min) + " > "_S + String::valueOf(max)*/).throws($trace());
+                IllegalArgumentException(String::valueOf(min) + " > "_S + String::valueOf(max)).throws($ftrace(""_S));
             }
             // Fall-through if min and max are exactly equal (or min = -0.0 and max = +0.0)
             // and none of them is NaN

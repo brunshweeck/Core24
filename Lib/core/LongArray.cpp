@@ -3,14 +3,22 @@
 //
 
 #include <core/LongArray.h>
+#include <core/IllegalArgumentException.h>
+#include <core/OutOfMemoryError.h>
+#include <core/misc/Precondition.h>
+#include <core/misc/Foreign.h>
 
 namespace core
 {
     LongArray::LongArray(gint length)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if(length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new glong[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -21,9 +29,13 @@ namespace core
 
     LongArray::LongArray(gint length, glong initialValue)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if(length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new glong[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -65,33 +77,39 @@ namespace core
 
     glong& LongArray::get(gint index)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
         }
-        else {
-            throw 0;
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     glong const& LongArray::get(gint index) const
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
         }
-        else {
-            throw 0;
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     glong LongArray::set(gint index, glong newValue)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             glong oldValue = value[index];
-            value[index]   = newValue;
+            value[index] = newValue;
             return oldValue;
         }
-        else {
-            throw 0;
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
@@ -254,15 +272,25 @@ namespace core
     }
 
     LongArray LongArray::ofRange(glong firstValue, glong limit, glong offsetByValue) {
-        if(offsetByValue == 0) {
-            throw 0;
+        if (offsetByValue == 0) {
+            IllegalArgumentException("Zero offset"_S).throws($ftrace(""_S));
         }
         if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
 
-            gint count = (limit - firstValue) / offsetByValue;
+            glong count0 = (limit - firstValue) / offsetByValue;
 
-            if(count == 0)
+
+            if (count0 > SOFT_MAX_LENGTH) {
+                OutOfMemoryError("Number of value in range ["_S + String::valueOf(firstValue) + ", "_S
+                                 + String::valueOf(limit) + ") "_S + " with step"_S + String::valueOf(offsetByValue)
+                                 + ", exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+            }
+
+            gint count = CORE_CAST(gint, count0);
+
+            if (count == 0) {
                 count += 1;
+            }
 
             LongArray array = LongArray(count);
 
@@ -273,6 +301,26 @@ namespace core
             return CORE_CAST(LongArray &&, array);
         } else {
             return LongArray(0);
+        }
+    }
+
+    glong const &LongArray::operator[](gint index) const
+    {
+        try{
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
+        }
+    }
+
+    glong &LongArray::operator[](gint index)
+    {
+        try{
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 } // core

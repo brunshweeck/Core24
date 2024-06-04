@@ -1685,22 +1685,15 @@ namespace core
         CharArray upperMap = CharArray::of((gchar) ch);
         int location = findInCharMap(ch);
         if (location != -1) {
-            if (charMap[location][1][2] == 0 && charMap[location][1] == null)
-                return CharArray::of(charMap[location][1][0]);
-            else if (charMap[location][2] == null)
-                return CharArray::of(charMap[location][1][0], charMap[location][1][1]);
-            else
-                return CharArray::copyOf(charMap[location][1]);
+            CharArray::copyOf(charMap[location][1]);
         }
         return upperMap;
     }
 
     gint CharacterData00::findInCharMap(gint ch)
     {
-        size_t size = ClassOf(charMap)::MEMORY_SIZE / ClassOf(charMap[0])::MEMORY_SIZE;
-        if (size == 0) {
-            return -1;
-        }
+        CORE_FAST glong size = ClassOf(charMap)::MEMORY_SIZE / ClassOf(charMap[0])::MEMORY_SIZE;
+
         int top, bottom, current;
         bottom = 0;
         top = size;
@@ -1719,14 +1712,14 @@ namespace core
         else return -1;
     }
 
-    gint CharacterData00::A[978]{ };
+    gint CharacterData00::A[1056]{ };
 
     CharacterData00::CharacterData00()
     {
         // THIS CODE WAS AUTOMATICALLY CREATED BY GenerateCharacter:
-        CORE_FAST_ASSERT(sizeof(A_DATA) / sizeof(A_DATA[0]) - 1 == (978 * 2));
+        CORE_FAST_ASSERT(ClassOf(A_DATA)::MEMORY_SIZE / ClassOf(A_DATA[0])::MEMORY_SIZE == (1056 * 2));
         int i = 0, j = 0;
-        while (i < (978 * 2)) {
+        while (i < (1056 * 2)) {
             int entry = A_DATA[i++] << 16;
             A[j++] = entry | A_DATA[i++];
         }

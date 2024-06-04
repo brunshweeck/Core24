@@ -3,14 +3,23 @@
 //
 
 #include <core/DoubleArray.h>
+#include <core/Double.h>
+#include <core/IllegalArgumentException.h>
+#include <core/OutOfMemoryError.h>
+#include <core/misc/Precondition.h>
+#include <core/misc/Foreign.h>
 
 namespace core
 {
     DoubleArray::DoubleArray(gint length)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gdouble[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -21,9 +30,13 @@ namespace core
 
     DoubleArray::DoubleArray(gint length, gdouble initialValue)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gdouble[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -65,30 +78,39 @@ namespace core
 
     gdouble &DoubleArray::get(gint index)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gdouble const &DoubleArray::get(gint index) const
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gdouble DoubleArray::set(gint index, gdouble newValue)
     {
-        if (index >= 0 && index < count) {
+        try {
+            misc::Precondition::checkIndex(index, count);
+
             gdouble oldValue = value[index];
             value[index] = newValue;
             return oldValue;
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
@@ -255,14 +277,27 @@ namespace core
     DoubleArray DoubleArray::ofRange(gdouble firstValue, gdouble limit, gdouble offsetByValue)
     {
         if (offsetByValue == 0) {
-            throw 0;
+            IllegalArgumentException("Zero offset"_S).throws($ftrace(""_S));
         }
+        if(!Double::isFinite(firstValue) || !Double::isFinite(limit) || !Double::isFinite(offsetByValue)) {
+            IllegalArgumentException("Non-Finite value"_S).throws($ftrace(""_S));
+        }
+
         if ((offsetByValue < 0 && limit < firstValue) || (offsetByValue > 0 && firstValue < limit)) {
 
-            gint count = (limit - firstValue) / offsetByValue;
+            gdouble count0 = (limit - firstValue) / offsetByValue;
 
-            if (count == 0)
+            if(count0 > SOFT_MAX_LENGTH){
+                OutOfMemoryError("Number of value in range ["_S + String::valueOf(firstValue) + ", "_S
+                                 + String::valueOf(limit) + ") "_S + " with step"_S + String::valueOf(offsetByValue)
+                                 + ", exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+            }
+
+            gint count = (gint) count0;
+
+            if (count == 0) {
                 count += 1;
+            }
 
             DoubleArray array = DoubleArray(count);
 
@@ -273,6 +308,26 @@ namespace core
             return CORE_CAST(DoubleArray &&, array);
         } else {
             return DoubleArray(0);
+        }
+    }
+
+    gdouble const &DoubleArray::operator[](gint index) const
+    {
+        try{
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
+        }
+    }
+
+    gdouble &DoubleArray::operator[](gint index)
+    {
+        try{
+            return get(index);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 } // core

@@ -174,7 +174,7 @@ namespace core
     CharacterData02::CharacterData02()
     {
         // THIS CODE WAS AUTOMATICALLY CREATED BY GenerateCharacter:
-        CORE_FAST_ASSERT(sizeof(A_DATA) / sizeof(A_DATA[0]) - 1 == (8 * 2));
+        CORE_FAST_ASSERT(sizeof(A_DATA) / sizeof(A_DATA[0]) == (8 * 2));
         int i = 0, j = 0;
         while (i < (8 * 2)) {
             int entry = A_DATA[i++] << 16;

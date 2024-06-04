@@ -24,7 +24,7 @@ namespace core
 
     CharArray CharacterData::toUpperCaseCharArray(gint ch)
     {
-        Character::toChars(ch);
+        return Character::toChars(ch);
     }
 
     gbool CharacterData::isOtherAlphabetic(gint ch)

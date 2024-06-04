@@ -94,26 +94,36 @@ namespace core
     public:
 
         /**
+         * @see Double::POSITIVE_INFINITY
+         */
+        static CORE_FAST gdouble INF = CORE_FCAST(gdouble, CORE_FCAST(gfloat, 1.0E308));
+
+        /**
+         * @see Double::POSITIVE_INFINITY
+         */
+        static const gdouble NaN;
+
+        /**
          * The @c gdouble value that is closer than any other to
-         * <i>e</i>, the base of the natural logarithms.
+         * @a e, the base of the natural logarithms.
          */
         static CORE_FAST gdouble E = 2.718281828459045;
 
         /**
          * The @c gdouble value that is closer than any other to
-         * <i>pi</i> (&pi;), the ratio of the circumference of a circle to
+         * @a pi (&pi;), the ratio of the circumference of a circle to
          * its diameter.
          */
         static CORE_FAST gdouble PI = 3.141592653589793;
 
         /**
          * The @c gdouble value that is closer than any other to
-         * <i>tau</i> (&tau;), the ratio of the circumference of a circle
+         * @a tau (&tau;), the ratio of the circumference of a circle
          * to its radius.
          *
          * @note
-         * The value of <i>pi</i> is one half that of <i>tau</i>; in other
-         * words, <i>tau</i> is gdouble <i>pi</i> .
+         * The value of @a pi is one half that of @a tau; in other
+         * words, @a tau is gdouble @a pi .
          */
         static CORE_FAST gdouble TAU = 2 * PI;
 
@@ -180,7 +190,7 @@ namespace core
 
         /**
          * Returns the arc sine of a value; the returned angle is in the
-         * range -<i>pi</i>/2 through <i>pi</i>/2.  Special cases:
+         * range -@a pi/2 through @a pi/2.  Special cases:
          * <ul><li>If the argument is NaN or its absolute value is greater
          * than 1, then the result is NaN.
          * <li>If the argument is zero, then the result is a zero with the
@@ -196,7 +206,7 @@ namespace core
 
         /**
          * Returns the arc cosine of a value; the returned angle is in the
-         * range 0.0 through <i>pi</i>.  Special case:
+         * range 0.0 through @a pi.  Special case:
          * <ul><li>If the argument is NaN or its absolute value is greater
          * than 1, then the result is NaN.
          * <li>If the argument is @c 1.0, the result is positive zero.
@@ -212,12 +222,12 @@ namespace core
 
         /**
          * Returns the arc tangent of a value; the returned angle is in the
-         * range -<i>pi</i>/2 through <i>pi</i>/2.  Special cases:
+         * range -@a pi/2 through @a pi/2.  Special cases:
          * <ul><li>If the argument is NaN, then the result is NaN.
          * <li>If the argument is zero, then the result is a zero with the
          * same sign as the argument.
          * <li>If the argument is @c Double::isInfinite infinite,
-         * then the result is the closest value to <i>pi</i>/2 with the
+         * then the result is the closest value to @a pi/2 with the
          * same sign as the input.
          * </ul>
          *
@@ -245,7 +255,7 @@ namespace core
          * Converts an angle measured in radians to an approximately
          * equivalent angle measured in degrees.  The conversion from
          * radians to degrees is generally inexact; users should
-         * <i>not</i> expect @c cos(toRadians(90.0)) to exactly
+         * @a not expect @c cos(toRadians(90.0)) to exactly
          * equal @c 0.0.
          *
          * @param   angrad   an angle, in radians
@@ -256,7 +266,7 @@ namespace core
         static gdouble toDegrees(gdouble angrad);
 
         /**
-         * Returns Euler's number <i>e</i> raised to the power of a
+         * Returns Euler's number @a e raised to the power of a
          * @c gdouble value.  Special cases:
          * <ul><li>If the argument is NaN, the result is NaN.
          * <li>If the argument is positive infinity, then the result is
@@ -269,14 +279,14 @@ namespace core
          * <p>The computed result must be within 1 ulp of the exact result.
          * Results must be semi-monotonic.
          *
-         * @param   a   the exponent to raise <i>e</i> to.
-         * @return  the value <i>e</i><sup>@c a</sup>,
-         *          where <i>e</i> is the base of the natural logarithms.
+         * @param   a   the exponent to raise @a e to.
+         * @return  the value @a e<sup>@c a</sup>,
+         *          where @a e is the base of the natural logarithms.
          */
         static gdouble exp(gdouble a);
 
         /**
-         * Returns the natural logarithm (base <i>e</i>) of a @c gdouble
+         * Returns the natural logarithm (base @a e) of a @c gdouble
          * value.  Special cases:
          * <ul><li>If the argument is NaN or less than zero, then the result
          * is NaN.
@@ -307,8 +317,8 @@ namespace core
          * positive infinity.
          * <li>If the argument is positive zero or negative zero, then the
          * result is negative infinity.
-         * <li>If the argument is equal to 10<sup><i>n</i></sup> for
-         * integer <i>n</i>, then the result is <i>n</i>. In particular,
+         * <li>If the argument is equal to 10<sup>@a n</sup> for
+         * integer @a n, then the result is @a n. In particular,
          * if the argument is @c 1.0 (10<sup>0</sup>), then the
          * result is positive zero.
          * </ul>
@@ -378,11 +388,11 @@ namespace core
          * Computes the remainder operation on two arguments as prescribed
          * by the IEEE 754 standard.
          * The remainder value is mathematically equal to
-         * <code>f1&nbsp;-&nbsp;f2</code>&nbsp;&times;&nbsp;<i>n</i>,
-         * where <i>n</i> is the mathematical integer closest to the exact
+         * <code>f1&nbsp;-&nbsp;f2</code>&nbsp;&times;&nbsp;@a n,
+         * where @a n is the mathematical integer closest to the exact
          * mathematical value of the quotient @c f1/f2, and if two
          * mathematical integers are equally close to @c f1/f2,
-         * then <i>n</i> is the integer that is even. If the remainder is
+         * then @a n is the integer that is even. If the remainder is
          * zero, its sign is the same as the sign of the first argument.
          * Special cases:
          * <ul><li>If either argument is NaN, or the first argument is infinite,
@@ -465,11 +475,11 @@ namespace core
         static gdouble rint(gdouble a);
 
         /**
-         * Returns the angle <i>theta</i> from the conversion of rectangular
+         * Returns the angle @a theta from the conversion of rectangular
          * coordinates (@c x,&nbsp;@c y) to polar
-         * coordinates (r,&nbsp;<i>theta</i>).
-         * This method computes the phase <i>theta</i> by computing an arc tangent
-         * of @c y/x in the range of -<i>pi</i> to <i>pi</i>. Special
+         * coordinates (r,&nbsp;@a theta).
+         * This method computes the phase @a theta by computing an arc tangent
+         * of @c y/x in the range of -@a pi to @a pi. Special
          * cases:
          * <ul><li>If either argument is NaN, then the result is NaN.
          * <li>If the first argument is positive zero and the second argument
@@ -482,48 +492,48 @@ namespace core
          * <li>If the first argument is positive zero and the second argument
          * is negative, or the first argument is positive and finite and the
          * second argument is negative infinity, then the result is the
-         * @c gdouble value closest to <i>pi</i>.
+         * @c gdouble value closest to @a pi.
          * <li>If the first argument is negative zero and the second argument
          * is negative, or the first argument is negative and finite and the
          * second argument is negative infinity, then the result is the
-         * @c gdouble value closest to -<i>pi</i>.
+         * @c gdouble value closest to -@a pi.
          * <li>If the first argument is positive and the second argument is
          * positive zero or negative zero, or the first argument is positive
          * infinity and the second argument is finite, then the result is the
-         * @c gdouble value closest to <i>pi</i>/2.
+         * @c gdouble value closest to @a pi/2.
          * <li>If the first argument is negative and the second argument is
          * positive zero or negative zero, or the first argument is negative
          * infinity and the second argument is finite, then the result is the
-         * @c gdouble value closest to -<i>pi</i>/2.
+         * @c gdouble value closest to -@a pi/2.
          * <li>If both arguments are positive infinity, then the result is the
-         * @c gdouble value closest to <i>pi</i>/4.
+         * @c gdouble value closest to @a pi/4.
          * <li>If the first argument is positive infinity and the second argument
          * is negative infinity, then the result is the @c gdouble
-         * value closest to 3*<i>pi</i>/4.
+         * value closest to 3*@a pi/4.
          * <li>If the first argument is negative infinity and the second argument
          * is positive infinity, then the result is the @c gdouble value
-         * closest to -<i>pi</i>/4.
+         * closest to -@a pi/4.
          * <li>If both arguments are negative infinity, then the result is the
-         * @c gdouble value closest to -3*<i>pi</i>/4.</ul>
+         * @c gdouble value closest to -3*@a pi/4.</ul>
          *
          * <p>The computed result must be within 2 ulps of the exact result.
          * Results must be semi-monotonic.
          *
          * @note
-         * For <i>y</i> with a positive sign and finite nonzero
-         * <i>x</i>, the exact mathematical value of @c atan2 is
+         * For @a y with a positive sign and finite nonzero
+         * @a x, the exact mathematical value of @c atan2 is
          * equal to:
          * <ul>
-         * <li>If <i>x</i> {@literal > 0, atan(abs(<i>y</i>/<i>x</i>))
-         * <li>If <i>x</i> {@literal <</b> 0, &pi; - atan(abs(<i>y</i>/<i>x</i>))
+         * <li>If @a x {@literal > 0, atan(abs(@a y/@a x))
+         * <li>If @a x {@literal <</b> 0, &pi; - atan(abs(@a y/@a x))
          * </ul>
          *
          * @param   y   the ordinate coordinate
          * @param   x   the abscissa coordinate
-         * @return  the <i>theta</i> component of the point
-         *          (<i>r</i>,&nbsp;<i>theta</i>)
+         * @return  the @a theta component of the point
+         *          (@a r,&nbsp;@a theta)
          *          in polar coordinates that corresponds to the point
-         *          (<i>x</i>,&nbsp;<i>y</i>) in Cartesian coordinates.
+         *          (@a x,&nbsp;@a y) in Cartesian coordinates.
          */
         static gdouble atan2(gdouble y, gdouble x);
 
@@ -1790,7 +1800,7 @@ namespace core
          * @param b a value
          * @param c a value
          *
-         * @return (<i>a</i>&nbsp;&times;&nbsp;<i>b</i>&nbsp;+&nbsp;<i>c</i>)
+         * @return (@a a&nbsp;&times;&nbsp;@a b&nbsp;+&nbsp;@a c)
          * computed, as if with unlimited range and precision, and rounded
          * once to the nearest @c gdouble value
          *
@@ -1841,7 +1851,7 @@ namespace core
          * @param b a value
          * @param c a value
          *
-         * @return (<i>a</i>&nbsp;&times;&nbsp;<i>b</i>&nbsp;+&nbsp;<i>c</i>)
+         * @return (@a a&nbsp;&times;&nbsp;@a b&nbsp;+&nbsp;@a c)
          * computed, as if with unlimited range and precision, and rounded
          * once to the nearest @c gfloat value
          *
@@ -1854,7 +1864,7 @@ namespace core
          * the last place, of a @c gdouble value is the positive
          * distance between this floating-point value and the @c 
          * gdouble value next larger in magnitude.  Note that for non-NaN
-         * <i>x</i>, <code>ulp(-<i>x</i>) == ulp(<i>x</i>)</code>.
+         * @a x, <code>ulp(-@a x) == ulp(@a x)</code>.
          *
          * <p>Special Cases:
          * <ul>
@@ -1879,7 +1889,7 @@ namespace core
          * the last place, of a @c gfloat value is the positive
          * distance between this floating-point value and the @c 
          * gfloat value next larger in magnitude.  Note that for non-NaN
-         * <i>x</i>, <code>ulp(-<i>x</i>) == ulp(<i>x</i>)</code>.
+         * @a x, <code>ulp(-@a x) == ulp(@a x)</code>.
          *
          * <p>Special Cases:
          * <ul>
@@ -1939,9 +1949,9 @@ namespace core
 
         /**
          * Returns the hyperbolic sine of a @c gdouble value.
-         * The hyperbolic sine of <i>x</i> is defined to be
-         * (<i>e<sup>x</sup>&nbsp;-&nbsp;e<sup>-x</sup></i>)/2
-         * where <i>e</i> is @c Math::E Euler's number.
+         * The hyperbolic sine of @a x is defined to be
+         * (@a e<sup>x</sup>&nbsp;-&nbsp;e<sup>-x</sup>)/2
+         * where @a e is @c Math::E Euler's number.
          *
          * <p>Special cases:
          * <ul>
@@ -1966,9 +1976,9 @@ namespace core
 
         /**
          * Returns the hyperbolic cosine of a @c gdouble value.
-         * The hyperbolic cosine of <i>x</i> is defined to be
-         * (<i>e<sup>x</sup>&nbsp;+&nbsp;e<sup>-x</sup></i>)/2
-         * where <i>e</i> is @c Math::E Euler's number.
+         * The hyperbolic cosine of @a x is defined to be
+         * (@a e<sup>x</sup>&nbsp;+&nbsp;e<sup>-x</sup>)/2
+         * where @a e is @c Math::E Euler's number.
          *
          * <p>Special cases:
          * <ul>
@@ -1992,10 +2002,10 @@ namespace core
 
         /**
          * Returns the hyperbolic tangent of a @c gdouble value.
-         * The hyperbolic tangent of <i>x</i> is defined to be
-         * (<i>e<sup>x</sup>&nbsp;-&nbsp;e<sup>-x</sup></i>)/(<i>e<sup>x</sup>&nbsp;+&nbsp;e<sup>-x</sup></i>),
+         * The hyperbolic tangent of @a x is defined to be
+         * (@a e<sup>x</sup>&nbsp;-&nbsp;e<sup>-x</sup>)/(@a e<sup>x</sup>&nbsp;+&nbsp;e<sup>-x</sup>),
          * in other words, @c Math::sinh
-         * sinh(<i>x</i>)/@c Math::cosh cosh(<i>x</i>).  Note
+         * sinh(@a x)/@c Math::cosh cosh(@a x).  Note
          * that the absolute value of the exact tanh is always less than
          * 1.
          *
@@ -2029,7 +2039,7 @@ namespace core
         static gdouble tanh(gdouble x);
 
         /**
-         * Returns sqrt(<i>x</i><sup>2</sup>&nbsp;+<i>y</i><sup>2</sup>)
+         * Returns sqrt(@a x<sup>2</sup>&nbsp;+@a y<sup>2</sup>)
          * without intermediate overflow or underflow.
          *
          * <p>Special cases:
@@ -2050,17 +2060,17 @@ namespace core
          *
          * @param x a value
          * @param y a value
-         * @return sqrt(<i>x</i><sup>2</sup>&nbsp;+<i>y</i><sup>2</sup>)
+         * @return sqrt(@a x<sup>2</sup>&nbsp;+@a y<sup>2</sup>)
          * without intermediate overflow or underflow
          *
          */
         static gdouble hypot(gdouble x, gdouble y);
 
         /**
-         * Returns <i>e</i><sup>x</sup>&nbsp;-1.  Note that for values of
-         * <i>x</i> near 0, the exact sum of
+         * Returns @a e<sup>x</sup>&nbsp;-1.  Note that for values of
+         * @a x near 0, the exact sum of
          * @c expm1(x)&nbsp;+&nbsp;1 is much closer to the true
-         * result of <i>e</i><sup>x</sup> than @c exp(x).
+         * result of @a e<sup>x</sup> than @c exp(x).
          *
          * <p>Special cases:
          * <ul>
@@ -2081,13 +2091,13 @@ namespace core
          * Results must be semi-monotonic.  The result of
          * @c expm1 for any finite input must be greater than or
          * equal to @c -1.0.  Note that once the exact result of
-         * <i>e</i><sup>@c x</sup>&nbsp;-&nbsp;1 is within 1/2
+         * @a e<sup>@c x</sup>&nbsp;-&nbsp;1 is within 1/2
          * ulp of the limit value -1, @c -1.0 should be
          * returned.
          *
-         * @param   x   the exponent to raise <i>e</i> to in the computation of
-         *              <i>e</i><sup>@c x</sup>&nbsp;-1.
-         * @return  the value <i>e</i><sup>@c x</sup>&nbsp;-&nbsp;1.
+         * @param   x   the exponent to raise @a e to in the computation of
+         *              @a e<sup>@c x</sup>&nbsp;-1.
+         * @return  the value @a e<sup>@c x</sup>&nbsp;-&nbsp;1.
          *
          */
         static gdouble expm1(gdouble x);
@@ -2410,7 +2420,7 @@ namespace core
          * exponent of the result would be larger than @c Double::MAX_EXPONENT,
          * an infinity is returned.  Note that if
          * the result is subnormal, precision may be lost; that is, when
-         * @c scalb(x,n) is subnormal, @c scalb(scalb(x,n),-n) may not equal <i>x</i>.
+         * @c scalb(x,n) is subnormal, @c scalb(scalb(x,n),-n) may not equal @a x.
          * When the result is non-NaN, the result has the same sign as @c d.
          *
          * <p>Special cases:
@@ -2441,7 +2451,7 @@ namespace core
          * exponent of the result would be larger than @c 
          * Float::MAX_EXPONENT, an infinity is returned.  Note that if the
          * result is subnormal, precision may be lost; that is, when
-         * @c scalb(x,n) is subnormal, @c scalb(scalb(x,n),-n) may not equal <i>x</i>.
+         * @c scalb(x,n) is subnormal, @c scalb(scalb(x,n),-n) may not equal @a x.
          * When the result is non-NaN, the result has the same sign as @c f.
          *
          * <p>Special cases:

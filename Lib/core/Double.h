@@ -5,7 +5,8 @@
 #ifndef CORE24_DOUBLE_H
 #define CORE24_DOUBLE_H
 
-#include "Long.h"
+#include <core/Math.h>
+#include <core/Byte.h>
 
 namespace core
 {
@@ -20,9 +21,8 @@ namespace core
      *
      * IEEE 754 floating-point values include finite nonzero values,
      * signed zeros (@c +0.0 and @c -0.0), signed infinities
-     * (@c Double#POSITIVE_INFINITY positive infinity and
-     * @c Double#NEGATIVE_INFINITY negative infinity), and
-     * @c Double#NaN NaN (not-a-number).
+     * (@a positive infinity and @a negative infinity), and
+     * @a NaN (not-a-number).
      *
      * <p>An <em>equivalence relation</em> on a set of values is a boolean
      * relation on pairs of values that is reflexive, symmetric, and
@@ -43,7 +43,7 @@ namespace core
      * defining an equivalence relation, the semantics of the IEEE 754
      * @c == operator were deliberately designed to meet other needs
      * of numerical computation. There are two exceptions where the
-     * properties of an equivalence relation are not satisfied by @c 
+     * properties of an equivalence relation are not satisfied by @c
      * == on floating-point values:
      *
      * <ul>
@@ -70,23 +70,21 @@ namespace core
      * </ul>
      *
      * <p>For ordered comparisons using the built-in comparison operators
-     * (@c <</b>, @c <=, etc.), NaN values have another anomalous
+     * (@c <, @c <=, etc.), NaN values have another anomalous
      * situation: a NaN is neither less than, nor greater than, nor equal
      * to any value, including itself. This means the <i>trichotomy of
      * comparison</i> does <em>not</em> hold.
      *
      * <p>To provide the appropriate semantics for @c equals and
      * @c compareTo methods, those methods cannot simply be wrappers
-     * around @c == or ordered comparison operations. Instead, @c 
-     * Double#equals equals uses <a href=#repEquivalence> representation
-     * equivalence</a>, defining NaN arguments to be equal to each other,
+     * around @c == or ordered comparison operations. Instead, @c equals uses
+     * <a> representation equivalence</a>, defining NaN arguments to be equal to each other,
      * restoring reflexivity, and defining @c +0.0 to <em>not</em> be
-     * equal to @c -0.0. For comparisons, @c Double#compareTo
-     * compareTo defines a total order where @c -0.0 is less than
-     * @c +0.0 and where a NaN is equal to itself and considered
+     * equal to @c -0.0. For comparisons, @c compareTo defines a total order where @c -0.0
+     * is less than @c +0.0 and where a NaN is equal to itself and considered
      * greater than positive infinity.
      *
-     * <p>The operational semantics of @c equals and @c 
+     * <p>The operational semantics of @c equals and @c
      * compareTo are expressed in terms of @c bit-wise converting the floating-point values to integral values.
      *
      * <p>The <em>natural ordering</em> implemented by @c Double::compareTo
@@ -94,16 +92,16 @@ namespace core
      * is, two objects are reported as equal by @c equals if and only
      * if @c compareTo on those objects returns zero.
      *
-     * <p>The adjusted behaviors defined for @c equals and @c 
+     * <p>The adjusted behaviors defined for @c equals and @c
      * compareTo allow instances of wrapper classes to work properly with
      * conventional data structures. For example, defining NaN
      * values to be @c equals to one another allows NaN to be used as
      * an element of a @c java.util.HashSet HashSet or as the key of
-     * a @c java.util.HashMap HashMap. Similarly, defining @c 
-     * compareTo as a total ordering, including @c +0.0, @c 
+     * a @c java.util.HashMap HashMap. Similarly, defining @c
+     * compareTo as a total ordering, including @c +0.0, @c
      * -0.0, and NaN, allows instances of wrapper classes to be used as
      * elements of a @c java.util.SortedSet SortedSet or as keys of a
-     * @c java.util.SortedMap SortedMap.
+     * @c SortedMap.
      *
      * <p>Comparing numerical equality to various useful equivalence
      * relations that can be defined over floating-point values:
@@ -121,7 +119,7 @@ namespace core
      *
      * <dt><i>bit-wise equivalence</i>:</dt>
      * <dd>The bits of the two floating-point values are the same. This
-     * equivalence relation for @c double values @c a and @c 
+     * equivalence relation for @c double values @c a and @c
      * b is implemented by the expression
      * <br>@c Double::doubleTo<code>@c Raw</code>@c LongBits(a) == Double::doubleTo<code>@c Raw</code>@c LongBits(b)<br>
      * Under this relation, @c +0.0 and @c -0.0 are
@@ -164,7 +162,7 @@ namespace core
      *      <cite>IEEE Standard for Floating-Point Arithmetic</cite></a>
      *
      */
-    class Double final: public virtual Number, public virtual Comparable<Double>
+    class Double final : public virtual Number, public virtual Comparable< Double >
     {
     public:
         /**
@@ -172,14 +170,14 @@ namespace core
          * @c double. It is equal to the value returned by
          * @c Double::longBitsToDouble(0x7ff0000000000000L).
          */
-        static CORE_FAST gdouble POSITIVE_INFINITY = (gdouble) 1.0E+1000L;
+        static CORE_FAST gdouble POSITIVE_INFINITY = Math::INF;
 
         /**
          * A constant holding the negative infinity of type
          * @c double. It is equal to the value returned by
          * @c Double::longBitsToDouble(0xfff0000000000000L).
          */
-        static CORE_FAST gdouble NEGATIVE_INFINITY = (gdouble) -1.0E+1000L;
+        static CORE_FAST gdouble NEGATIVE_INFINITY = -POSITIVE_INFINITY;
 
         /**
          * A constant holding a Not-a-Number (NaN) value of type
@@ -474,7 +472,7 @@ namespace core
          * @c s.
          *
          * <p>Leading and trailing whitespace characters in @c s
-         * are ignored.  Whitespace is removed as if by the @c 
+         * are ignored.  Whitespace is removed as if by the @c
          * String#trim method; that is, both ASCII space and control
          * characters are removed. The rest of @c s should
          * constitute a <i>FloatValue</i> as described by the lexical
@@ -538,7 +536,7 @@ namespace core
          *
          * Note that the round-to-nearest rule also implies overflow and
          * underflow behaviour; if the exact value of @c s is large
-         * enough in magnitude (greater than or equal to (@c 
+         * enough in magnitude (greater than or equal to (@c
          * #MAX_VALUE + @c Math#ulp(double) ulp(MAX_VALUE)/2),
          * rounding to @c double will result in an infinity and if the
          * exact value of @c s is small enough in magnitude (less
@@ -549,7 +547,7 @@ namespace core
          * this @c double value is returned.
          *
          * <p> To interpret localized string representations of a
-         * floating-point value, use subclasses of @c 
+         * floating-point value, use subclasses of @c
          * java.text.NumberFormat.
          *
          * <p>Note that trailing format specifiers, specifiers that
@@ -620,7 +618,7 @@ namespace core
          *  else {
          *      // Perform suitable alternative action
          *  }
-         * @endcode 
+         * @endcode
          *
          * @param      s   the string to be parsed.
          * @return     a @c Double object holding the value
@@ -1123,6 +1121,10 @@ namespace core
          * @return the smaller of @c a and @c b.
          */
         static gdouble min(gdouble a, gdouble b);
+
+        CORE_IMPLICIT operator gdouble () const;
+
+        operator gdouble &();
     };
 
 } // core

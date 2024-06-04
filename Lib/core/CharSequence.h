@@ -38,21 +38,39 @@ namespace core
 
         /**
          * Returns the char value at the specified index.
-         * An index ranges from zero to @c length() - 1.
-         * The first <b>char</b> value of the sequence is at
+         * An index ranges from zero to @c length()-1.
+         * The first @c gchar value of the sequence is at
          * index zero, the next at index one, and so on, as
          * for array indexing.
          *
-         * If the char value specified by the index is a
+         * If the gchar value specified by the index is a
          * @c surrogate, the surrogate value is returned.
          *
-         * @param index The index of char value returned.
-         * @throws IndexOutOfBoundsException
-         *     if the @c index argument is negative or not
-         *     less than @c length()
-         * @return The specified char value at given index
+         * @param index The index of gchar value returned.
+         * @throws IndexOutOfBoundsException if the @c index argument is negative or not
+         *                                      less than @c length()
+         * @return The specified gchar value at given index
          */
         virtual gchar charAt(gint index) const = 0;
+
+        /**
+         * Returns a @c CharSequence that is a subsequence of this sequence.
+         * The subsequence starts with the @c char value at the specified index and
+         * ends with the @c gchar value at index @c endIndex - 1.  The length
+         * (in @c gchar) of the
+         * returned sequence is @c endIndex - startIndex, so if @c startIndex == endIndex
+         * then an empty sequence is returned.
+         *
+         * @param startIndex   the start index, inclusive
+         * @param endIndex     the end index, exclusive
+         *
+         * @return  the specified subsequence
+         *
+         * @throws  IndexOutOfBoundsException if @c startIndex or @c endIndex are negative,
+         *                if @c endIndex is greater than @c length(),
+         *                or if @c startIndex is greater than @c endIndex
+         */
+         virtual CharSequence &subSequence(gint startIndex, gint endIndex) const = 0;
     };
 } // core
 

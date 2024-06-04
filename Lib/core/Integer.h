@@ -6,7 +6,7 @@
 #define CORE24_INTEGER_H
 
 #include <core/Byte.h>
-#include <core/CharSequence.h>
+#include <core/Math.h>
 
 namespace core
 {

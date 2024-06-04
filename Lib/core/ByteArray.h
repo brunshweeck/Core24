@@ -18,7 +18,7 @@ namespace core
      */
     class ByteArray final : public virtual Object
     {
-        CORE_ALIAS(ARRAY, Class<gbyte>::Pointer);
+        CORE_ALIAS(ARRAY, Class< gbyte >::Pointer);
         CORE_ADD_AS_FRIEND(String);
         CORE_ADD_AS_FRIEND(XString);
 
@@ -139,56 +139,47 @@ namespace core
          * @param array The array to be copied
          * @return The new ByteArray that contains all values of given array
          */
-        template <class T,
-                  Class<gbool>::OnlyIf<Class<T>::isArray()> = true,
-                  class E = typename Class<T>::ArrayElement,
-                  Class<gbool>::OnlyIf<Class<E>::isInteger() || Class<E>::isCharacter() && sizeof(E) == 1> = true>
+        template<class T,
+                Class< gbool >::OnlyIf< Class< T >::isArray() > = true,
+                class E = typename Class< T >::ArrayElement,
+                Class< gbool >::OnlyIf< Class< E >::isInteger() || Class< E >::isCharacter() && sizeof(E) == 1 > = true>
         static ByteArray copyOf(T &&array)
         {
-            CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
+            CORE_FAST glong n = Class< T >::MEMORY_SIZE / Class< E >::MEMORY_SIZE;
 
-            switch (n)
-            {
-            case 0:
-                return of();
-            case 1:
-                return of(array[0]);
-            case 2:
-                return of(array[0], array[1]);
-            case 3:
-                return of(array[0], array[1], array[2]);
-            case 4:
-                return of(array[0], array[1], array[2], array[3]);
-            case 5:
-                return of(array[0], array[1], array[2], array[3], array[4]);
-            case 6:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5]);
-            case 7:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6]);
-            case 8:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7]);
-            case 9:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8]);
-            case 10:
-                return of(array[0], array[1], array[2], array[3], array[4],
-                          array[5], array[6], array[7], array[8], array[9]);
-            default:
-            {
-                CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint)n;
+            switch (n) {
+                case 0:return of();
+                case 1:return of(array[0]);
+                case 2:return of(array[0], array[1]);
+                case 3:return of(array[0], array[1], array[2]);
+                case 4:return of(array[0], array[1], array[2], array[3]);
+                case 5:return of(array[0], array[1], array[2], array[3], array[4]);
+                case 6:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5]);
+                case 7:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6]);
+                case 8:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7]);
+                case 9:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8]);
+                case 10:
+                    return of(array[0], array[1], array[2], array[3], array[4],
+                              array[5], array[6], array[7], array[8], array[9]);
+                default: {
+                    CORE_FAST gint length = n > SOFT_MAX_LENGTH ? SOFT_MAX_LENGTH : (gint) n;
 
-                ByteArray bytes = ByteArray(length);
+                    ByteArray bytes = ByteArray(length);
 
-                for (int i = 0; i < length; ++i)
-                {
-                    bytes.set(i, array[i]);
+                    for (int i = 0; i < length; ++i) {
+                        bytes.set(i, array[i]);
+                    }
+
+                    return CORE_CAST(ByteArray &&, bytes);
                 }
-
-                return CORE_CAST(ByteArray &&, bytes);
-            }
             }
         }
 
@@ -231,12 +222,14 @@ namespace core
          * @param args The values list used to initialize array
          * @return The new ByteArray that contains all given values
          */
-        template <class... T>
+        template<class... T>
         static ByteArray of(T &&...args)
         {
-            CORE_FAST_XASSERT(Class<ByteArray>::allIsTrue<(Class<T>::isInteger() || Class<T>::isCharacter() && sizeof(T) == 1)...>(), "Couldn't create new ByteArray with given values.");
+            CORE_FAST_XASSERT(Class< ByteArray >::allIsTrue< (Class< T >::isInteger() ||
+                                                              Class< T >::isCharacter() && sizeof(T) == 1)... >(),
+                              "Couldn't create new ByteArray with given values.");
 
-            gbyte array[] = {CORE_FCAST(gbyte, args)...};
+            gbyte array[] = { CORE_FCAST(gbyte, args)... };
 
             return copyOf(array);
         }
@@ -277,6 +270,10 @@ namespace core
          * @param offsetByValue the value of step.
          */
         static ByteArray ofRange(gbyte firstValue, gbyte limit, gint offsetByValue);
+
+        gbyte const &operator[](gint index) const;
+
+        gbyte &operator[](gint index);
     };
 } // core
 

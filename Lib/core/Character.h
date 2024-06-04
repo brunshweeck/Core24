@@ -4291,7 +4291,7 @@ namespace core
                            *
          *
          */
-        static gchar toLowerCase(gint codePoint);
+        static gint toLowerCase(gint codePoint);
 
         /**
          * Converts the character argument to uppercase using case mapping
@@ -4341,7 +4341,7 @@ namespace core
          * @return  the uppercase equivalent of the character, if any;
          *          otherwise, the character itself.
          */
-        static gchar toUpperCase(gint codePoint);
+        static gint toUpperCase(gint codePoint);
 
         /**
          * Converts the character argument to titlecase using case mapping
@@ -4388,7 +4388,7 @@ namespace core
          * @return  the titlecase equivalent of the character, if any;
          *          otherwise, the character itself.
          */
-        static gchar toTitleCase(gint codePoint);
+        static gint toTitleCase(gint codePoint);
 
         /**
          * Returns the numeric value of the character @c ch in the
@@ -4579,7 +4579,7 @@ namespace core
          * @return     @c true if the character is ISO-LATIN-1 white space; @c false otherwise.
          * @deprecated Replaced by isWhitespace(gchar).
          */
-        CORE_XDEPRECATED("Use Character::isWhiteSpace(gchar)")
+        CORE_XDEPRECATED("Use Character::isWhitespace(gchar)")
 
         static gbool isSpace(gchar ch);
 
@@ -4656,7 +4656,7 @@ namespace core
          *          character; @c false otherwise.
                   *
          */
-        static gbool isWhiteSpace(gchar ch);
+        static gbool isWhitespace(gchar ch);
 
         /**
          * Determines if the specified character (Unicode code point) is
@@ -4684,7 +4684,7 @@ namespace core
          *          character; @c false otherwise.
                   *
          */
-        static gbool isWhiteSpace(gint codePoint);
+        static gbool isWhitespace(gint codePoint);
 
         /**
          * Determines if the specified character is an ISO control

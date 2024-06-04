@@ -208,17 +208,17 @@ namespace core {
                 "\000\000\004\004\004\004\004\004\004\004\004\004\004\004\004\004\004\004\004"
                 "\004\004\004\004\004\004\004";
 
-        // The A table has 6 entries for a total of 24 bytes.
+        // The "A" table has 6 entries for a total of 24 bytes.
         static gint A[6];
-        static CORE_FAST gchar A_DATA[] =
-                u""
-                "\000\u7005\000\u7005\000\u7005\u7800\000\u7800\000\u7800\000";
+        static CORE_FAST gchar A_DATA[] = {
+                0000, 0x7005, 0000, 0x7005, 0000, 0x7005, 0x7800, 0000, 0x7800, 0000, 0x7800, 0000
+        };
 
-        static CORE_FAST gchar B[] =
-                u""
-                "\070\070\070\000\000\000";
+        static CORE_FAST gchar B[] = {
+                0070, 0070, 0070, 0000, 0000, 0000
+        };
 
-        // In all, the character property tables require 19688 bytes.
+        // In all, the character property tables require 4248 bytes.
 
 
     };

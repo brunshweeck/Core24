@@ -7,7 +7,8 @@
 
 #include <core/Class.h>
 
-namespace core {
+namespace core
+{
     /**
      * The class @c IntArray wrap the array of primitive
      * type @c gint in the object.
@@ -15,7 +16,8 @@ namespace core {
      * @note This class provide the random access to elements.
      *
      */
-    class IntArray final : public virtual Object {
+    class IntArray final : public virtual Object
+    {
         CORE_ALIAS(ARRAY, ClassOf(1)::Pointer);
         CORE_ADD_AS_FRIEND(String);
         CORE_ADD_AS_FRIEND(XString);
@@ -138,25 +140,20 @@ namespace core {
          * @return The new IntArray that contains all values of given array
          */
         template<class T,
-                Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
-                class E = typename Class<T>::ArrayElement,
-                Class<gbool>::OnlyIf<Class<E>::isIntegral()>  = true>
-        static IntArray copyOf(T &&array) {
-            CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
+                Class< gbool >::OnlyIf< Class< T >::isArray() >  = true,
+                class E = typename Class< T >::ArrayElement,
+                Class< gbool >::OnlyIf< Class< E >::isIntegral() >  = true>
+        static IntArray copyOf(T &&array)
+        {
+            CORE_FAST glong n = Class< T >::MEMORY_SIZE / Class< E >::MEMORY_SIZE;
 
             switch (n) {
-                case 0:
-                    return of();
-                case 1:
-                    return of(array[0]);
-                case 2:
-                    return of(array[0], array[1]);
-                case 3:
-                    return of(array[0], array[1], array[2]);
-                case 4:
-                    return of(array[0], array[1], array[2], array[3]);
-                case 5:
-                    return of(array[0], array[1], array[2], array[3], array[4]);
+                case 0:return of();
+                case 1:return of(array[0]);
+                case 2:return of(array[0], array[1]);
+                case 3:return of(array[0], array[1], array[2]);
+                case 4:return of(array[0], array[1], array[2], array[3]);
+                case 5:return of(array[0], array[1], array[2], array[3], array[4]);
                 case 6:
                     return of(array[0], array[1], array[2], array[3], array[4],
                               array[5]);
@@ -226,11 +223,12 @@ namespace core {
          * @return The new IntArray that contains all given values
          */
         template<class... T>
-        static IntArray of(T &&... args) {
-            CORE_FAST_XASSERT(Class<IntArray>::allIsTrue<Class<T>::isIntegral()...>(),
+        static IntArray of(T &&... args)
+        {
+            CORE_FAST_XASSERT(Class< IntArray >::allIsTrue< Class< T >::isIntegral()... >(),
                               "Couldn't create new IntArray with given values.");
 
-            gint array[] = {CORE_FCAST(gint, args)...};
+            gint array[] = { CORE_FCAST(gint, args)... };
 
             return copyOf(array);
         }
@@ -271,6 +269,14 @@ namespace core {
          * @param offsetByValue the value of step.
          */
         static IntArray ofRange(gint firstValue, gint limit, gint offsetByValue);
+
+        gint const &operator[](gint index) const;
+
+        gint &operator[](gint index);
+
+        IntArray &operator=(IntArray const &array);
+
+        IntArray &operator=(IntArray &&array) CORE_NOTHROW;
     };
 } // core
 

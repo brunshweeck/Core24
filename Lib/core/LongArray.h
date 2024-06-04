@@ -273,6 +273,10 @@ namespace core
          * @param offsetByValue the value of step.
          */
         static LongArray ofRange(glong firstValue, glong limit, glong offsetByValue);
+
+        glong const &operator[](gint index) const;
+
+        glong &operator[](gint index);
     };
 } // core
 

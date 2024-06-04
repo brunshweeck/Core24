@@ -270,6 +270,10 @@ namespace core {
          * @param offsetByValue the value of step.
          */
         static DoubleArray ofRange(gdouble firstValue, gdouble limit, gdouble offsetByValue);
+
+        gdouble const &operator[](gint index) const;
+
+        gdouble &operator[](gint index);
     };
 } // core
 

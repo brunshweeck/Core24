@@ -732,14 +732,14 @@ namespace core
     CharacterData01::CharacterData01()
     {
         // THIS CODE WAS AUTOMATICALLY CREATED BY GenerateCharacter:
-        CORE_FAST_ASSERT(sizeof(A_DATA) / sizeof(A_DATA[0]) - 1 == (584 * 2));
+        CORE_FAST_ASSERT(sizeof(A_DATA) / sizeof(A_DATA[0]) == (658 * 2));
         int i = 0, j = 0;
-        while (i < (584 * 2)) {
+        while (i < (658 * 2)) {
             int entry = A_DATA[i++] << 16;
             A[j++] = entry | A_DATA[i++];
         }
     }
 
-    gint CharacterData01::A[584]{ };
+    gint CharacterData01::A[658]{ };
     CharacterData01 CharacterData01::instance{ };
 } // core

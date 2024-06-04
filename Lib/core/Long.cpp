@@ -2,96 +2,572 @@
 // Created by bruns on 13/05/2024.
 //
 
-#include <core/String.h>
 #include <core/Long.h>
 #include <core/Integer.h>
+#include <core/String.h>
+#include <core/NumberFormatException.h>
+#include <core/Character.h>
+#include <core/misc/Foreign.h>
+#include <core/Math.h>
+
+#define $errorRadix(str, radix) ("For input string: \""_S + str + "\" under radix "_S + String::valueOf(radix) + "."_S)
+#define $errorTooLowRadix(radix) ("Radix "_S + String::valueOf(radix) + " less than 2."_S)
+#define $errorTooHighRadix(radix) ("Radix "_S + String::valueOf(radix) + " less than 2."_S)
+#define $errorSequence(start, end, index, sequence) ("Error at index "_S + String::valueOf(index - start) + \
+                                                   ", in \""_S + sequence.subSequence(start, end) + "\"."_S)
 
 
 namespace core
 {
+
+    static const CharArray digits = CharArray::of(
+            '0', '1', '2', '3', '4', '5', '6', '7', '8',
+            '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+            'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    );
+
     String Long::toString(glong i, gint radix)
     {
-        return String();
+        if (radix < Character::MIN_RADIX || radix > Character::MAX_RADIX)
+            radix = 10;
+        if (radix == 10)
+            return toString(i);
+        CharArray ca(65);
+        gint cursor = 64;
+        gbool negative = (i < 0);
+
+        if (!negative) {
+            i = -i;
+        }
+
+        while (i <= -radix) {
+            ca[cursor--] = (gbyte) digits[(gint) (-(i % radix))];
+            i = i / radix;
+        }
+        ca[cursor] = (gbyte) digits[(gint) (-i)];
+
+        if (negative) {
+            ca[--cursor] = '-';
+        }
+        return String(ca, cursor, 65 - cursor);
     }
 
     String core::Long::toUnsignedString(glong i, gint radix)
     {
-        return String();
+        if (i >= 0)
+            return toString(i, radix);
+        else {
+            gint shift = 0;
+            goto SelectRadix;
+StringConvert:
+            {
+                // assert shift > 0 && shift <=5 : "Illegal shift value";
+                int mag = Long::SIZE - Long::numberOfLeadingZeros(i);
+                int count = Math::max(((mag + (shift - 1)) / shift), 1);
+                CharArray ca(count);
+                gint next = count;
+                radix = 1 << shift;
+                gint mask = radix - 1;
+                do {
+                    ca[--next] = (gbyte) digits[((gint) i) & mask];
+                    i = (glong) ((i + 0uLL) >> shift);
+                }
+                while (next > 0);
+                return String(ca, 0, count - next);
+            }
+SelectRadix:
+            switch (radix) {
+                case 2:shift = 1;
+                    goto StringConvert;
+                case 4:shift = 2;
+                    goto StringConvert;
+                case 8:shift = 3;
+                    goto StringConvert;
+                case 10: {
+                    /*
+                     * We can get the effect of an unsigned division by 10
+                     * on a long value by first shifting right, yielding a
+                     * positive value, and then dividing by 5.  This
+                     * allows the last digit and preceding digits to be
+                     * isolated more quickly than by an initial conversion
+                     * to BigInteger.
+                     */
+                    glong quot = (gint) ((i + 0u) >> 1) / 5;
+                    glong rem = i - quot * 10;
+                    return toString(quot) + String::valueOf(rem);
+                }
+                case 16:shift = 4;
+                    goto StringConvert;
+                case 32:shift = 5;
+                    goto StringConvert;
+                default: {
+                    // extract the last digit, with remainderUnsigned(long, long)
+                    // and convert the first digits using divideUnsigned(long, long) and with toString(long)
+                    glong quot = divideUnsigned(i, radix);
+                    glong rem = remainderUnsigned(i, radix);
+//                    CORE_ASSERT(rem < radix);
+                    return toString(quot, radix) + toString(rem, radix);
+                }
+            }
+        }
     }
 
     String Long::toHexString(glong i)
     {
-        return String();
+        return toUnsignedString(i, 16);
     }
 
     String Long::toOctalString(glong i)
     {
-        return String();
+        return toUnsignedString(i, 8);
     }
 
     String Long::toBinaryString(glong i)
     {
-        return String();
+        return toUnsignedString(i, 2);
     }
 
     String Long::toString(glong i)
     {
-        return String();
+        gint size = 0;
+StringSize:
+        {
+            glong x = i;
+            gint d = 1;
+            if (x >= 0) {
+                d = 0;
+                x = -x;
+            }
+            glong p = -10;
+            for (gint j = 1; j < 19; j++) {
+                if (x > p) {
+                    size = j + d;
+                    goto FormatString;
+                }
+                p = 10 * p;
+            }
+            size = 19 + d;
+        }
+FormatString:
+        CharArray ca(size);
+CopyChars:
+        {
+            glong q;
+            gint r;
+            gint cursor = size;
+
+            gbool negative = (i < 0);
+            if (!negative) {
+                i = -i;
+            }
+
+            // Get 2 digits/iteration using longs until quotient fits into an int
+            while (i <= Integer::MIN_VALUE) {
+                q = i / 100;
+                r = (gint) ((q * 100) - i);
+                i = q;
+                ca[--cursor] = (gbyte) digits[r % 10];
+                ca[--cursor] = (gbyte) digits[r / 10];
+            }
+
+            // Get 2 digits/iteration using ints
+            gint q2;
+            gint i2 = (gint) i;
+            while (i2 <= -100) {
+                q2 = i2 / 100;
+                r = (q2 * 100) - i2;
+                i2 = q2;
+                ca[--cursor] = digits[r % 10];
+                ca[--cursor] = digits[r / 10];
+            }
+
+            // We know there are at most two digits left at this point.
+            ca[--cursor] = digits[(-i2) % 10];
+            if (i2 < -9) {
+                ca[--cursor] = digits[(-i2) / 10];
+            }
+
+            if (negative) {
+                ca[--cursor] = '-';
+            }
+            return String(ca, 0, size - cursor);
+        }
     }
 
     String Long::toUnsignedString(glong i)
     {
-        return String();
+        return toUnsignedString(i, 10);
     }
 
     glong Long::parseLong(const String &s, gint radix)
     {
-        return 0;
+        if (radix < Character::MIN_RADIX) {
+            NumberFormatException($errorTooLowRadix(radix)).throws($ftrace(""_S));
+        }
+        if (radix > Character::MAX_RADIX) {
+            NumberFormatException($errorTooHighRadix(radix)).throws($ftrace(""_S));
+        }
+
+        gbool negative = false;
+        gint i = 0, len = s.length();
+        glong limit = -Long::MAX_VALUE;
+
+        if (len > 0) {
+            gchar firstChar = s.charAt(0);
+            if (firstChar < '0') { // Possible leading "+" or "-"
+                if (firstChar == '-') {
+                    negative = true;
+                    limit = Long::MIN_VALUE;
+                }
+                else if (firstChar != '+') {
+                    NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+                }
+
+                if (len == 1) { // Cannot have lone "+" or "-"
+                    NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+                }
+                i++;
+            }
+            glong multmin = limit / radix;
+            glong result = 0;
+            while (i < len) {
+                // Accumulating negatively avoids surprises near MAX_VALUE
+                gint digit = Character::digit(s.charAt(i++), radix);
+                if (digit < 0 || result < multmin) {
+                    NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+                }
+                result *= radix;
+                if (result < limit + digit) {
+                    NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+                }
+                result -= digit;
+            }
+            return negative ? result : -result;
+        }
+        else {
+            NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+        }
     }
 
     glong Long::parseLong(const CharSequence &s, gint beginIndex, gint endIndex, gint radix)
     {
-        return 0;
+        if (radix < Character::MIN_RADIX) {
+            NumberFormatException($errorTooLowRadix(radix)).throws($ftrace(""_S));
+        }
+        if (radix > Character::MAX_RADIX) {
+            NumberFormatException($errorTooHighRadix(radix)).throws($ftrace(""_S));
+        }
+
+        gbool negative = false;
+        gint i = beginIndex;
+        glong limit = -Long::MAX_VALUE;
+
+        if (i < endIndex) {
+            gchar firstChar = s.charAt(i);
+            if (firstChar < '0') { // Possible leading "+" or "-"
+                if (firstChar == '-') {
+                    negative = true;
+                    limit = Long::MIN_VALUE;
+                }
+                else if (firstChar != '+') {
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+                i++;
+            }
+            if (i >= endIndex) { // Cannot have lone "+", "-" or ""
+                NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+            }
+            glong multmin = limit / radix;
+            glong result = 0;
+            while (i < endIndex) {
+                // Accumulating negatively avoids surprises near MAX_VALUE
+                gint digit = Character::digit(s.charAt(i), radix);
+                if (digit < 0 || result < multmin) {
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+                result *= radix;
+                if (result < limit + digit) {
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+                i++;
+                result -= digit;
+            }
+            return negative ? result : -result;
+        }
+        else {
+            NumberFormatException(""_S).throws($ftrace(""_S));
+        }
     }
 
     glong Long::parseLong(const String &s)
     {
-        return 0;
+        try {
+            return parseLong(s, 10);
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     glong Long::parseUnsignedLong(const String &s, gint radix)
     {
-        return 0;
+        gint len = s.length();
+        if (len > 0) {
+            gchar firstChar = s.charAt(0);
+            if (firstChar == '-') {
+                NumberFormatException("Illegal leading minus sign "
+                                      "on unsigned string "_S + s + "."_S).throws($ftrace(""_S));
+            } else {
+                if (len <= 12 || // Long::MAX_VALUE in Character::MAX_RADIX is 13 digits
+                    (radix == 10 && len <= 18)) { // Long::MAX_VALUE in base 10 is 19 digits
+                    try {
+                        return parseLong(s, radix);
+                    } catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                }
+
+                // No need for range checks on len due to testing above.
+                glong first;
+                try {
+                    first = parseLong(s, 0, len - 1, radix);
+                } catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                gint second = Character::digit(s.charAt(len - 1), radix);
+                if (second < 0) {
+                    NumberFormatException("Bad digit at end of "_S + s).throws($ftrace(""_S));
+                }
+                glong result = first * radix + second;
+
+                /*
+                 * Test leftmost bits of multiprecision extension of first*radix
+                 * for overflow. The number of bits needed is defined by
+                 * GUARD_BIT = ceil(log2(Character::MAX_RADIX)) + 1 = 7. Then
+                 * int guard = radix*(int)(first >>> (64 - GUARD_BIT)) and
+                 * overflow is tested by splitting guard in the ranges
+                 * guard < 92, 92 <= guard < 128, and 128 <= guard, where
+                 * 92 = 128 - Character::MAX_RADIX. Note that guard cannot take
+                 * on a value which does not include a prime factor in the legal
+                 * radix range.
+                 */
+                gint guard = radix * (gint) ((first + 0uLL) >> 57);
+                if (guard >= 128 ||
+                    (result >= 0 && guard >= 128 - Character::MAX_RADIX)) {
+                    /*
+                     * For purposes of exposition, the programmatic statements
+                     * below should be taken to be multi-precision, i.e., not
+                     * subject to overflow.
+                     *
+                     * A) Condition guard >= 128:
+                     * If guard >= 128 then first*radix >= 2^7 * 2^57 = 2^64
+                     * hence always overflow.
+                     *
+                     * B) Condition guard < 92:
+                     * Define left7 = first >>> 57.
+                     * Given first = (left7 * 2^57) + (first & (2^57 - 1)) then
+                     * result <= (radix*left7)*2^57 + radix*(2^57 - 1) + second.
+                     * Thus, if radix*left7 < 92, radix <= 36, and second < 36,
+                     * then result < 92*2^57 + 36*(2^57 - 1) + 36 = 2^64 hence
+                     * never overflow.
+                     *
+                     * C) Condition 92 <= guard < 128:
+                     * first*radix + second >= radix*left7*2^57 + second
+                     * so that first*radix + second >= 92*2^57 + 0 > 2^63
+                     *
+                     * D) Condition guard < 128:
+                     * radix*first <= (radix*left7) * 2^57 + radix*(2^57 - 1)
+                     * so
+                     * radix*first + second <= (radix*left7) * 2^57 + radix*(2^57 - 1) + 36
+                     * thus
+                     * radix*first + second < 128 * 2^57 + 36*2^57 - radix + 36
+                     * whence
+                     * radix*first + second < 2^64 + 2^6*2^57 = 2^64 + 2^63
+                     *
+                     * E) Conditions C, D, and result >= 0:
+                     * C and D combined imply the mathematical result
+                     * 2^63 < first*radix + second < 2^64 + 2^63. The lower
+                     * bound is therefore negative as a signed long, but the
+                     * upper bound is too small to overflow again after the
+                     * signed long overflows to positive above 2^64 - 1. Hence,
+                     * result >= 0 implies overflow given C and D.
+                     */
+                    NumberFormatException("String value "_S + s
+                                          + " exceeds range of unsigned glong."_S).throws($ftrace(""_S));
+                }
+                return result;
+            }
+        } else {
+            NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+        }
     }
 
     glong Long::parseUnsignedLong(const CharSequence &s, gint beginIndex, gint endIndex, gint radix)
     {
-        return 0;
+        gint start = beginIndex, len = endIndex - beginIndex;
+
+        if (len > 0) {
+            gchar firstChar = s.charAt(start);
+            if (firstChar == '-') {
+                NumberFormatException("Illegal leading minus sign on unsigned string "_S
+                                      + s.subSequence(start, start + len).toString() + "."_S).throws($ftrace(""_S));
+            } else {
+                if (len <= 12 || // Long::MAX_VALUE in Character::MAX_RADIX is 13 digits
+                    (radix == 10 && len <= 18)) { // Long::MAX_VALUE in base 10 is 19 digits
+                    try {
+                        return parseLong(s, start, start + len, radix);
+                    } catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                }
+
+                // No need for range checks on end due to testing above.
+                glong first;
+                try {
+                    first = parseLong(s, start, start + len - 1, radix);
+                } catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                gint second = Character::digit(s.charAt(start + len - 1), radix);
+                if (second < 0) {
+                    NumberFormatException("Bad digit at end of "_S +
+                                          s.subSequence(start, start + len).toString()).throws($ftrace(""_S));
+                }
+                glong result = first * radix + second;
+
+                /*
+                 * Test leftmost bits of multiprecision extension of first*radix
+                 * for overflow. The number of bits needed is defined by
+                 * GUARD_BIT = ceil(log2(Character::MAX_RADIX)) + 1 = 7. Then
+                 * int guard = radix*(int)(first >>> (64 - GUARD_BIT)) and
+                 * overflow is tested by splitting guard in the ranges
+                 * guard < 92, 92 <= guard < 128, and 128 <= guard, where
+                 * 92 = 128 - Character::MAX_RADIX. Note that guard cannot take
+                 * on a value which does not include a prime factor in the legal
+                 * radix range.
+                 */
+                gint guard = radix * (gint) ((first + 0uLL) >> 57);
+                if (guard >= 128 ||
+                    (result >= 0 && guard >= 128 - Character::MAX_RADIX)) {
+                    /*
+                     * For purposes of exposition, the programmatic statements
+                     * below should be taken to be multi-precision, i.e., not
+                     * subject to overflow.
+                     *
+                     * A) Condition guard >= 128:
+                     * If guard >= 128 then first*radix >= 2^7 * 2^57 = 2^64
+                     * hence always overflow.
+                     *
+                     * B) Condition guard < 92:
+                     * Define left7 = first >>> 57.
+                     * Given first = (left7 * 2^57) + (first & (2^57 - 1)) then
+                     * result <= (radix*left7)*2^57 + radix*(2^57 - 1) + second.
+                     * Thus, if radix*left7 < 92, radix <= 36, and second < 36,
+                     * then result < 92*2^57 + 36*(2^57 - 1) + 36 = 2^64 hence
+                     * never overflow.
+                     *
+                     * C) Condition 92 <= guard < 128:
+                     * first*radix + second >= radix*left7*2^57 + second
+                     * so that first*radix + second >= 92*2^57 + 0 > 2^63
+                     *
+                     * D) Condition guard < 128:
+                     * radix*first <= (radix*left7) * 2^57 + radix*(2^57 - 1)
+                     * so
+                     * radix*first + second <= (radix*left7) * 2^57 + radix*(2^57 - 1) + 36
+                     * thus
+                     * radix*first + second < 128 * 2^57 + 36*2^57 - radix + 36
+                     * whence
+                     * radix*first + second < 2^64 + 2^6*2^57 = 2^64 + 2^63
+                     *
+                     * E) Conditions C, D, and result >= 0:
+                     * C and D combined imply the mathematical result
+                     * 2^63 < first*radix + second < 2^64 + 2^63. The lower
+                     * bound is therefore negative as a signed long, but the
+                     * upper bound is too small to overflow again after the
+                     * signed long overflows to positive above 2^64 - 1. Hence,
+                     * result >= 0 implies overflow given C and D.
+                     */
+                    NumberFormatException("String value "_S + s.subSequence(start, start + len).toString()
+                                          + " exceeds range of unsigned glong."_S).throws($ftrace(""_S));
+                }
+                return result;
+            }
+        } else {
+            NumberFormatException($errorRadix(""_S, radix)).throws($ftrace(""_S));
+        }
     }
 
     glong Long::parseUnsignedLong(const String &s)
     {
-        return 0;
+        try {
+            return parseUnsignedLong(s, 10);
+        } catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     Long Long::valueOf(const String &s, gint radix)
     {
-        return Long(0);
+        try {
+            return valueOf(parseLong(s, radix));
+        } catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     Long Long::valueOf(const String &s)
     {
-        return Long(0);
+        try {
+            return valueOf(s, 10);
+        } catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     Long Long::valueOf(glong l)
     {
-        return Long(0);
+        return l;
     }
 
     Long Long::decode(const String &nm)
     {
-        return Long(0);
+        gint radix = 10;
+        gint index = 0;
+        gbool negative = false;
+        glong result;
+
+        if (nm.isEmpty())
+            NumberFormatException("Zero length string"_S).throws($ftrace(""_S));
+        gchar firstChar = nm.charAt(0);
+        // Handle sign, if present
+        if (firstChar == '-') {
+            negative = true;
+            index++;
+        } else if (firstChar == '+')
+            index++;
+
+        // Handle radix specifier, if present
+        if (nm.startsWith("0x"_S, index) || nm.startsWith("0X"_S, index)) {
+            index += 2;
+            radix = 16;
+        } else if (nm.startsWith("#"_S, index)) {
+            index++;
+            radix = 16;
+        } else if (nm.startsWith("0"_S, index) && nm.length() > 1 + index) {
+            index++;
+            radix = 8;
+        }
+
+        if (nm.startsWith("-"_S, index) || nm.startsWith("+"_S, index))
+            NumberFormatException("Sign character in wrong position"_S).throws($ftrace(""_S));
+
+        try {
+            result = parseLong(nm, index, nm.length(), radix);
+            result = negative ? -result : result;
+        } catch (NumberFormatException const &e) {
+            // If number is Long.MIN_VALUE, we'll end up here. The next line
+            // handles this case, and causes any genuine format error to be
+            // rethrown.
+            String constant = negative ? ("-"_S + nm.subString(index))
+                                       : nm.subString(index);
+            try {
+                result = parseLong(constant, radix);
+            } catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+        }
+        return result;
     }
 
     Long::Long(glong value) : value(value)
@@ -145,12 +621,7 @@ namespace core
 
     gbool Long::equals(const Object &obj) const
     {
-        if (this == &obj)
-            return true;
-        if (!Class<Long>::hasInstance(obj))
-            return false;
-        Long const lg = CORE_XCAST(Long const, obj);
-        return value == lg.value;
+        return this == &obj || Class<Long>::hasInstance(obj) && value == CORE_XCAST(Long const, obj).value;
     }
 
     gint Long::compareTo(const Long &anotherLong) const
@@ -293,5 +764,15 @@ namespace core
     glong Long::min(glong a, glong b)
     {
         return Math::min(a, b);
+    }
+
+    Long::operator glong() const
+    {
+        return longValue();
+    }
+
+    Long::operator glong &()
+    {
+        return value;
     }
 } // core

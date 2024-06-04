@@ -7,7 +7,8 @@
 
 #include <core/Class.h>
 
-namespace core {
+namespace core
+{
     /**
      * The class @c FloatArray wrap the array of primitive
      * type @c gfloat in the object.
@@ -15,7 +16,8 @@ namespace core {
      * @note This class provide the random access to elements.
      *
      */
-    class FloatArray final : public virtual Object {
+    class FloatArray final : public virtual Object
+    {
         CORE_ALIAS(ARRAY, ClassOf(.0F)::Pointer);
 
         static CORE_FAST gint SOFT_MAX_LENGTH = (gint) ((1LL << 31) - (1LL << 3) - 1);
@@ -137,25 +139,20 @@ namespace core {
          * @return The new FloatArray that contains all values of given array
          */
         template<class T,
-                Class<gbool>::OnlyIf<Class<T>::isArray()>  = true,
-                class E = typename Class<T>::ArrayElement,
-                Class<gbool>::OnlyIf<Class<E>::isNumber()>  = true>
-        static FloatArray copyOf(T &&array) {
-            CORE_FAST glong n = Class<T>::MEMORY_SIZE / Class<E>::MEMORY_SIZE;
+                Class< gbool >::OnlyIf< Class< T >::isArray() >  = true,
+                class E = typename Class< T >::ArrayElement,
+                Class< gbool >::OnlyIf< Class< E >::isNumber() >  = true>
+        static FloatArray copyOf(T &&array)
+        {
+            CORE_FAST glong n = Class< T >::MEMORY_SIZE / Class< E >::MEMORY_SIZE;
 
             switch (n) {
-                case 0:
-                    return of();
-                case 1:
-                    return of(array[0]);
-                case 2:
-                    return of(array[0], array[1]);
-                case 3:
-                    return of(array[0], array[1], array[2]);
-                case 4:
-                    return of(array[0], array[1], array[2], array[3]);
-                case 5:
-                    return of(array[0], array[1], array[2], array[3], array[4]);
+                case 0:return of();
+                case 1:return of(array[0]);
+                case 2:return of(array[0], array[1]);
+                case 3:return of(array[0], array[1], array[2]);
+                case 4:return of(array[0], array[1], array[2], array[3]);
+                case 5:return of(array[0], array[1], array[2], array[3], array[4]);
                 case 6:
                     return of(array[0], array[1], array[2], array[3], array[4],
                               array[5]);
@@ -225,11 +222,12 @@ namespace core {
          * @return The new FloatArray that contains all given values
          */
         template<class... T>
-        static FloatArray of(T &&... args) {
-            CORE_FAST_XASSERT(Class<FloatArray>::allIsTrue<Class<T>::isNumber()...>(),
+        static FloatArray of(T &&... args)
+        {
+            CORE_FAST_XASSERT(Class< FloatArray >::allIsTrue< Class< T >::isNumber()... >(),
                               "Couldn't create new FloatArray with given values.");
 
-            gfloat array[] = {CORE_FCAST(gfloat, args)...};
+            gfloat array[] = { CORE_FCAST(gfloat, args)... };
 
             return copyOf(array);
         }
@@ -270,6 +268,10 @@ namespace core {
          * @param offsetByValue the value of step.
          */
         static FloatArray ofRange(gfloat firstValue, gfloat limit, gdouble offsetByValue);
+
+        gfloat const &operator[](gint index) const;
+
+        gfloat &operator[](gint index);
     };
 } // core
 

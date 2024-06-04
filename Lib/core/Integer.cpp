@@ -5,10 +5,17 @@
 #include <core/Integer.h>
 #include <core/String.h>
 #include <core/NumberFormatException.h>
-#include <core/IllegalArgumentException.h>
+#include <core/IndexOutOfBoundsException.h>
 #include <core/Long.h>
 #include <core/Math.h>
+#include <core/Character.h>
 #include <core/misc/Foreign.h>
+
+#define $errorRadix(str, radix) ("For input string: \""_S + str + "\" under radix "_S + String::valueOf(radix) + "."_S)
+#define $errorTooLowRadix(radix) ("Radix "_S + String::valueOf(radix) + " less than 2."_S)
+#define $errorTooHighRadix(radix) ("Radix "_S + String::valueOf(radix) + " less than 2."_S)
+#define $errorSequence(start, end, index, sequence) ("Error at index "_S + String::valueOf(index - start) + \
+                                                   ", in \""_S + sequence.subSequence(start, end) + "\"."_S)
 
 namespace core
 {
@@ -72,7 +79,57 @@ namespace core
 
     String Integer::toString(gint i)
     {
-        return toString(i, 10);
+        gint size = 0;
+StringSize:
+        {
+            gint x = i;
+            gint d = 1;
+            if (x >= 0) {
+                d = 0;
+                x = -x;
+            }
+            gint p = -10;
+            for (gint j = 1; j < 10; j++) {
+                if (x > p) {
+                    size = j + d;
+                    goto FormatInt;
+                }
+                p = 10 * p;
+            }
+            size = 10 + d;
+        }
+FormatInt:
+        ByteArray ba(size);
+GetChars:
+        {
+            gint q, r;
+            gint cursor = size;
+            gbool negative = i < 0;
+
+            if (negative) {
+                i = -i;
+            }
+
+            // Generate two digits per iteration
+            while (i <= -100) {
+                q = i / 100;
+                r = (q * 100) - i;
+                i = q;
+                ba[--cursor] = (gbyte) digits[r % 10];
+                ba[--cursor] = (gbyte) digits[r / 10];
+            }
+
+            // We know there are at most two digits left at this point.
+            ba[--cursor] = (gbyte) digits[(-i) % 10];
+            if (i < -9) {
+                ba[--cursor] = (gbyte) digits[-i / 10];
+            }
+
+            if (negative) {
+                ba[--cursor] = '-';
+            }
+        }
+        return String(ba, 0, 0, size);
     }
 
     String Integer::toUnsignedString(gint i)
@@ -82,11 +139,11 @@ namespace core
 
     gint Integer::parseInt(const String &s, gint radix)
     {
-        if(radix < 2){
-            NumberFormatException("Radix less than 2"_S).throws($ftrace(""_S));
+        if (radix < Character::MIN_RADIX) {
+            NumberFormatException($errorTooLowRadix(radix)).throws($ftrace(""_S));
         }
-        if(radix > 36){
-            NumberFormatException("Radix less than 36"_S).throws($ftrace(""_S));
+        if (radix > Character::MAX_RADIX) {
+            NumberFormatException($errorTooHighRadix(radix)).throws($ftrace(""_S));
         }
 
         gbool negative = false;
@@ -99,12 +156,13 @@ namespace core
                 if (firstChar == '-') {
                     negative = true;
                     limit = Integer::MIN_VALUE;
-                } else if (firstChar != '+') {
-                    NumberFormatException().throws($ftrace(""_S));
+                }
+                else if (firstChar != '+') {
+                    NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
                 }
 
                 if (len == 1) { // Cannot have lone "+" or "-"
-                    NumberFormatException().throws($ftrace(""_S));
+                    NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
                 }
                 i++;
             }
@@ -115,61 +173,201 @@ namespace core
                 gchar c = s.charAt(i++);
                 gint digit = Character::digit(s.charAt(i++), radix);
                 if (digit < 0 || result < multmin) {
-                    NumberFormatException::forInputString(s, radix).throws(__strace());
+                    NumberFormatException($errorRadix(s, radix)).throws($trace(""_S));
                 }
                 result *= radix;
                 if (result < limit + digit) {
-                    NumberFormatException::forInputString(s, radix).throws(__strace());
+                    NumberFormatException($errorRadix(s, radix)).throws($trace(""_S));
                 }
                 result -= digit;
             }
             return negative ? result : -result;
-        } else {
-            NumberFormatException::forInputString(s, radix).throws(__strace());
+        }
+        else {
+            NumberFormatException($errorRadix(s, radix)).throws($trace(""_S));
         }
     }
 
     gint Integer::parseInt(const CharSequence &s, gint beginIndex, gint endIndex, gint radix)
     {
-        return 0;
+        if (radix < Character::MIN_RADIX) {
+            NumberFormatException($errorTooLowRadix(radix)).throws($trace(""_S));
+        }
+        if (radix > Character::MAX_RADIX) {
+            NumberFormatException($errorTooHighRadix(radix)).throws($trace(""_S));
+        }
+
+        gbool negative = false;
+        gint i = beginIndex;
+        gint limit = -Integer::MAX_VALUE;
+
+        if (i < endIndex) {
+            gchar firstChar = s.charAt(i);
+            if (firstChar < '0') { // Possible leading "+" or "-"
+                if (firstChar == '-') {
+                    negative = true;
+                    limit = Integer::MIN_VALUE;
+                }
+                else if (firstChar != '+') {
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+                i++;
+                if (i == endIndex) { // Cannot have lone "+" or "-"
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+            }
+            gint multmin = limit / radix;
+            gint result = 0;
+            while (i < endIndex) {
+                // Accumulating negatively avoids surprises near MAX_VALUE
+                gint digit = Character::digit(s.charAt(i), radix);
+                if (digit < 0 || result < multmin) {
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+                result *= radix;
+                if (result < limit + digit) {
+                    NumberFormatException($errorSequence(beginIndex, endIndex, i, s)).throws($ftrace(""_S));
+                }
+                i++;
+                result -= digit;
+            }
+            return negative ? result : -result;
+        }
+        else {
+            NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+        }
     }
 
     gint Integer::parseInt(const String &s)
     {
-        return 0;
+        try {
+            return parseInt(s, 10);
+        }
+        catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     gint Integer::parseUnsignedInt(const String &s, gint radix)
     {
-        return 0;
+        gint len = s.length();
+        if (len > 0) {
+            gchar firstChar = s.charAt(0);
+            if (firstChar == '-') {
+                NumberFormatException(("Illegal leading minus sign "_S
+                                               "on unsigned string "_S + s + "."_S)).throws($ftrace(""_S));
+            }
+            else {
+                if (len <= 5 || // Integer.MAX_VALUE in Character.MAX_RADIX is 6 digits
+                    (radix == 10 && len <= 9)) { // Integer.MAX_VALUE in base 10 is 10 digits
+                    try {
+                        return parseInt(s, radix);
+                    }
+                    catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                }
+                else {
+                    glong ell;
+                    try {
+                        ell = Long::parseLong(s, radix);
+                    }
+                    catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                    if ((ell & 0xffffffff00000000LL) == 0) {
+                        return (gint) ell;
+                    }
+                    else {
+                        NumberFormatException("String value "_S + s +
+                                              " exceeds range of unsigned int."_S).throws($ftrace(""_S));
+                    }
+                }
+            }
+        }
+        else {
+            NumberFormatException($errorRadix(s, radix)).throws($ftrace(""_S));
+        }
     }
 
     gint Integer::parseUnsignedInt(const CharSequence &s, gint beginIndex, gint endIndex, gint radix)
     {
-        return 0;
+        if (beginIndex < 0 || beginIndex > endIndex || endIndex > s.length()) {
+            IndexOutOfBoundsException("Range index ["_S
+                                      + String::valueOf(beginIndex) + ", "_S
+                                      + String::valueOf(endIndex) + " out of bounds for length "_S
+                                      + String::valueOf(s.length())).throws($ftrace(""_S));
+        }
+
+        gint start = beginIndex, len = endIndex - beginIndex;
+
+        if (len > 0) {
+            gchar firstChar = s.charAt(start);
+            if (firstChar == '-') {
+                NumberFormatException("Illegal leading minus sign "_S
+                                              "on unsigned string "_S + s.toString() + "."_S).throws($ftrace(""_S));
+            }
+            else {
+                if (len <= 5 || // Integer::MAX_VALUE in Character::MAX_RADIX is 6 digits
+                    (radix == 10 && len <= 9)) { // Integer::MAX_VALUE in base 10 is 10 digits
+                    try {
+                        return parseInt(s, start, start + len, radix);
+                    }
+                    catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                }
+                else {
+                    glong ell;
+                    try {
+                        ell = Long::parseLong(s, start, start + len, radix);
+                    }
+                    catch (NumberFormatException const &ex) { ex.throws($ftrace(""_S)); }
+                    if ((ell & 0xffffffff00000000LL) == 0) {
+                        return (gint) ell;
+                    }
+                    else {
+                        NumberFormatException("String value "_S + s.toString() +
+                                              " exceeds range of unsigned int."_S).throws($ftrace(""_S));
+                    }
+                }
+            }
+        }
+        else {
+            NumberFormatException().throws($ftrace(""_S));
+        }
     }
 
     gint Integer::parseUnsignedInt(const String &s)
     {
-        return 0;
+        try {
+            return parseUnsignedInt(s, 10);
+        }
+        catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     Integer Integer::valueOf(const String &s, gint radix)
     {
-        return Integer(0);
+        try {
+            return parseUnsignedInt(s, radix);
+        }
+        catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     Integer Integer::valueOf(const String &s)
     {
-        return Integer(0);
+        try {
+            return valueOf(s, 10);
+        }
+        catch (NumberFormatException const &ex) {
+            ex.throws($ftrace(""_S));
+        }
     }
 
     Integer Integer::valueOf(gint i)
     {
-        return Integer(0);
+        return i;
     }
 
-    Integer::Integer(gint value)
+    Integer::Integer(gint value) : value(value)
     {
     }
 
@@ -220,17 +418,66 @@ namespace core
 
     gbool Integer::equals(const Object &obj) const
     {
-        if (this == &obj)
-            return true;
-        if (!Class< Integer >::hasInstance(obj))
-            return false;
-        Integer const &v = CORE_XCAST(Integer const, obj);
-        return value == v.value;
+        return this == &obj || Class< Integer >::hasInstance(obj) && value == CORE_XCAST(Integer const, obj).value;
     }
 
     Integer Integer::decode(const String &nm)
     {
-        return Integer(0);
+        gint radix = 10;
+        gint index = 0;
+        gbool negative = false;
+        gint result;
+
+        if (nm.isEmpty()) {
+            NumberFormatException("Zero length string"_S).throws($ftrace(""_S));
+        }
+        gchar firstChar = nm.charAt(0);
+        // Handle sign, if present
+        if (firstChar == '-') {
+            negative = true;
+            index++;
+        }
+        else if (firstChar == '+') {
+            index++;
+        }
+
+        // Handle radix specifier, if present
+        if (nm.startsWith("0x"_S, index) || nm.startsWith("0X"_S, index)) {
+            index += 2;
+            radix = 16;
+        }
+        else if (nm.startsWith("0b"_S, index) || nm.startsWith("0B"_S, index)) {
+            index += 2;
+            radix = 2;
+        }
+        else if (nm.startsWith("#"_S, index)) {
+            index++;
+            radix = 16;
+        }
+        else if (nm.startsWith("0"_S, index) && nm.length() > 1 + index) {
+            index++;
+            radix = 8;
+        }
+
+        if (nm.startsWith("-"_S, index) || nm.startsWith("+"_S, index))
+            NumberFormatException("Sign character in wrong position"_S).throws($ftrace(""_S));
+
+        try {
+            result = parseInt(nm, index, nm.length(), radix);
+            result = negative ? -result : result;
+        }
+        catch (NumberFormatException const &e) {
+            // If number is Integer.MIN_VALUE, we'll end up here. The next line
+            // handles this case, and causes any genuine format error to be
+            // rethrown.
+            String constant = negative ? ("-"_S + nm.subString(index))
+                                       : nm.subString(index);
+            try {
+                result = parseInt(constant, radix);
+            }
+            catch (Exception const &ex) { ex.throws($ftrace(""_S)); }
+        }
+        return result;
     }
 
     gint Integer::compareTo(Integer const &anotherInteger) const
@@ -365,10 +612,10 @@ namespace core
 
     gint Integer::reverseBytes(gint i)
     {
-        return (i << 24) |
-               ((i & 0xff00) << 8) |
-               (((i + 0u) >> 8) & 0xff00) |
-               ((i + 0u) >> 24);
+        return (gint) ((i << 24) |
+                       ((i & 0xff00) << 8) |
+                       (((i + 0u) >> 8) & 0xff00) |
+                       ((i + 0u) >> 24));
     }
 
     gint Integer::sum(gint a, gint b)

@@ -3,14 +3,22 @@
 //
 
 #include <core/BooleanArray.h>
+#include <core/IllegalArgumentException.h>
+#include <core/OutOfMemoryError.h>
+#include <core/misc/Precondition.h>
+#include <core/misc/Foreign.h>
 
 namespace core
 {
     BooleanArray::BooleanArray(gint length)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gbool[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -21,9 +29,13 @@ namespace core
 
     BooleanArray::BooleanArray(gint length, gbool initialValue)
     {
+        if (length < 0) {
+            IllegalArgumentException("Negative array size"_S).throws($ftrace(""_S));
+        }
+        if (length > SOFT_MAX_LENGTH) {
+            OutOfMemoryError("Array size exceed SOFT_MAX_LENGTH"_S).throws($ftrace(""_S));
+        }
         if (length > 0) {
-            if (length > SOFT_MAX_LENGTH)
-                length = SOFT_MAX_LENGTH;
             value = new gbool[length];
             count = length;
             for (int i = 0; i < length; ++i) {
@@ -55,40 +67,49 @@ namespace core
 
     gint BooleanArray::length() const
     {
-        return count > 0 ? count : 0;
+        return count > 0 && count < SOFT_MAX_LENGTH ? count : 0;
     }
 
     gint BooleanArray::isEmpty() const
     {
-        return count <= 0;
+        return count <= 0 || count > SOFT_MAX_LENGTH;
     }
 
     gbool &BooleanArray::get(gint index)
     {
-        if (index >= 0 && index < count) {
+        try{
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gbool const &BooleanArray::get(gint index) const
     {
-        if (index >= 0 && index < count) {
+        try{
+            misc::Precondition::checkIndex(index, count);
+
             return value[index];
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 
     gbool BooleanArray::set(gint index, gbool newValue)
     {
-        if (index >= 0 && index < count) {
+        try{
+            misc::Precondition::checkIndex(index, count);
+
             gbool oldValue = value[index];
             value[index] = newValue;
             return oldValue;
-        } else {
-            throw 0;
+        }
+        catch (Exception const &ex) {
+            ex.throws($ftrace(""_S));
         }
     }
 

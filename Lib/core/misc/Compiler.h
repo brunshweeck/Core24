@@ -1367,4 +1367,20 @@ namespace core
     } // misc
 } // core
 
+#ifdef CORE_COMPILER_MSVC
+class _C_double_complex;
+class _C_float_complex;
+class _C_ldouble_complex;
+
+typedef _C_double_complex  _Dcomplex;
+typedef _C_float_complex   _Fcomplex;
+typedef _C_ldouble_complex _Lcomplex;
+
+#else
+
+typedef _Complex double  _Dcomplex;
+typedef _Complex float   _Fcomplex;
+typedef _Complex long double _Lcomplex;
+#endif //CORE_COMPILER_MSVC
+
 #endif // CORE24_COMPILER_H
